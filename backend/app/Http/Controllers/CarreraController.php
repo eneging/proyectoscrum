@@ -12,7 +12,7 @@ class CarreraController extends Controller
      */
     public function index()
     {
-        //
+        return Carrera::all();
     }
 
     /**
@@ -28,7 +28,10 @@ class CarreraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $carrera= new Carrera();
+        $carrera->nombre= $request->nombre;
+        $carrera->save();
+        return "guardado correctamente";
     }
 
     /**
@@ -50,16 +53,20 @@ class CarreraController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Carrera $carrera)
+    public function update(Request $request, $id)
     {
-        //
+        $carrera= Carrera::find($id);
+        $carrera->save();
+        return 'actualizado correctamente';
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Carrera $carrera)
+    public function destroy($id)
     {
-        //
+        $carrera= Carrera::find($id);
+        $carrera->delete();
+        return "Alumno elimidado correctamente";
     }
 }

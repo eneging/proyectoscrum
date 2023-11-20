@@ -9,3 +9,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 
+Route::controller(CarreraController::class)->group(function () {
+    Route::get('/carreras', 'index');
+    Route::post('/carreras', 'store');
+    Route::put('/carreras/{id}','update');
+    Route::delete('/carreras/{id}','destroy');
+});
