@@ -12,20 +12,16 @@ class CarreraController extends Controller
      */
     public function index()
     {
-        return Carrera::all();
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+        return Carrera::all();
+
+    
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
         $carrera= new Carrera();
