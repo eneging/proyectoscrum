@@ -20,7 +20,9 @@ return new class extends Migration
             $table->string('correo');
             $table->string('telefono');
             $table->unsignedBigInteger('carrera_id')->nullable();
+            $table->unsignedBigInteger('grupo_id')->nullable();
             $table->foreign('carrera_id')->references('carrera_id')->on('carreras');
+            $table->foreign('grupo_id')->references('grupo_id')->on('grupos');
             $table->string('fechaMatricula')->nullable();
             $table->timestamps();
         });
