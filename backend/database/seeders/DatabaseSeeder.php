@@ -31,15 +31,17 @@ class DatabaseSeeder extends Seeder
        $seeder1 = New DocenteSeeder;
      $seeder1->run();
 
+
+     $seeder4 = New NivelSeeder;
+     $seeder4->run();
+
+
+     $seeder3 = New GrupoSeeder;
+     $seeder3->run();
+
     
     $seeder2 = New EstudianteSeeder;
         $seeder2->run();
-
-        $seeder4 = New NivelSeeder;
-       $seeder4->run();
-
-       $seeder3 = New GrupoSeeder;
-        $seeder3->run();
 
      
    

@@ -23,7 +23,8 @@ class EstudianteFactory extends Factory
             'direccion'=>fake()->address(),
             'correo'=>fake()->email(),
             'telefono'=>fake()->phoneNumber(),
-            'carrera_id'=>fake()->numberBetween(1,6)
+            'carrera_id'=>fake()->numberBetween(1,6),
+            'grupo_id'=>fake()->numberBetween(1,4)
         ];
     }
 }

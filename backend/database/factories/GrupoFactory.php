@@ -20,7 +20,7 @@ class GrupoFactory extends Factory
             'nombre'=>fake()->name(),
             'nivel_id'=>fake()->numberBetween(1,4),
             'docente_id'=>fake()->numberBetween(1,10),
-            'estudiante_id'=>fake()->numberBetween(1,30)
+           
         ];
     }
 }
