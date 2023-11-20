@@ -12,8 +12,8 @@ class CarreraController extends Controller
      */
     public function index()
     {
-       return Carrera::all();
-    }
+
+        return Carrera::all();
 
     
     public function create()
