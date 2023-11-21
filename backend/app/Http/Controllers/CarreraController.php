@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carrera;
+use App\Models\Docente;
 use App\Models\Estudiante;
+use App\Models\Grupo;
+use App\Models\Nivel;
 use Illuminate\Http\Request;
 
 class CarreraController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
+    public function index(){
 
         $carreras = Carrera::all();
         $estudiantes = Estudiante::all();
@@ -37,25 +36,15 @@ class CarreraController extends Controller
 
 
     }
-    public function create()
-    {
-        //
-    }
 
-    
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $carrera= new Carrera();
         $carrera->nombre= $request->nombre;
         $carrera->save();
         return "guardado correctamente";
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show($carrera_id)
-    {
+    public function show($carrera_id){
         $carrera = Carrera::find($carrera_id);
         $estudiantes = Estudiante::all();
         $info = null;
@@ -76,30 +65,14 @@ class CarreraController extends Controller
         return $info;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Carrera $carrera)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         $carrera= Carrera::find($id);
         $carrera->nombre = $request->nombre;
         $carrera->save();
         return 'actualizado correctamente';
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
-    {
+    public function destroy($id){
         $carrera= Carrera::find($id);
         $carrera->delete();
         return "carrera elimidada correctamente";
@@ -155,5 +128,34 @@ class CarreraController extends Controller
         } else {
             return "No se puede eliminar porque la matricula es inexistente";
         }
+    }
+
+    public function listaMatricula(){
+        $estudiantes = Estudiante::all();
+        $info =[];
+        foreach ($estudiantes as $estudiante) {
+            $carrera = isset($estudiante->carrera_id) ? Carrera::find($estudiante->carrera_id)->nombre : NULL;
+            $grupo = isset($estudiante->grupo_id) ? Grupo::find($estudiante->grupo_id)->nombre : NULL;
+            $nivel = isset(Grupo::find($estudiante->grupo_id)->nivel_id) ? Nivel::find(Grupo::find($estudiante->grupo_id)->nivel_id)->nombre : NULL;
+            $docenteNombre = NULL;
+            if (isset(Grupo::find($estudiante->grupo_id)->docente_id)) {
+                $docente = Docente::find(Grupo::find($estudiante->grupo_id)->docente_id);
+                $docenteNombre = $docente->nombre.' '.$docente->apeliido;
+            }
+            
+            $info[] = [
+                'estudiante_id' => $estudiante->estudiante_id,
+                'nombre' => $estudiante->nombre.' '.$estudiante->apellido,
+                'carrera' => $carrera,
+                'fechaMatricula' => $estudiante->fechaMatricula,
+                'grupo' => $grupo,
+                'nivel' => $nivel,
+                'docente' => $docenteNombre
+                
+            ];
+        } 
+
+        return $info;
+
     }
 }
