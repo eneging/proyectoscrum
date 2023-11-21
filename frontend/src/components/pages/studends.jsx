@@ -12,8 +12,10 @@ const Students = () => {
 
   const fetchData = async () => {
     try {
+
       const response = await axios.get(`${API_URL}/docentes`);
       console.log(students);
+
       setStudents(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -114,10 +116,9 @@ const Students = () => {
               jane.cooper@example.com
             </td>
             <td className="px-6 py-4 whitespace-nowrap  text-sm font-medium">
-              <a
-                href="/editar"
-                className="text-indigo-600 hover:text-indigo-900"
-              >
+
+              <a href="/editar" className="text-indigo-600 hover:text-indigo-900">
+
                 Editar
               </a>
               <a href="#" className="ml-2 text-red-600 hover:text-red-900">
@@ -157,10 +158,10 @@ const Students = () => {
               carlos@mail.com
             </td>
             <td className="px-6 py-4 whitespace-nowrap  text-sm font-medium">
-              <a
-                href="/editar"
-                className="text-indigo-600 hover:text-indigo-900"
-              >
+
+              <a href="/editar" className="text-indigo-600 hover:text-indigo-900">
+
+
                 Editar
               </a>
               <a href="#" className="ml-2 text-red-600 hover:text-red-900">
@@ -200,10 +201,12 @@ const Students = () => {
               ivan@mail.com
             </td>
             <td className="px-6 py-4 whitespace-nowrap  text-sm font-medium">
+
               <a
                 href="/editar"
                 className="text-indigo-600 hover:text-indigo-900"
               >
+
                 Editar
               </a>
               <a href="#" className="ml-2 text-red-600 hover:text-red-900">
@@ -243,10 +246,12 @@ const Students = () => {
               fernan@mail.com
             </td>
             <td className="px-6 py-4 whitespace-nowrap  text-sm font-medium">
+
               <a
                 href="/editar"
                 className="text-indigo-600 hover:text-indigo-900"
               >
+
                 Editar
               </a>
               <a href="#" className="ml-2 text-red-600 hover:text-red-900">
