@@ -9,8 +9,15 @@ function Navigation() {
       
       <ul className='flex justify-around w-[60%]'>
 
+      <li>
+          <Link to="/">Logout</Link>
+        </li>
+        
+
         <li>
+
           <Link to="/"><h1 className="hover:text-orange-500">Home</h1></Link>
+
         </li>
         <li>
 
