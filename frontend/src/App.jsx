@@ -12,18 +12,15 @@ import Carreras from "./components/pages/carreras";
 
 import Editar from "./components/pages/editar";
 
-import Matriculas from './components/pages/matriculas';
+import Matriculas2 from "./components/pages/matriculas";
+
 
 
 function App() {
   return (
     <>
 
-    
- <Router>
-  
- </Router>
-    
+
     <Router>
 
       <Navigation></Navigation>
@@ -34,7 +31,7 @@ function App() {
       <Route path="/students" element={<Students />} />
       <Route path="/teachers" element={<Teachers />} />
       <Route path="/carreras" element={<Carreras />} />
-      <Route path="/matriculas" element={<Matriculas/> }/>
+      <Route path="/matriculas" element={<Matriculas2/> }/>
       <Route path="/editar" element={<Editar />} />
 </Routes>
   </Router>
