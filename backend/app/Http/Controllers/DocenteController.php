@@ -12,7 +12,7 @@ class DocenteController extends Controller
      */
     public function index()
     {
-        //
+        return Docente::all();
     }
 
     /**
@@ -26,17 +26,31 @@ class DocenteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request) 
+    
     {
-        //
+
+        $docente = new Docente();
+    
+        $docente->nombre=$request->nombre;
+        $docente->apellido=$request->apellido;
+        $docente->dni=$request->dni;
+        $docente->direccion=$request->direccion;
+        $docente->correo=$request->correo;
+        $docente->telefono=$request->telefono;
+
+        $docente->save();
+
+        return "el Docente fue registrado correctamente";
     }
+
 
     /**
      * Display the specified resource.
      */
-    public function show(Docente $docente)
+    public function show($id)
     {
-        //
+        return Docente::find($id);
     }
 
     /**
@@ -50,16 +64,32 @@ class DocenteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Docente $docente)
+    public function update(Request $request, $id)
     {
-        //
+
+        $docente = Docente::find($id);
+
+        
+        $docente->nombre=$request->nombre;
+        $docente->apellido=$request->apellido;
+        $docente->dni=$request->dni;
+        $docente->direccion=$request->direccion;
+        $docente->correo=$request->correo;
+        $docente->telefono=$request->telefono;
+
+        $docente->save();
+
+        return "editado correctamente";
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Docente $docente)
+    public function destroy($id)
     {
-        //
+        $docente = Docente::find($id);
+        $docente->delete();
+
+        return " eliminado correctamente";
     }
 }
