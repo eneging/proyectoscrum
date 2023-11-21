@@ -15,7 +15,6 @@ class CarreraController extends Controller
 
         return Carrera::all();
 
-    }
     public function create()
     {
         //
