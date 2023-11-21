@@ -12,6 +12,10 @@ const Carreras = () => {
     nombre: '',
   });
 
+  const [modalOpen, setModalOpen] = useState(false);
+
+
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -20,7 +24,8 @@ const Carreras = () => {
     try {
       const response = await axios.get(`${API_URL}/carreras`);
       setStudents(response.data);
-      console.log(response.data);
+   
+   
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -40,6 +45,19 @@ const Carreras = () => {
     setEditCarrera({ carrera_id: carrera.carrera_id, nombre: carrera.nombre });
   };
 
+  const handlOpenModal = () => {
+   
+    setModalOpen(true);
+  };
+
+
+  const handleCloseModal = () => {
+   
+    setModalOpen(false);
+  };
+
+
+
   const handleSaveEdit = async () => {
     try {
       await axios.put(`${API_URL}/carreras/${editCarrera.carrera_id}`, {
@@ -53,7 +71,9 @@ const Carreras = () => {
   };
 
   return (
-    <div className='flex justify-center'>
+    <div className='flex  flex-col h-screen justify-center items-center gap-3'>
+       <div className='flex justify-end  w-[30vw]'>
+        <button   onClick={() => handlOpenModal()} className='px-4 py-2 font-medium text-white bg-green-500 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out'>Agregar Docente</button> </div>
       <table className="gap-[2rem] divide-gray-200">
         <thead>
           <tr>
@@ -107,7 +127,24 @@ const Carreras = () => {
           </div>
         </div>
       )}
+{modalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
+          <div className='bg-white w-[40vw] h-[80vh] p-[3rem]'>
+          
+
+            <button
+              onClick={handleCloseModal}
+              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
+            >
+              Cerrar Modal
+            </button>
+         </div>
+        </div>
+      )}
+      
     </div>
+
+    
   );
 };
 
