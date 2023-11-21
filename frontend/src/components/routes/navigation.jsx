@@ -1,19 +1,25 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function Navigation() {
   return (
-<nav className='bg-gray-800  text-white flex justify-around h-[10vh] w-screen items-center ' >
+    <nav className="bg-gray-800  text-white flex justify-around h-[10vh] w-screen items-center ">
       <div>#mi app matriculas</div>
+
       
       <ul className='flex justify-around w-[60%]'>
+
         <li>
           <Link to="/">Home</Link>
         </li>
         <li>
+
+  
+
           <Link to="/students">Registro Estudiantes</Link>
         </li>
         <li>
           <Link to="/teachers">Registro Docentes</Link>
+
         </li>
 
         <li>
@@ -24,18 +30,8 @@ function Navigation() {
           <Link to="/matriculas">Registro matriculas</Link>
         </li>
       </ul>
-
-
-
-
-      
     </nav>
-
-    
-
-
   );
-  
 }
 
 export default Navigation;
