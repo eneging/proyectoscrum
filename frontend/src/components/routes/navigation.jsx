@@ -8,8 +8,13 @@ function Navigation() {
       
       <ul className='flex justify-around w-[60%]'>
 
+      <li>
+          <Link to="/">Logout</Link>
+        </li>
+        
+
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/home">Home</Link>
         </li>
         <li>
 
