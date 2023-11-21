@@ -12,7 +12,8 @@ const Students = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${API_URL}/carreras`);
+      const response = await axios.get(`http://127.0.0.1:8000/api/docentes`);
+      console.log(setStudents);
       setStudents(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -21,7 +22,7 @@ const Students = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${API_URL}/carreras/${id}`);
+      await axios.delete(`${API_URL}/docentes/${id}`);
       // Actualizar la lista de estudiantes después de la eliminación
       fetchData();
     } catch (error) {
@@ -32,14 +33,16 @@ const Students = () => {
   return (
     <div>
       <h1>List of Students</h1>
-      {/* <ul>
+      <ul>
         {students.map((student) => (
-          <li key={student.carrera_id}>
+          <li key={student.docente_id}>
             {`${student.nombre} ${student.apellido}`}
-            <button onClick={() => handleDelete(student.carrera_id)}>Delete</button>
+            <button onClick={() => handleDelete(student.docente_id)}>
+              Delete
+            </button>
           </li>
         ))}
-      </ul> */}
+      </ul>
 
       <table className="min-w-full divide-y divide-gray-200 overflow-x-auto">
         <thead className="bg-gray-50">
@@ -111,7 +114,9 @@ const Students = () => {
               jane.cooper@example.com
             </td>
             <td className="px-6 py-4 whitespace-nowrap  text-sm font-medium">
+
               <a href="/editar" className="text-indigo-600 hover:text-indigo-900">
+
                 Editar
               </a>
               <a href="#" className="ml-2 text-red-600 hover:text-red-900">
@@ -151,7 +156,10 @@ const Students = () => {
               carlos@mail.com
             </td>
             <td className="px-6 py-4 whitespace-nowrap  text-sm font-medium">
+
               <a href="/editar" className="text-indigo-600 hover:text-indigo-900">
+
+
                 Editar
               </a>
               <a href="#" className="ml-2 text-red-600 hover:text-red-900">
@@ -191,7 +199,12 @@ const Students = () => {
               ivan@mail.com
             </td>
             <td className="px-6 py-4 whitespace-nowrap  text-sm font-medium">
-              <a href="/editar" className="text-indigo-600 hover:text-indigo-900">
+
+              <a
+                href="/editar"
+                className="text-indigo-600 hover:text-indigo-900"
+              >
+
                 Editar
               </a>
               <a href="#" className="ml-2 text-red-600 hover:text-red-900">
@@ -231,7 +244,12 @@ const Students = () => {
               fernan@mail.com
             </td>
             <td className="px-6 py-4 whitespace-nowrap  text-sm font-medium">
-              <a href="/editar" className="text-indigo-600 hover:text-indigo-900">
+
+              <a
+                href="/editar"
+                className="text-indigo-600 hover:text-indigo-900"
+              >
+
                 Editar
               </a>
               <a href="#" className="ml-2 text-red-600 hover:text-red-900">
