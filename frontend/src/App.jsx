@@ -8,10 +8,8 @@ import Navigation from "./components/routes/navigation";
 import Students from "./components/pages/studends";
 import Carreras from "./components/pages/carreras";
 
-
 import Editar from "./components/pages/editar";
-import Students from './components/pages/studends';
-import Carreras from './components/pages/carreras';
+
 import Matriculas from './components/pages/matriculas';
 
 
@@ -30,8 +28,8 @@ function App() {
       <Route path="/students" element={<Students />} />
       <Route path="/teachers" element={<Teachers />} />
       <Route path="/carreras" element={<Carreras />} />
-      <Route path="/matriculas" element={<Matriculas />}
-          <Route path="/editar" element={<Editar />} />
+      <Route path="/matriculas" element={<Matriculas/> }/>
+      <Route path="/editar" element={<Editar />} />
 </Routes>
   </Router>
 
