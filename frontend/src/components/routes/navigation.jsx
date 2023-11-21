@@ -5,19 +5,23 @@ function Navigation() {
 <nav className='bg-gray-800  text-white flex justify-around h-[10vh] w-screen items-center ' >
       <div>#mi app matriculas</div>
       
-      <ul className='flex justify-around w-[40%]'>
+      <ul className='flex justify-around w-[60%]'>
         <li>
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/teachers">studiantes</Link>
+          <Link to="/teachers">Registro Estudiantes</Link>
         </li>
         <li>
-          <Link to="/students">docentes</Link>
+          <Link to="/students">Registro Docentes</Link>
         </li>
 
         <li>
-          <Link to="/carreras">carreras</Link>
+          <Link to="/carreras">Registro Carreras</Link>
+        </li>
+
+        <li>
+          <Link to="/matriculas">Registro matriculas</Link>
         </li>
       </ul>
 
