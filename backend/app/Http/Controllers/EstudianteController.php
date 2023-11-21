@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use App\Models\Estudiante;
 use Illuminate\Http\Request;
 

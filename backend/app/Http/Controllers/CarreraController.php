@@ -14,10 +14,6 @@ class CarreraController extends Controller
     public function index()
     {
 
-<<<<<<< HEAD
-        return Carrera::all();
-=======
-
         $carreras = Carrera::all();
         $estudiantes = Estudiante::all();
         $info = [];
@@ -39,7 +35,7 @@ class CarreraController extends Controller
         }
         return $info;
 
->>>>>>> b77b0c23089110159b5343a30948362d9e605097
+
     }
     public function create()
     {
