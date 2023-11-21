@@ -14,8 +14,7 @@ class CarreraController extends Controller
     {
 
         return Carrera::all();
-    }
-    
+
     public function create()
     {
         //
@@ -52,6 +51,7 @@ class CarreraController extends Controller
     public function update(Request $request, $id)
     {
         $carrera= Carrera::find($id);
+        $carrera->nombre = $request->nombre;
         $carrera->save();
         return 'actualizado correctamente';
     }
@@ -63,6 +63,6 @@ class CarreraController extends Controller
     {
         $carrera= Carrera::find($id);
         $carrera->delete();
-        return "Alumno elimidado correctamente";
+        return "carrera elimidada correctamente";
     }
 }

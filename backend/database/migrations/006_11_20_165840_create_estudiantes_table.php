@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('telefono');
             $table->unsignedBigInteger('carrera_id')->nullable();
             $table->unsignedBigInteger('grupo_id')->nullable();
-            $table->foreign('carrera_id')->references('carrera_id')->on('carreras');
-            $table->foreign('grupo_id')->references('grupo_id')->on('grupos');
+            $table->foreign('carrera_id')->references('carrera_id')->on('carreras')->onDelete('cascade');
+            $table->foreign('grupo_id')->references('grupo_id')->on('grupos')->onDelete('cascade');
             $table->string('fechaMatricula')->nullable();
             $table->timestamps();
         });
