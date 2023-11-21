@@ -46,32 +46,50 @@ const Matriculas2 = () => {
   function rowContent(_index, carrera) {
     return (
       <React.Fragment>
-        <TableCell align='left'>{carrera.nombre}</TableCell>
-        <TableCell align='left'>{carrera.carrera}</TableCell>
-        <TableCell align='left'>{carrera.nivel}</TableCell>
-   
+        <TableCell align='left'> {carrera.nombre}</TableCell>
+        <TableCell align='left'><div className=' text-center'>{carrera.carrera}</div></TableCell>
+        <TableCell align='left'><div className=' text-center'>{carrera.nivel}</div></TableCell>
+        <TableCell align='left'><div className=' text-center'>{carrera.grupo}</div></TableCell>
         <TableCell align='left'>
+          
+          <div className='flex gap-4 justify-center'>
           <button
             onClick={() => handleEdit(carrera)}
-            className="px-4 py-2 font-medium text-white bg-green-500 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
+            className="px-4 py-2 font-medium text-white hover:bg-green-500 rounded-md bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
           >
-            Mostrar Estudiantes
+
+            editar
           </button>
+
+          <button
+            onClick={() => handleEdit(carrera)}
+            className="px-4 py-2 font-medium text-white hover:bg-green-500 rounded-md bg-red-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
+          >
+
+            editar
+          </button>
+          </div>
         </TableCell>
+
+        
       </React.Fragment>
     );
   }
 
   return (
     <div className='flex justify-center flex-col p-[3rem]'>
-      <div className='flex justify-end'>
-        <h1 className='text-center text-2xl'>Lista de Matriculadosss</h1>
+      <div className='flex justify-between p-[0.5rem]'>
+        <h1 className='text-center text-2xl m-3'>Lista de Matriculados</h1>
+        <button className="bg-blue-500 text-white rounded-[5px] h-[7vh] items-center p-[0.5rem]">Crear Matricula</button>
       </div>
 
-      <thead>
-          <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Carreras</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">estudiantes Matriculados</th>
+      <thead className='flex justify-center'>
+          <tr className='bg-gray-800   flex justify-around w-[100%]'>
+            <th className="px-6 py-3 text-left text-xs font-medium text-white hover:text-orange-400 uppercase tracking-wider ">Nombre</th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-white hover:text-orange-400 uppercase tracking-wider ">Carrera</th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-white hover:text-orange-400 uppercase tracking-wider ">Nivel</th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-white hover:text-orange-400 uppercase tracking-wider ">Grupo</th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-white hover:text-orange-400 uppercase tracking-wider ">Accion</th>
           </tr>
         </thead>
       <Paper style={{ height: 400, width: '100%' }}>

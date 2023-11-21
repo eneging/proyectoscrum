@@ -35,7 +35,8 @@ const Students = () => {
   return (
     <div>
   <div className='flex justify-between p-[1rem]'>
-        <h1 className='text-center text-xl  p-[0.5rem] '>Lista de estudiantes</h1><button className="bg-blue-500 text-white rounded-[5px] p-[0.5rem]">Crear Estudiante</button>
+        <h1 className='text-center text-xl  p-[0.5rem] '>Lista de estudiantes</h1>
+        <button className="bg-blue-500 text-white rounded-[5px] p-[0.5rem]">Crear Estudiante</button>
       </div>
       {/* <ul>
         {students.map((student) => (
