@@ -10,4 +10,5 @@ class Estudiante extends Model
     use HasFactory;
 
     protected $primaryKey = 'estudiante_id';
+    protected $fillable = ['nombre', 'apellido', 'correo'];
 }

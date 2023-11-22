@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Controller;
-use App\Models\Estudiante;
-use Illuminate\Http\Request;
+namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use App\Models\Estudiante;
 class EstudianteController extends Controller
 {
     public function index()

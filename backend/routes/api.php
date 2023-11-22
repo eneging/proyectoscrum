@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::controller('estudiantes', EstudianteController::class)->group(function () {
+Route::controller(EstudianteController::class)->group(function () {
     Route::get('/estudiante', 'index');
     Route::post('/estudiante', 'store');
     Route::put('/estudiante/{id}','update');
