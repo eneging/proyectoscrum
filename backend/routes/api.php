@@ -12,7 +12,13 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::resource('estudiantes', EstudianteController::class);
+Route::controller('estudiantes', EstudianteController::class)->group(function () {
+    Route::get('/estudiante', 'index');
+    Route::post('/estudiante', 'store');
+    Route::put('/estudiante/{id}','update');
+    Route::delete('/estudiante/{id}','destroy');
+
+});
 
 Route::controller(CarreraController::class)->group(function () {
     Route::get('/carreras', 'index');
