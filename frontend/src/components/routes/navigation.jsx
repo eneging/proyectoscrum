@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
-function Navigation() {
+function Navigation(props) {
+
   return (
     <nav className="bg-gray-800  text-white flex justify-around h-[12vh] w-screen items-center fixed shadow-md ">
       <div className="flex gap-4 items-center bg-orange-500 p-1 "><img  className="w-[3vw]" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6G3iW4Ur14DPKXx427YVLoMAv83QjhgOIgZdzNO7Tm5M6meiVyRg3sMQlsHT35rptSIE&usqp=CAU"></img>  
@@ -9,7 +10,7 @@ function Navigation() {
       
       <ul className='flex justify-around w-[60%]'>
 
-      <li>
+      <li onClick={props.funLogout}>
           <Link to="/">Logout</Link>
         </li>
         
