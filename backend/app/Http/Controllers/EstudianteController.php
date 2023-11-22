@@ -9,7 +9,7 @@ class EstudianteController extends Controller
     public function index()
     {
         $estudiantes = Estudiante::all();
-        return view('estudiantes.index', compact('estudiantes'));
+        return $estudiante;
     }
 
     public function create()
@@ -26,7 +26,7 @@ class EstudianteController extends Controller
 
         Estudiante::create($request->all());
 
-        return redirect()->route('estudiantes.index')->with('success', 'Estudiante creado exitosamente.');
+        return  'Estudiante creado exitosamente.';
     }
 
     public function show($id)
@@ -51,7 +51,7 @@ class EstudianteController extends Controller
         $estudiante = Estudiante::findOrFail($id);
         $estudiante->update($request->all());
 
-        return redirect()->route('estudiantes.index')->with('success', 'Estudiante actualizado exitosamente.');
+        return 'Estudiante actualizado exitosamente';
     }
 
     public function destroy($id)
@@ -59,6 +59,6 @@ class EstudianteController extends Controller
         $estudiante = Estudiante::findOrFail($id);
         $estudiante->delete();
 
-        return redirect()->route('estudiantes.index')->with('success', 'Estudiante eliminado exitosamente.');
+        return  'Estudiante eliminado exitosamente';
     }
 }

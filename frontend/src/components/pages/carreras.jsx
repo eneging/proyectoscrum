@@ -76,17 +76,17 @@ const Carreras = () => {
        <div className='flex justify-end w-[90vw] m-[1rem]'>
         <button   onClick={() => handlOpenModal()} className='px-4 py-2 font-medium text-white bg-green-500 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out'>Agregar Docente</button> </div>
     
-   <div className=' flex justify-end'>
+   <div className=' flex justify-center'>
       <table className="gap-[2rem] divide-gray-200 w-[70vw] ">
         <thead>
-          <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre Carrera</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+          <tr className="bg-gray-800 ">
+            <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Nombre Carrera</th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Action</th>
           </tr>
         </thead>
-        <tbody className="bg-white  divide-gray-200">
+        <tbody className="bg-white  divide-gray-200  ">
           {students.map((student) => (
-            <tr key={student.carrera_id} className='flex items-center justify-between'>
+            <tr key={student.carrera_id} className='flex items-center justify-between '>
               <td className="px-6 py-4 whitespace-nowrap "> <div className='flex gap-4 items-center'><img src='https://picsum.photos/50'></img><div>{student.nombre}</div></div></td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <button
