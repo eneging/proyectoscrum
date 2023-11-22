@@ -72,6 +72,7 @@ const Carreras = () => {
 
   return (
     <div className='flex  flex-col h-screen  gap-3 '>
+           <div  className="bg-gray-800  text-white flex justify-around h-[12vh] w-screen items-center "></div>
        <div className='flex justify-end w-[90vw] m-[1rem]'>
         <button   onClick={() => handlOpenModal()} className='px-4 py-2 font-medium text-white bg-green-500 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out'>Agregar Docente</button> </div>
     
@@ -133,6 +134,9 @@ const Carreras = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
           <div className='bg-white w-[40vw] h-[80vh] p-[3rem]'>
           
+
+
+
 
             <button
               onClick={handleCloseModal}
