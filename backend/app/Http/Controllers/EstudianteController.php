@@ -9,7 +9,7 @@ class EstudianteController extends Controller
     public function index()
     {
         $estudiantes = Estudiante::all();
-        return $estudiante;
+        return $estudiantes;
     }
 
     public function create()
