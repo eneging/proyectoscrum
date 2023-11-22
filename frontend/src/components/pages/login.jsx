@@ -14,14 +14,14 @@ export const Login = () => {
              ingresa tu usuario y contraseña</h2>
           
           <div className="flex justify-center items-center border-[1px] border-gray-400">
-            <input className=" w-[250px] h-[30px] pl-4 text-sm  border-[1px] border-gray-400 " type="email" placeholder="Usuario" />
+            <input className=" w-[250px] h-[30px] pl-4 text-sm  hover:bg-gray-300 border-[1px] border-gray-400 " type="email" placeholder="Usuario" />
             <span className="material-symbols-outlined pr-1 text-gray-400">
               mail
             </span>
           </div>
           <div >
-            <input type="password" className="w-[250px] h-[30px] pl-4 text-sm  border-2 border-gray-400" placeholder="Contraseña" name="contrasena"/>
-            <span className="material-symbols-outlined  pr-1 text-gray-400 ">
+            <input type="password" className="w-[250px] h-[30px] pl-4 text-sm  hover:bg-gray-300 border-2 border-gray-400" placeholder="Contraseña" name="contrasena"/>
+            <span className="material-symbols-outlined  pr-1 text-gray-400">
               lock
             </span>
           </div>
@@ -29,7 +29,7 @@ export const Login = () => {
         </div>
 
         <div className="pt-10 ">
-          <button className="w-[100px] h-[30px] bg-gray-800 text-white   rounded-md  " type="submit">Ingresar</button>
+          <button className="w-[100px] h-[30px] bg-gray-800 text-white  hover:bg-blue-500  rounded-md  " type="submit">Ingresar</button>
         </div>
       </form>
       </div>
