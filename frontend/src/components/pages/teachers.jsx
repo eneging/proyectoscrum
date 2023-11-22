@@ -1,6 +1,7 @@
 function Teachers() {
   return (
     <div>
+           <div  className="bg-gray-800  text-white flex justify-around h-[12vh] w-screen items-center "></div>
       <table className="min-w-full divide-y divide-gray-200">
         <thead>
           <tr>

@@ -12,7 +12,10 @@ import { TableVirtuoso } from 'react-virtuoso';
 
 const Matriculas2 = () => {
   const [carreras, setCarreras] = useState([]);
-
+  const [editmatricula, setEditMatricula] = useState({
+    estudiante_id: null,
+    nombre: '',
+  });
   useEffect(() => {
     fetchData();
   }, []);
@@ -27,8 +30,32 @@ const Matriculas2 = () => {
   };
 
   const handleEdit = (carrera) => {
-  
+    setEditMatricula({ carrera_id: carrera.carrera_id, nombre: carrera.nombre });
     console.log('Edit button clicked for:', carrera);
+  };
+
+
+  const handleSaveEdit = async () => {
+    try {
+      await axios.put(`${API_URL}/matriculas/${editmatricula.estudiante_id}`, {
+        nombre: editmatricula.nombre,
+      });
+      fetchData();
+      setEditMatricula({ estudiante_id: null, nombre: '' });
+    } catch (error) {
+      console.error('Error updating student:', error);
+    }
+  };
+
+
+  const handleDelete = async (estudiante_id) => {
+    try {
+      await axios.delete(`${API_URL}/carreras/eliminar/matricula/estudiante/${estudiante_id}`);
+      fetchData();
+
+    } catch (error) {
+      console.error('Error deleting student:', error);
+    }
   };
 
   const VirtuosoTableComponents = {
@@ -45,10 +72,13 @@ const Matriculas2 = () => {
 
   function rowContent(_index, carrera) {
     return (
-      <React.Fragment>
-        <TableCell align='left'> {carrera.nombre}</TableCell>
+      
+       <React.Fragment>
+      
+      
+   <TableCell align='left'> {carrera.nombre}</TableCell>
         <TableCell align='left'><div className=' text-center'>{carrera.carrera}</div></TableCell>
-        <TableCell align='left'><div className=' text-center'>{carrera.nivel}</div></TableCell>
+        <TableCell align='left'> <div className=' text-center'>{carrera.nivel}</div></TableCell>
         <TableCell align='left'><div className=' text-center'>{carrera.grupo}</div></TableCell>
         <TableCell align='left'>
           
@@ -62,23 +92,24 @@ const Matriculas2 = () => {
           </button>
 
           <button
-            onClick={() => handleEdit(carrera)}
+            onClick={() => handleDelete(carrera.estudiante_id)}
             className="px-4 py-2 font-medium text-white hover:bg-green-500 rounded-md bg-red-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
           >
 
-            editar
+         delete
           </button>
           </div>
         </TableCell>
 
-        
-      </React.Fragment>
+       
+      </React.Fragment> 
     );
   }
 
   return (
     <div className='flex justify-center flex-col p-[3rem]'>
-      <div className='flex justify-between p-[0.5rem]'>
+         <div  className="bg-gray-800  text-white flex justify-around h-[5vh] w-screen items-center "></div>
+      <div className='flex justify-between p-[0.5rem] m-5'>
         <h1 className='text-center text-2xl m-3'>Lista de Matriculados</h1>
         <button className="bg-blue-500 text-white rounded-[5px] h-[7vh] items-center p-[0.5rem]">Crear Matricula</button>
       </div>
@@ -99,7 +130,34 @@ const Matriculas2 = () => {
           itemContent={rowContent}
         />
       </Paper>
+
+
+
+      
+      {editmatricula.estudiante_id !== null && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
+          <div className="bg-white p-4 rounded-md">
+            <label htmlFor="editNombre" className="block text-sm font-medium text-gray-700">
+              Edit Name:
+            </label>
+            <input
+              type="text"
+              id="editNombre"
+              value={editmatricula.nombre}
+              onChange={(e) => setEditMatricula({ ...editmatricula, nombre: e.target.value })}
+              className="border p-2 mb-2 w-full"
+            />
+            <button
+              onClick={handleSaveEdit}
+              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      )}
     </div>
+    
   );
 };
 Matriculas2.displayName = 'Matriculas2';
