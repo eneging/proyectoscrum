@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('nivel_id');
             $table->string('nombre');
             $table->unsignedBigInteger('carrera_id');
-            $table->foreign('carrera_id')->references('carrera_id')->on('carreras');
+            $table->foreign('carrera_id')->references('carrera_id')->on('carreras')->onDelete('cascade');
             $table->timestamps();
         });
     }

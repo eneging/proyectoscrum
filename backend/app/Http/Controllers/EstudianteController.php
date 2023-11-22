@@ -1,65 +1,64 @@
 <?php
 
-namespace App\Http\Controllers;
-
+use App\Http\Controllers\Controller;
 use App\Models\Estudiante;
 use Illuminate\Http\Request;
 
 class EstudianteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $estudiantes = Estudiante::all();
+        return $estudiantes;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('estudiantes.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'apellido' => 'required',
+        ]);
+
+        Estudiante::create($request->all());
+
+        return  'Estudiante creado exitosamente.';
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Estudiante $estudiante)
+    public function show($id)
     {
-        //
+        $estudiante = Estudiante::findOrFail($id);
+        return view('estudiantes.show', compact('estudiante'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Estudiante $estudiante)
+    public function edit($id)
     {
-        //
+        $estudiante = Estudiante::findOrFail($id);
+        return view('estudiantes.edit', compact('estudiante'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Estudiante $estudiante)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'apellido' => 'required',
+        ]);
+
+        $estudiante = Estudiante::findOrFail($id);
+        $estudiante->update($request->all());
+
+        return 'Estudiante actualizado exitosamente';
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Estudiante $estudiante)
+    public function destroy($id)
     {
-        //
+        $estudiante = Estudiante::findOrFail($id);
+        $estudiante->delete();
+
+        return  'Estudiante eliminado exitosamente';
     }
 }
