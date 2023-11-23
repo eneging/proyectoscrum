@@ -393,3 +393,6 @@ const Teachers = () => {
     </div>
   );
 };
+
+
+export default Teachers 
