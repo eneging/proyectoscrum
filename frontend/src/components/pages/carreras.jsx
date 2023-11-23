@@ -46,6 +46,7 @@ const Carreras = () => {
   };
 
   const handleSaveEdit = async () => {
+
     try {
       await axios.put(`${API_URL}/carreras/${editCarrera.carrera_id}`, {
         nombre: editCarrera.nombre,
@@ -84,9 +85,8 @@ const Carreras = () => {
   };
 
   return (
-
-    <div className="flex  flex-col h-screen  gap-3 ">
-      <div className="flex justify-end w-[90vw] m-[1rem]">
+    <div className="flex  flex-col h-screen  gap-3 p-[5vw] ">
+      <div className="flex justify-end w-[90vw] m-[1rem] ">
         <button
           onClick={() => handlOpenModal()}
           className="px-4 py-2 font-medium text-white bg-gray-800 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
@@ -105,7 +105,6 @@ const Carreras = () => {
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Action
               </th>
-
             </tr>
           </thead>
           <tbody className="bg-white  divide-gray-200">
@@ -138,7 +137,8 @@ const Carreras = () => {
               </tr>
             ))}
           </tbody>
-        </table>
+
+          </table>
       </div>
       {/* Modal para la edición */}
       {editCarrera.carrera_id !== null && (
@@ -171,9 +171,7 @@ const Carreras = () => {
       {/* Modal para crear carrera */}
       {modalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
-
           <div className="bg-white w-[30vw] h-[50vh] p-[3rem] flex flex-col rounded-lg gap-y-6">
-
             <button
               onClick={handleCloseModal}
               className="bg-gray-500 text-white px-4 py-2 w-[20px] h-[20px] flex items-center justify-center rounded-md hover:bg-blue-400 focus:outline-none "
@@ -181,7 +179,7 @@ const Carreras = () => {
               <span class="material-symbols-outlined">
 close
 </span>
-            </button>
+</button>
             <form onSubmit={handleForm} action="/carreras">
               <div className="flex flex-col gap-y-3 pb-10">
                 <label className="text-gray-500">Name Carrera</label>
@@ -208,3 +206,5 @@ close
 };
 
 export default Carreras;
+
+
