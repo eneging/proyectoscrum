@@ -71,10 +71,11 @@ const Carreras = () => {
   };
 
   return (
-    <div className='flex  flex-col h-screen  gap-3 '>
-           <div  className="bg-gray-800  text-white flex justify-around h-[12vh] w-screen items-center "></div>
-       <div className='flex justify-end w-[90vw] m-[1rem]'>
-        <button   onClick={() => handlOpenModal()} className='px-4 py-2 font-medium text-white bg-green-500 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out'>Agregar Docente</button> </div>
+    <div className='flex  flex-col h-screen  gap-3  p-[6rem]'>
+          
+       <div className='flex justify-end w-[90vw] '>
+        <button   onClick={() => handlOpenModal()} className='px-4 py-2 font-medium text-white bg-green-500 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out'>
+          Agregar Carrera</button> </div>
     
    <div className=' flex justify-center'>
       <table className="gap-[2rem] divide-gray-200 w-[70vw] ">
@@ -87,7 +88,7 @@ const Carreras = () => {
         <tbody className="bg-white  divide-gray-200  ">
           {students.map((student) => (
             <tr key={student.carrera_id} className='flex items-center justify-between '>
-              <td className="px-6 py-4 whitespace-nowrap "> <div className='flex gap-4 items-center'><img src='https://picsum.photos/50'></img><div>{student.nombre}</div></div></td>
+              <td className="px-6 py-4 whitespace-nowrap "> <div className='flex gap-4 items-center '><img className='h-[50px]' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6G3iW4Ur14DPKXx427YVLoMAv83QjhgOIgZdzNO7Tm5M6meiVyRg3sMQlsHT35rptSIE&usqp=CAU'></img><div>{student.nombre}</div></div></td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <button
                   onClick={() => handleEdit(student)}

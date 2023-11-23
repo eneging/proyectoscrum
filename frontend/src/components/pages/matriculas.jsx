@@ -157,8 +157,9 @@ const Matriculas2 = () => {
         </div>
       )}
     </div>
-    
+     
   );
+
 };
 Matriculas2.displayName = 'Matriculas2';
 export default Matriculas2;
