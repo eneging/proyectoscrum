@@ -22,7 +22,7 @@ const Matriculas2 = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${API_URL}/matriculas`);
+      const response = await axios.get(`${API_URL}/matricula`);
       setCarreras(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -77,9 +77,9 @@ const Matriculas2 = () => {
       
       
    <TableCell align='left'> {carrera.nombre}</TableCell>
-        <TableCell align='left'><div className=' text-center'>{carrera.carrera}</div></TableCell>
-        <TableCell align='left'> <div className=' text-center'>{carrera.nivel}</div></TableCell>
-        <TableCell align='left'><div className=' text-center'>{carrera.grupo}</div></TableCell>
+        <TableCell align='left'><div className=' text-center'>{carrera.carrera_nombre}</div></TableCell>
+        <TableCell align='left'> <div className=' text-center'>{carrera.nivel_id}</div></TableCell>
+        <TableCell align='left'><div className=' text-center'>{carrera.grupo_id}</div></TableCell>
         <TableCell align='left'>
           
           <div className='flex gap-4 justify-center'>

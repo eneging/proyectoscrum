@@ -5,6 +5,7 @@ use App\Http\Controllers\EstudianteController;
 
 use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\MatriculaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -43,3 +44,12 @@ Route::controller(DocenteController::class)->group(function() {
 
 Route::post('/login/create',[UserController::class,'store']);
 Route::post('/login',[UserController::class,'loginIn']);
+
+
+Route::controller(MatriculaController::class)->group(function() {
+    Route::get('/matricula', 'index');
+
+
+
+
+});
