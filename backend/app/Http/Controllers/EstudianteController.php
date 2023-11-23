@@ -36,10 +36,6 @@ class EstudianteController extends Controller
         $estudiante->correo= $request->correo;
         $estudiante->telefono= $request->telefono;
         $estudiante->save();
-       
-
-       // Estudiante::create($request->all());
-
         return  'Estudiante creado exitosamente.';
     }
 

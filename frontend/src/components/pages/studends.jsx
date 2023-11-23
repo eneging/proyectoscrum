@@ -37,40 +37,14 @@ const Students = () => {
     }
   };
 
-  const handleDelete = async (estudiante_id) => {
-    try {
-      await axios.delete(`${API_URL}/estudiante/${estudiante_id}`);
-      // Actualizar la lista de estudiantes después de la eliminación
-      fetchData();
-    } catch (error) {
-      console.error("Error deleting student:", error);
-    }
-  };
-
-  const handleEdit = (estudiante) => {
-    setEditStudents({
-      estudiante_id: estudiante.estudiante_id,
-      nombre: estudiante.nombre,
-      apellido: estudiante.apellido,
-      correo: estudiante.correo,
-    });
-  };
-
-  // const stateAdd = (estudiante) => {
-  //   setAddStudent({
-  //     estudiante_id: estudiante.estudiante_id,
-  //     nombre: estudiante.nombre,
-  //     apellido: estudiante.apellido,
-  //     correo: estudiante.correo,
-  //   });
-  // };
+  // Funcion para agregar estudiantes //
 
   const handleAddStudent = async () => {
     try {
       await axios.post(`${API_URL}/estudiante/`, {
         nombre: addStudent.nombre,
         apellido: addStudent.apellido,
-        dni: addStudent.dni, // Include dni field in the request payload
+        dni: addStudent.dni,
         direccion: addStudent.direccion,
         correo: addStudent.correo,
         telefono: addStudent.telefono,
@@ -91,6 +65,8 @@ const Students = () => {
       }
     }
   };
+
+  // Funcion para editar estudiantes //
 
   const handleSaveEdit = async () => {
     try {
@@ -117,6 +93,28 @@ const Students = () => {
     }
   };
 
+  const handleEdit = (estudiante) => {
+    setEditStudents({
+      estudiante_id: estudiante.estudiante_id,
+      nombre: estudiante.nombre,
+      apellido: estudiante.apellido,
+      correo: estudiante.correo,
+    });
+  };
+
+  // Funcion para borrar estudiantes del registro
+
+  const handleDelete = async (estudiante_id) => {
+    try {
+      await axios.delete(`${API_URL}/estudiante/${estudiante_id}`);
+      // Actualizar la lista de estudiantes después de la eliminación
+      fetchData();
+    } catch (error) {
+      console.error("Error deleting student:", error);
+    }
+  };
+
+  // Funciones para abrir y cerrar el modal
   const handlOpenModal = () => {
     setModalOpen(true);
   };
@@ -125,6 +123,7 @@ const Students = () => {
     setModalOpen(false);
   };
 
+  // Funcion para vaciar los datos y cerrar el modal de editar
   const handleEmpty = () => {
     setEditStudents({
       estudiante_id: null,
@@ -188,7 +187,7 @@ const Students = () => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {/* PRUEBA */}
+            {/*-------------------- TABLA DE ESTUDIANTES ------------------------*/}
 
             {students.map((student) => (
               <tr key={student.estudiante_id}>
@@ -245,7 +244,8 @@ const Students = () => {
         </table>
       </center>
 
-      {/* Modal para la edición */}
+      {/*---------------------------- MODAL PARA EDITAR ESTUDIANTES ------------------------- */}
+
       {editStudents.estudiante_id !== null && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
           <div className="bg-white p-4 rounded-md">
@@ -306,6 +306,9 @@ const Students = () => {
           </div>
         </div>
       )}
+
+      {/*-------------------- MODAL PARA AGREGAR ESTUDIANTES ------------------------*/}
+
       {modalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
           <div className="bg-white w-[40vw] h-[80vh] p-[3rem]">
