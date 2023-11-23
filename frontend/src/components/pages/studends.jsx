@@ -33,9 +33,10 @@ const Students = () => {
   };
 
   return (
-    <div>
-  <div className='flex justify-between p-[1rem]'>
-        <h1 className='text-center text-xl  p-[0.5rem] '>Lista de estudiantes</h1>
+    <div className="flex justify-center flex-col items-center" >
+        <div  className="bg-gray-800  text-white flex justify-around h-[12vh] w-screen items-center "></div>
+  <div className='flex justify-between p-[1rem] w-[85vw]  '>
+        <h1 className='text-center text-xl  p-[0.5rem]'>Lista de estudiantes</h1>
         <button className="bg-blue-500 text-white rounded-[5px] p-[0.5rem]">Crear Estudiante</button>
       </div>
       {/* <ul>
@@ -49,37 +50,37 @@ const Students = () => {
         ))}
       </ul> */}
 
-      <table className="min-w-full divide-y divide-gray-200 overflow-x-auto">
+    <center>  <table className=" divide-gray-200 w-[86vw]">
         <thead className="bg-gray-50">
-          <tr>
+          <tr className="bg-gray-800 ">
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-medium text-white hover:text-orange-500 uppercase tracking-wider"
             >
               Nombre
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-medium text-white hover:text-orange-500  uppercase tracking-wider"
             >
               Rol
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-medium text-white hover:text-orange-500  uppercase tracking-wider"
             >
               Estado
             </th>
 
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-medium text-white hover:text-orange-500  uppercase tracking-wider"
             >
               Email
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-medium text-white hover:text-orange-500  uppercase tracking-wider"
             >
               Acciones
             </th>
@@ -136,7 +137,7 @@ const Students = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table></center>
     </div>
   );
 };

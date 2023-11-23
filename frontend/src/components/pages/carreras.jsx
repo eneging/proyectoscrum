@@ -84,6 +84,7 @@ const Carreras = () => {
   };
 
   return (
+
     <div className="flex  flex-col h-screen  gap-3 ">
       <div className="flex justify-end w-[90vw] m-[1rem]">
         <button
@@ -104,6 +105,7 @@ const Carreras = () => {
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Action
               </th>
+
             </tr>
           </thead>
           <tbody className="bg-white  divide-gray-200">
@@ -169,7 +171,9 @@ const Carreras = () => {
       {/* Modal para crear carrera */}
       {modalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
+
           <div className="bg-white w-[30vw] h-[50vh] p-[3rem] flex flex-col rounded-lg gap-y-6">
+
             <button
               onClick={handleCloseModal}
               className="bg-gray-500 text-white px-4 py-2 w-[20px] h-[20px] flex items-center justify-center rounded-md hover:bg-blue-400 focus:outline-none "
