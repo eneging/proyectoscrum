@@ -70,10 +70,19 @@ const Students = () => {
       await axios.post(`${API_URL}/estudiante/`, {
         nombre: addStudent.nombre,
         apellido: addStudent.apellido,
-        dni: addStudent.dni,
+        dni: addStudent.dni, // Include dni field in the request payload
         direccion: addStudent.direccion,
         correo: addStudent.correo,
         telefono: addStudent.telefono,
+      });
+      fetchData();
+      setAddStudent({
+        nombre: "",
+        apellido: "",
+        dni: "",
+        direccion: "",
+        correo: "",
+        telefono: "",
       });
     } catch (error) {
       console.error("Error adding student:", error);

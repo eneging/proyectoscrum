@@ -38,7 +38,7 @@ class EstudianteController extends Controller
         $estudiante->save();
        
 
-        Estudiante::create($request->all());
+       // Estudiante::create($request->all());
 
         return  'Estudiante creado exitosamente.';
     }
