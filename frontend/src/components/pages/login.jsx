@@ -45,22 +45,28 @@ export const Login = (props) => {
           <h2 className="text-2xl" >Ingresa a tu Cuenta</h2>
           
           <div className="flex justify-center items-center border-[1px] border-gray-400">
+
             <input id="email" className=" w-[25vw] h-[7vh] pl-4 text-sm rounded  border-[1px] border-gray-400 border-solid " type="email" placeholder="Correo" />
           {/*  <span className="material-symbols-outlined pr-1 text-gray-400">
+
               mail
             </span> */}
           </div>
           <div >
+
             <input id="password" type="password" className="w-[25vw] h-[7vh] pl-4 rounded text-sm  border-[1px] border-gray-400 border-solid " placeholder="Contraseña" name="contrasena"/>
            {/*  <span className="material-symbols-outlined  pr-1 text-gray-400 ">
             lock </span>*/}
              
+
           </div>
 
         </div>
 
         <div className="pt-10 ">
+
           <button className="w-[25vw] h-[7vh] bg-gray-800 text-white rounded     "  onClick={login}>Ingresar</button>
+
         </div>
 <div className="pt-7 w-[25vw] ">
 

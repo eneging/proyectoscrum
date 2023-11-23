@@ -1,4 +1,5 @@
 function Home() {
+
   return (
 <>  
 <div  className="bg-gray-800  text-white flex justify-around h-[12vh] w-screen items-center "></div>
@@ -31,5 +32,6 @@ function Home() {
 </>
 
 );}
+
 
 export default Home;
