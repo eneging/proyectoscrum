@@ -10,9 +10,7 @@ function Navigation(props) {
       
       <ul className='flex justify-around w-[60%]'>
 
-      <li onClick={props.funLogout}>
-          <Link to="/">Logout</Link>
-        </li>
+     
         
 
         <li>
@@ -38,7 +36,10 @@ function Navigation(props) {
         <li>
           <Link to="/matriculas"><h1 className="hover:text-orange-500">Registro matriculas</h1></Link>
         </li>
-
+        
+        <li onClick={props.funLogout}>
+          <Link to="/">Logout</Link>
+        </li>
         
       </ul>
     </nav>

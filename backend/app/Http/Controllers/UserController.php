@@ -19,7 +19,7 @@ class UserController extends Controller
 
         $saved = $user->save();
 
-        return $saved ;
+        return $saved;
     }
 
     public function loginIn(Request $request)
