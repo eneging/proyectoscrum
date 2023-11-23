@@ -22,7 +22,21 @@ class EstudianteController extends Controller
         $request->validate([
             'nombre' => 'required',
             'apellido' => 'required',
+            'dni' => 'required',
+            'direccion' => 'required',
+            'correo' => 'required',
+            'telefono' => 'required',
+            
         ]);
+        $estudiante= new Estudiante();
+        $estudiante->nombre= $request->nombre;
+        $estudiante->apellido= $request->apellido;
+        $estudiante->dni= $request->dni;
+        $estudiante->direccion= $request->direccion;
+        $estudiante->correo= $request->correo;
+        $estudiante->telefono= $request->telefono;
+        $estudiante->save();
+       
 
         Estudiante::create($request->all());
 

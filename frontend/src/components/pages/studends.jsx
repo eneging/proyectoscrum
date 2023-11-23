@@ -11,6 +11,16 @@ const Students = () => {
     correo: "",
   });
 
+  const [addStudent, setAddStudent] = useState({
+    estudiante_id: null,
+    nombre: "",
+    apellido: "",
+    dni: "",
+    direccion: "",
+    correo: "",
+    telefono: "",
+  });
+
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
@@ -46,12 +56,31 @@ const Students = () => {
     });
   };
 
-  const handlOpenModal = () => {
-    setModalOpen(true);
-  };
+  // const stateAdd = (estudiante) => {
+  //   setAddStudent({
+  //     estudiante_id: estudiante.estudiante_id,
+  //     nombre: estudiante.nombre,
+  //     apellido: estudiante.apellido,
+  //     correo: estudiante.correo,
+  //   });
+  // };
 
-  const handleCloseModal = () => {
-    setModalOpen(false);
+  const handleAddStudent = async () => {
+    try {
+      await axios.post(`${API_URL}/estudiante/`, {
+        nombre: addStudent.nombre,
+        apellido: addStudent.apellido,
+        dni: addStudent.dni,
+        direccion: addStudent.direccion,
+        correo: addStudent.correo,
+        telefono: addStudent.telefono,
+      });
+    } catch (error) {
+      console.error("Error adding student:", error);
+      if (error.response) {
+        console.error("Response data:", error.response.data);
+      }
+    }
   };
 
   const handleSaveEdit = async () => {
@@ -77,6 +106,23 @@ const Students = () => {
         console.error("Response data:", error.response.data);
       }
     }
+  };
+
+  const handlOpenModal = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
+  const handleEmpty = () => {
+    setEditStudents({
+      estudiante_id: null,
+      nombre: "",
+      apellido: "",
+      correo: "",
+    });
   };
 
   return (
@@ -245,15 +291,114 @@ const Students = () => {
             >
               Save
             </button>
+            <button className="ml-5" onClick={handleEmpty}>
+              CLOSE
+            </button>
           </div>
         </div>
       )}
       {modalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
           <div className="bg-white w-[40vw] h-[80vh] p-[3rem]">
+            <label
+              htmlFor="addNombre"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Nombre:
+            </label>
+            <input
+              type="text"
+              id="addNombre"
+              value={addStudent.nombre}
+              onChange={(e) =>
+                setAddStudent({ ...addStudent, nombre: e.target.value })
+              }
+              className="border p-2 mb-2 w-full"
+            />
+            <label
+              htmlFor="addNombre"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Apellido:
+            </label>
+            <input
+              type="text"
+              id="addNombre"
+              value={addStudent.apellido}
+              onChange={(e) =>
+                setAddStudent({ ...addStudent, apellido: e.target.value })
+              }
+              className="border p-2 mb-2 w-full"
+            />
+            <label
+              htmlFor="addNombre"
+              className="block text-sm font-medium text-gray-700"
+            >
+              dni:
+            </label>
+            <input
+              type="text"
+              id="addNombre"
+              value={addStudent.dni}
+              onChange={(e) =>
+                setAddStudent({ ...addStudent, dni: e.target.value })
+              }
+              className="border p-2 mb-2 w-full"
+            />
+            <label
+              htmlFor="addNombre"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Direccion:
+            </label>
+            <input
+              type="text"
+              id="addNombre"
+              value={addStudent.direccion}
+              onChange={(e) =>
+                setAddStudent({ ...addStudent, direccion: e.target.value })
+              }
+              className="border p-2 mb-2 w-full"
+            />
+            <label
+              htmlFor="addNombre"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Correo:
+            </label>
+            <input
+              type="text"
+              id="addNombre"
+              value={addStudent.correo}
+              onChange={(e) =>
+                setAddStudent({ ...addStudent, correo: e.target.value })
+              }
+              className="border p-2 mb-2 w-full"
+            />
+            <label
+              htmlFor="addNombre"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Telefono:
+            </label>
+            <input
+              type="text"
+              id="addNombre"
+              value={addStudent.telefono}
+              onChange={(e) =>
+                setAddStudent({ ...addStudent, telefono: e.target.value })
+              }
+              className="border p-2 mb-2 w-full"
+            />
+            <button
+              onClick={handleAddStudent}
+              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
+            >
+              Agregar
+            </button>
             <button
               onClick={handleCloseModal}
-              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
+              className="z-10 ml-3 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
             >
               Cerrar Modal
             </button>
