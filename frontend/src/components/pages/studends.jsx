@@ -124,27 +124,7 @@ const Students = () => {
 
   };
 
-  const handleDelete1 =() =>{
-    Swal.fire({
-      title: "Estas seguro?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Eliminar!"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          
-          title: "Eliminado!",
-          text: "Your file has been deleted.",
-          icon: "success"
-        });
-      }
-    });
-   
-  };
+  
 
 
 
@@ -196,7 +176,7 @@ const Students = () => {
       </div>
 
       <center>
-        
+        {" "}
         <table className=" divide-gray-200 w-[86vw]">
           <thead className="bg-gray-50">
             <tr className="bg-gray-800 ">
@@ -278,7 +258,7 @@ const Students = () => {
                     Editar
                   </a>
                   <a
-                    onClick={ handleDelete1()}
+                    onClick={() => handleDelete(student.estudiante_id)}
                     href="#"
                     className="ml-2 text-red-600 hover:text-red-900"
                   >
