@@ -43,7 +43,12 @@ class DatabaseSeeder extends Seeder
     $seeder2 = New EstudianteSeeder;
         $seeder2->run();
 
-     
+        $seeder6 = New UsuarioSeeder;
+        $seeder6->run();
+
+        $seeder7 = New MatriculaSeeder;
+        $seeder7->run();
+
    
     }
 }

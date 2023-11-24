@@ -53,13 +53,13 @@ class EstudianteController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nombre' => 'required',
-            'apellido' => 'required',
-        ]);
+           $estudiante = Estudiante::find($id);
 
-        $estudiante = Estudiante::findOrFail($id);
-        $estudiante->update($request->all());
+        $estudiante->nombre=$request->nombre;
+        $estudiante->apellido=$request->apellido;
+        $estudiante->correo=$request->correo;
+   
+        $estudiante->save();
 
         return 'Estudiante actualizado exitosamente';
     }

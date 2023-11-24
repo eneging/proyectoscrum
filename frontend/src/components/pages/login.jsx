@@ -1,38 +1,88 @@
 
 
 
+import Fondo from "../pages/img/textura-pared-estuco-azul-marino-relieve-decorativo-abstracto-grunge-fondo-color-rugoso-gran-angular.jpg";
 
-export const Login = () => {
+
+export const Login = (props) => {
+
+  function login() {
+    const inputEmail = document.getElementById('email');
+    const inputPassword = document.getElementById('password');
+
+    let email = inputEmail.value;
+    let password = inputPassword.value;
+
+    props.handleLogin(email,password);
+
+    inputEmail.value = "";
+    inputPassword.value = "";
+
+
+  }
+
+
   return (
+    <>
+
+   
+       <main className="flex h-screen bg-cover p-[15rem] justify-center items-center bg-[url(https://img.freepik.com/foto-gratis/textura-pared-estuco-azul-marino-relieve-decorativo-abstracto-grunge-fondo-color-rugoso-gran-angular_1258-28311.jpg?w=900&t=st=1700849549~exp=1700850149~hmac=f4f620ca9646080683cf1b27a1251f66ee3f19ff8588b7fe787daffaba989653)]">
     
-       <main className="h-screen flex flex-col items-center bg-gray-300 pt-20">
+  
+    <div className="flex  justify-center items-center w-[60vw] h-[60vh] bg-white rounded-xl ">
+
+<div className=" flex flex-col content-center items-center w-[30vw] h-[52vh] border-2 border-white border-r-gray-300 border-solid ">
+    <div className="flex  w-[25vw]  ">
     
-    <div className="flex flex-col h-[300px] w-[420px] bg-white rounded-lg items-center">
-      <form className="flex flex-col h-[200px] w-[320px] bg-white items-center" >
-        <div className="flex flex-col gap-y-5 items-center justify-center pt-10 ">
-          <h2 >Bienvenido,
-             ingresa tu usuario y contraseña</h2>
+    <img  className="w-[30vw] " src="https://www.estudiantefunval.org/pluginfile.php/1/theme_moove/logo/1696433166/logo%202023.png"></img>  
+     
+    
+    </div>
+      <div className="flex flex-col h-[200px] w-[320px] bg-white items-center" >
+        <div className="flex flex-col gap-y-3 items-start justify-center pt-7 ">
+       
           
           <div className="flex justify-center items-center border-[1px] border-gray-400">
-            <input className=" w-[250px] h-[30px] pl-4 text-sm  border-[1px] border-gray-400 " type="email" placeholder="Usuario" />
-            <span className="material-symbols-outlined pr-1 text-gray-400">
+
+            <input id="email" className=" w-[25vw] h-[7vh] pl-4 text-sm rounded-[0.5rem]   border-[1px] border-gray-400 border-solid " type="email" placeholder="Correo" />
+          {/*  <span className="material-symbols-outlined pr-1 text-gray-400">
+
               mail
-            </span>
+            </span> */}
           </div>
           <div >
-            <input type="password" className="w-[250px] h-[30px] pl-4 text-sm  border-2 border-gray-400" placeholder="Contraseña" name="contrasena"/>
-            <span className="material-symbols-outlined  pr-1 text-gray-400 ">
-              lock
-            </span>
+
+            <input id="password" type="password" className="w-[25vw] h-[7vh] pl-4 rounded-[0.5rem]  text-sm  border-[1px] border-gray-400 border-solid " placeholder="Contraseña" name="contrasena"/>
+           {/*  <span className="material-symbols-outlined  pr-1 text-gray-400 ">
+            lock </span>*/}
+             
+
           </div>
 
         </div>
 
-        <div className="pt-10 ">
-          <button className="w-[100px] h-[30px] bg-gray-800 text-white   rounded-md  " type="submit">Ingresar</button>
+        <div className="pt-4 ">
+
+          <button className="w-[25vw] h-[7vh] bg-blue-800 text-white rounded-[0.5rem]      "  onClick={login}>Ingresar</button>
+
         </div>
-      </form>
+<div className="pt-3 w-[25vw] ">
+
+  <p className="text-blue-700">olvidaste tu contraseña?</p>
+</div>
+
+
       </div>
+
+      </div>
+
+      <div className=" w-[30vw] h-cover flex justify-center items-center "> otro background</div>
+      
+      </div>
+
+   
+
     </main>
+    </>
   )
 }

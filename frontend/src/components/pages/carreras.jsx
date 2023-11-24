@@ -50,10 +50,48 @@ const Carreras = () => {
       await axios.put(`${API_URL}/carreras/${editCarrera.carrera_id}`, {
         nombre: editCarrera.nombre,
       });
+
       fetchData();
       setEditCarrera({ carrera_id: null, nombre: "" });
     } catch (error) {
-      console.error("Error updating carrera:", error);
+      console.error("Error updating student:", error);
+    }
+
+    if (handleEdit) {
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: "se a editado con exito",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+
+  {
+    /* crear carreras */
+  }
+
+  const [newCarrera, setNewCarrera] = useState();
+
+  const handleCreate = (e) => {
+    setNewCarrera({ ...newCarrera, [e.target.name]: e.target.value });
+  };
+  const handleForm = (e) => {
+    e.preventDefault();
+    sendDataToServer({ newCarrera });
+    handleCloseModal(false);
+  };
+
+  const sendDataToServer = async () => {
+    try {
+      await axios.post(`${API_URL}/carreras`, {
+        nombre: newCarrera.nombre,
+      });
+      fetchData();
+      setEditCarrera({ carrera_id: null, nombre: "" });
+    } catch (error) {
+      console.error("Error updating student:", error);
     }
   };
 

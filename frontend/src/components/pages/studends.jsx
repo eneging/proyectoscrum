@@ -135,7 +135,7 @@ const Students = () => {
 
   return (
     <div className="flex justify-center flex-col items-center">
-      <div className="bg-gray-800  text-white flex justify-around h-[12vh] w-screen items-center "></div>
+      <div className="bg-gray-800  text-white flex justify-around h-[12vh] w-screen items-center  "></div>
       <div className="flex justify-between p-[1rem] w-[85vw]  ">
         <h1 className="text-center text-xl  p-[0.5rem]">
           Lista de estudiantes
@@ -311,7 +311,7 @@ const Students = () => {
 
       {modalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
-          <div className="bg-white w-[40vw] h-[80vh] p-[3rem]">
+          <div className="bg-white w-[40vw] h-cover p-[2rem]">
             <label
               htmlFor="addNombre"
               className="block text-sm font-medium text-gray-700"
