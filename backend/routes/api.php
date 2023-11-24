@@ -50,6 +50,7 @@ Route::post('/login',[UserController::class,'loginIn']);
 
 Route::controller(MatriculaController::class)->group(function() {
     Route::get('/matricula', 'index');
+    Route::get('/matricula/{id}', 'show');
     Route::post('/matricula', 'store');
     Route::put('/matricula/{id}', 'update');
     Route::delete('/matricula/{id}', 'destroy');
