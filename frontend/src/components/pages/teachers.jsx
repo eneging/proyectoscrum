@@ -38,6 +38,24 @@ const Teachers = () => {
     }
   };
 
+  const handleDelete1=(docente_id)=>{
+    Swal.fire({
+      title: "Estas Seguro?",
+      text: "No podras recuperar la informacion",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Eliminar"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        
+        Swal.fire( handleDelete(docente_id)
+        )
+      }   
+    });
+   }
+
   const handleDelete = async (docente_id) => {
     try {
       await axios.delete(`${API_URL}/docentes/${docente_id}`);
@@ -67,6 +85,24 @@ const Teachers = () => {
     setModalOpen(false);
   };
 
+  //alert editar//
+  const handleSaveEdit1 =() =>{
+    Swal.fire({
+      title: "Deseas guardar los cambios?",
+      showDenyButton: true,
+      
+      confirmButtonText: "Guardar",
+      denyButtonText: `Cancelar`
+    }).then((result) => {
+       if (result.isConfirmed) {
+        Swal.fire(handleSaveEdit());
+      } else if (result.isDenied) {
+        Swal.fire("Datos no Guardados");
+      }
+    })
+   
+  };
+
   const handleSaveEdit = async () => {
     try {
       await axios.put(`${API_URL}/docentes/${editTeacher.docente_id}`, {
@@ -92,6 +128,25 @@ const Teachers = () => {
     }
   };
 
+  // alert Agregar Docentes//
+
+
+const handleStore1 =() =>{
+  Swal.fire({
+    title: "Deseas guardar los cambios?",
+    showDenyButton: true,
+    
+    confirmButtonText: "Guardar",
+    denyButtonText: `Cancelar`
+  }).then((result) => {
+     if (result.isConfirmed) {
+      Swal.fire(handleStore(),handleCloseModal());
+    } else if (result.isDenied) {
+      Swal.fire("Datos no guardados");
+    }
+  })
+ 
+};
   const handleStore = async () => {
     try {
       await axios.post(`${API_URL}/docentes`, {
@@ -118,6 +173,10 @@ const Teachers = () => {
       console.error("Error save teacher:", error);
     }
   };
+
+  const cerrarModal=()=>{
+    setModalOpen(false)
+  }
 
   return (
     <div className="flex justify-center flex-col items-center" >
@@ -192,7 +251,7 @@ const Teachers = () => {
                   Edit
                 </button>
                 <button
-                  onClick={() => handleDelete(teacher.docente_id)}
+                  onClick={() => handleDelete1(teacher.docente_id)}
                   className="ml-2 px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out"
                 >
                   Delete
@@ -282,10 +341,16 @@ const Teachers = () => {
               className="border p-2 mb-2 w-full"
             />
             <button
-              onClick={handleSaveEdit}
+              onClick={handleSaveEdit1}
               className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
             >
-              Save
+              Guardar
+            </button>
+            <button
+              onClick={handleCloseModal}
+              className="z-10 ml-3 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
+            >
+              Cancelar
             </button>
           </div>
         </div>
@@ -388,7 +453,7 @@ const Teachers = () => {
               className="border p-2 mb-2 w-full"
             />
             <button
-              onClick={handleStore}
+              onClick={handleStore1}
               className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
             >
               Agregar

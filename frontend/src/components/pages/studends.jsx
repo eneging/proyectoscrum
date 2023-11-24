@@ -37,6 +37,28 @@ const Students = () => {
     }
   };
 
+
+// alert Agregar studiante//
+
+
+const handleAddStudent1 =() =>{
+  Swal.fire({
+    title: "Deseas guardar los cambios?",
+    showDenyButton: true,
+    
+    confirmButtonText: "Guardar",
+    denyButtonText: `No guardar`
+  }).then((result) => {
+     if (result.isConfirmed) {
+      Swal.fire(handleAddStudent(),handleCloseModal());
+    } else if (result.isDenied) {
+      Swal.fire("Datos no guardados");
+    }
+  })
+ 
+};
+
+
   // Funcion para agregar estudiantes //
 
   const handleAddStudent = async () => {
@@ -71,14 +93,13 @@ const Students = () => {
     Swal.fire({
       title: "Deseas guardar los cambios?",
       showDenyButton: true,
-      
       confirmButtonText: "Guardar",
-      denyButtonText: `No guardar`
+      denyButtonText: `Cancelar`
     }).then((result) => {
        if (result.isConfirmed) {
         Swal.fire(handleSaveEdit());
       } else if (result.isDenied) {
-        Swal.fire("Los cambios no han sido guardados");
+        Swal.fire("Datos no guardados");
       }
     })
    
@@ -123,9 +144,23 @@ const Students = () => {
     
 
   };
-
-  
-
+ const handleDelete1=(estudiante_id)=>{
+  Swal.fire({
+    title: "Estas Seguro?",
+    text: "No podras recuperar la informacion",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Eliminar"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      
+      Swal.fire( handleDelete(estudiante_id)
+      )
+    }   
+  });
+ }
 
 
 
@@ -258,7 +293,7 @@ const Students = () => {
                     Editar
                   </a>
                   <a
-                    onClick={() => handleDelete(student.estudiante_id)}
+                    onClick={() => handleDelete1(student.estudiante_id)}
                     href="#"
                     className="ml-2 text-red-600 hover:text-red-900"
                   >
@@ -325,10 +360,10 @@ const Students = () => {
               onClick={handleSaveEdit1}
               className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
             >
-              Save
+              Guardar
             </button>
-            <button className="ml-5" onClick={handleEmpty}>
-              CLOSE
+            <button className="ml-2 bg-gray-500 text-white px-2 py-2 rounded-md hover:bg-gray-700" onClick={handleEmpty}>
+              Cerrar
             </button>
           </div>
         </div>
@@ -430,7 +465,7 @@ const Students = () => {
               className="border p-2 mb-2 w-full"
             />
             <button
-              onClick={handleAddStudent}
+              onClick={handleAddStudent1}
               className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
             >
               Agregar
@@ -439,7 +474,7 @@ const Students = () => {
               onClick={handleCloseModal}
               className="z-10 ml-3 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
             >
-              Cerrar Modal
+              Cancelar
             </button>
           </div>
         </div>
