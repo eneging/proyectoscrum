@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Controller;
-use App\Models\Estudiante;
-use Illuminate\Http\Request;
+namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use App\Models\Estudiante;
 class EstudianteController extends Controller
 {
     public function index()
@@ -22,10 +22,20 @@ class EstudianteController extends Controller
         $request->validate([
             'nombre' => 'required',
             'apellido' => 'required',
+            'dni' => 'required',
+            'direccion' => 'required',
+            'correo' => 'required',
+            'telefono' => 'required',
+            
         ]);
-
-        Estudiante::create($request->all());
-
+        $estudiante= new Estudiante();
+        $estudiante->nombre= $request->nombre;
+        $estudiante->apellido= $request->apellido;
+        $estudiante->dni= $request->dni;
+        $estudiante->direccion= $request->direccion;
+        $estudiante->correo= $request->correo;
+        $estudiante->telefono= $request->telefono;
+        $estudiante->save();
         return  'Estudiante creado exitosamente.';
     }
 
@@ -43,13 +53,13 @@ class EstudianteController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nombre' => 'required',
-            'apellido' => 'required',
-        ]);
+           $estudiante = Estudiante::find($id);
 
-        $estudiante = Estudiante::findOrFail($id);
-        $estudiante->update($request->all());
+        $estudiante->nombre=$request->nombre;
+        $estudiante->apellido=$request->apellido;
+        $estudiante->correo=$request->correo;
+   
+        $estudiante->save();
 
         return 'Estudiante actualizado exitosamente';
     }

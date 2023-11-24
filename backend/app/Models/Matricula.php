@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Matricula extends Model
 {
     use HasFactory;
-
+    protected $primaryKey = 'id';
     protected $fillable = ['estudiante_id', 'carrera_id', 'grupo_id', 'nivel_id'];
 
     public function estudiante()

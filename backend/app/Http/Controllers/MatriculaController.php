@@ -16,7 +16,7 @@ class MatriculaController extends Controller
       
         return Matricula::join('estudiantes' ,'matriculas.estudiante_id', '=', 'estudiantes.estudiante_id')
         ->join('carreras', 'matriculas.carrera_id','=', 'carreras.carrera_id')
-        ->select('estudiantes.nombre', 'carreras.nombre as carrera_nombre' ,'matriculas.estudiante_id','matriculas.nivel_id', 'matriculas.grupo_id', 'matriculas.nivel_id', 'matriculas.carrera_id')
+        ->select('matriculas.id', 'estudiantes.nombre', 'carreras.nombre as carrera_nombre' ,'matriculas.estudiante_id','matriculas.nivel_id', 'matriculas.grupo_id', 'matriculas.nivel_id', 'matriculas.carrera_id')
       ->get();
     }
 
@@ -33,7 +33,17 @@ class MatriculaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $matricula = new Matricula();
+        $matricula->grupo_id = $request->grupo_id;
+        $matricula->nivel_id = $request->nivel_id;
+        $matricula->carrera_id = $request->nivel_id;
+       $matricula->estudiante_id = $request->estudiante_id;
+        $matricula->save();
+
+    
+
+        return "nueva matricula";
     }
 
     /**
@@ -55,17 +65,28 @@ class MatriculaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Matricula $matricula)
+    public function update(Request $request, $id)
     {
-        //
+  
+        $matricula = Matricula::find($id);
+        $matricula->grupo_id = $request->grupo_id;
+        $matricula->nivel_id = $request->nivel_id;
+        $matricula->carrera_id = $request->nivel_id;
+       
+        $matricula->save();
+
+        return "nuevos cambios matricula";
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Matricula $matricula)
+    public function destroy($id)
     {
-        //
+        $matricula = Matricula::find($id);
+        $matricula->delete();
+
+        return "eliminado";
     }
 
 
