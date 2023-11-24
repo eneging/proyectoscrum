@@ -50,21 +50,10 @@ const Carreras = () => {
       await axios.put(`${API_URL}/carreras/${editCarrera.carrera_id}`, {
         nombre: editCarrera.nombre,
       });
-
       fetchData();
       setEditCarrera({ carrera_id: null, nombre: "" });
     } catch (error) {
       console.error("Error updating student:", error);
-    }
-
-    if (handleEdit) {
-      Swal.fire({
-        position: "top-center",
-        icon: "success",
-        title: "se a editado con exito",
-        showConfirmButton: false,
-        timer: 1500,
-      });
     }
   };
 
@@ -89,41 +78,41 @@ const Carreras = () => {
         nombre: newCarrera.nombre,
       });
       fetchData();
-      setEditCarrera({ carrera_id: null, nombre: "" });
+      setNewCarrera({ nombre: "" });
     } catch (error) {
-      console.error("Error updating student:", error);
+      alert("No ha ingresado datos");
+      console.error("Error creando carrera:", error);
     }
   };
 
   return (
-    <div className="flex  flex-col h-screen  gap-3 ">
-      <div className="bg-gray-800  text-white flex justify-around h-[12vh] w-screen items-center "></div>
-      <div className="flex justify-end w-[90vw] m-[1rem]">
+    <div className="flex  flex-col h-screen  gap-3 p-[5vw] ">
+      <div className="flex justify-end w-[90vw] m-[1rem] ">
         <button
           onClick={() => handlOpenModal()}
-          className="px-4 py-2 font-medium text-white bg-green-500 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
+          className="px-4 py-2 font-medium text-white bg-gray-800 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
         >
-          Agregar Docente
-        </button>{" "}
+          Add Carrera
+        </button>
       </div>
 
-      <div className=" flex justify-center">
+      <div className=" flex justify-end">
         <table className="gap-[2rem] divide-gray-200 w-[70vw] ">
           <thead>
-            <tr className="bg-gray-800 ">
-              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+            <tr>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Nombre Carrera
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Action
               </th>
             </tr>
           </thead>
-          <tbody className="bg-white  divide-gray-200  ">
+          <tbody className="bg-white  divide-gray-200">
             {students.map((student) => (
               <tr
                 key={student.carrera_id}
-                className="flex items-center justify-between "
+                className="flex items-center justify-between"
               >
                 <td className="px-6 py-4 whitespace-nowrap ">
                   {" "}
@@ -179,15 +168,34 @@ const Carreras = () => {
           </div>
         </div>
       )}
+      {/* Modal para crear carrera */}
       {modalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
-          <div className="bg-white w-[40vw] h-[80vh] p-[3rem]">
+          <div className="bg-white w-[30vw] h-[50vh] p-[3rem] flex flex-col rounded-lg gap-y-6">
             <button
               onClick={handleCloseModal}
-              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
+              className="bg-gray-500 text-white px-4 py-2 w-[20px] h-[20px] flex items-center justify-center rounded-md hover:bg-blue-400 focus:outline-none "
             >
-              Cerrar Modal
+              <span class="material-symbols-outlined">close</span>
             </button>
+            <form onSubmit={handleForm} action="/carreras">
+              <div className="flex flex-col gap-y-3 pb-10">
+                <label className="text-gray-500">Name Carrera</label>
+                <input
+                  type="text"
+                  placeholder="Add carrera"
+                  className="w-[250px] h-[30px] pl-2 hover:bg-gray-200"
+                  name="nombre"
+                  onChange={handleCreate}
+                />
+              </div>
+              <button
+                type="submit"
+                className="bg-gray-800 text-white px-4 py-2 w-[80px] h-[30px] flex items-center justify-center rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
+              >
+                Insert
+              </button>
+            </form>
           </div>
         </div>
       )}
