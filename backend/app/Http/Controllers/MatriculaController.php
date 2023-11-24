@@ -37,7 +37,7 @@ class MatriculaController extends Controller
         $matricula = new Matricula();
         $matricula->grupo_id = $request->grupo_id;
         $matricula->nivel_id = $request->nivel_id;
-        $matricula->carrera_id = $request->nivel_id;
+        $matricula->carrera_id = $request->carrera_id;
        $matricula->estudiante_id = $request->estudiante_id;
         $matricula->save();
 

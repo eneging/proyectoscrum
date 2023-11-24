@@ -21,7 +21,15 @@ export const Login = (props) => {
 
 
   return (
-    
+    <>
+
+    <nav className="bg-white h-[13%] w-screen fixed flex">
+      
+      <img  className=" object-fit" src="https://www.estudiantefunval.org/pluginfile.php/1/theme_moove/logo/1696433166/logo%202023.png"></img> 
+      
+      <a  aria-current="true">   Página Principal</a>
+      <a >Acceder</a>
+       </nav>
        <main className="flex bg-gradient-to-r from-orange-600 ">
     
 <div className=" h-screen w-[45vw] flex">
@@ -82,5 +90,6 @@ export const Login = (props) => {
 
 
     </main>
+    </>
   )
 }
