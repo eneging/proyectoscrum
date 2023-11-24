@@ -5,73 +5,56 @@ namespace App\Http\Controllers;
 use App\Models\Estudiante;
 use App\Models\Matricula;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Return_;
 
 class MatriculaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-      
         return Matricula::join('estudiantes' ,'matriculas.estudiante_id', '=', 'estudiantes.estudiante_id')
         ->join('carreras', 'matriculas.carrera_id','=', 'carreras.carrera_id')
-        ->select('matriculas.id', 'estudiantes.nombre', 'carreras.nombre as carrera_nombre' ,'matriculas.estudiante_id','matriculas.nivel_id', 'matriculas.grupo_id', 'matriculas.nivel_id', 'matriculas.carrera_id')
+        ->select('matriculas.id', 'estudiantes.nombre', 'carreras.nombre as carrera_nombre' ,'matriculas.estudiante_id','matriculas.nivel_id','matriculas.nivel_id', 'matriculas.Fecha_Nivel', 'matriculas.grupo_id', 'matriculas.Fecha_Grupo','matriculas.carrera_id','matriculas.Fecha_Carrera')
       ->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         
         $matricula = new Matricula();
-        $matricula->grupo_id = $request->grupo_id;
-        $matricula->nivel_id = $request->nivel_id;
-        $matricula->carrera_id = $request->carrera_id;
-       $matricula->estudiante_id = $request->estudiante_id;
-        $matricula->save();
 
-    
+        $matricula->estudiante_id = $request->estudiante_id;
+        $matricula->carrera_id = $request->carrera_id;
+        $matricula->Fecha_Carrera = $request->Fecha_Carrera;
+        $matricula->nivel_id = $request->nivel_id;
+        $matricula->Fecha_Nivel = $request->Fecha_Nivel;
+        $matricula->grupo_id = $request->grupo_id;
+        $matricula->Fecha_Grupo = $request->Fecha_Grupo;
+        
+        $matricula->save();
 
         return "nueva matricula";
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Matricula $matricula)
+
+    public function show($id)
     {
-        //
+        $resultado = Matricula::find($id);
+        return $resultado;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Matricula $matricula)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
   
         $matricula = Matricula::find($id);
-        $matricula->grupo_id = $request->grupo_id;
+        
+        $matricula->estudiante_id = $request->estudiante_id;
+        $matricula->carrera_id = $request->carrera_id;
+        $matricula->Fecha_Carrera = $request->Fecha_Carrera;
         $matricula->nivel_id = $request->nivel_id;
-        $matricula->carrera_id = $request->nivel_id;
+        $matricula->Fecha_Nivel = $request->Fecha_Nivel;
+        $matricula->grupo_id = $request->grupo_id;
+        $matricula->Fecha_Grupo = $request->Fecha_Grupo;
        
         $matricula->save();
 
@@ -89,26 +72,4 @@ class MatriculaController extends Controller
         return "eliminado";
     }
 
-
-
-    public function matricularEstudiante(Request $request)
-{
-    $request->validate([
-        'nombre' => 'required',
-        'carrera_id' => 'required|exists:carreras,id',
-        'grupo_id' => 'required|exists:grupos,id',
-        'nivel_id' => 'required|exists:niveles,id',
-    ]);
-
-    // Crea un nuevo estudiante
-    $estudiante = new Estudiante([
-        'nombre' => $request->input('nombre'),
-        'carrera_id' => $request->input('carrera_id'),
-        'grupo_id' => $request->input('grupo_id'),
-    ]);
-
-    $estudiante->save();
-
-    return "matricula creada";
-}
 }
