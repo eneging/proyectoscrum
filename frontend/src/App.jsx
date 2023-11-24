@@ -11,6 +11,8 @@ import Matriculas2 from './components/pages/matriculas';
 import Principal from './components/pages/principal';
 
 import axios from 'axios';
+import Registros from './components/routes/Registros';
+
 
 
 function App() {
@@ -86,12 +88,13 @@ function App() {
           <Routes>
             {isLoggedIn && (
               <>
-                <Route path="/home" element={<Home />} />
+                <Route path="/" element={<Home />} />
                 <Route path="/students" element={<Students />} />
                 <Route path="/teachers" element={<Teachers />} />
                 <Route path="/carreras" element={<Carreras />} />
                 <Route path="/matriculas" element={<Matriculas2 />} />
                 <Route path="/editar" element={<Editar />} />
+                <Route path="/registros" element={<Registros/>} />
               </>
             )}
 
