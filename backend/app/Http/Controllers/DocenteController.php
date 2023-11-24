@@ -91,5 +91,7 @@ class DocenteController extends Controller
         $docente->delete();
 
         return " eliminado correctamente";
+    
     }
+
 }

@@ -2,17 +2,18 @@
 
 namespace Database\Seeders;
 
-use App\Models\Grupo;
+use App\Models\Estudiante;
+use App\Models\Matricula;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class GrupoSeeder extends Seeder
+class MatriculaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Grupo::factory(4)->create();
+         Matricula::factory(30)->create();
     }
-}  
+}

@@ -22,7 +22,7 @@ function Navigation(props) {
 
   
 
-          <Link to="/students"><h1 className="hover:text-orange-500">Registro Estudiantes</h1></Link>
+          <Link to="/students"><h1 className="hover:text-orange-500">Datos de  Estudiantes</h1></Link>
         </li>
         <li>
           <Link to="/teachers"><h1 className="hover:text-orange-500">Registro Docentes</h1></Link>
@@ -36,7 +36,7 @@ function Navigation(props) {
         <li>
           <Link to="/matriculas"><h1 className="hover:text-orange-500">Registro matriculas</h1></Link>
         </li>
-        
+
         <li onClick={props.funLogout}>
           <Link to="/">Logout</Link>
         </li>

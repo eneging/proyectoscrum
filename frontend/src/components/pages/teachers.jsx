@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 import API_URL from "../../config";
@@ -96,15 +95,15 @@ const Teachers = () => {
   const handleStore = async () => {
     try {
       await axios.post(`${API_URL}/docentes`, {
-
         nombre: storeTeacher.nombre,
         apellido: storeTeacher.apellido,
         dni: storeTeacher.dni,
         direccion: storeTeacher.direccion,
         correo: storeTeacher.correo,
-        telefono: storeTeacher.telefono
-,      });
+        telefono: storeTeacher.telefono,
+      });
       fetchData();
+      handleCloseModal(true);
       setStoreTeacher({
         docente_id: null,
         nombre: "",
@@ -114,76 +113,79 @@ const Teachers = () => {
         correo: "",
         telefono: "",
       });
-      setModalOpen(false); // Cerrar modal después de guardar
+      
     } catch (error) {
       console.error("Error save teacher:", error);
     }
   };
 
   return (
-    <div className="flex  flex-col h-screen  gap-3 ">
-      <div className="flex justify-end w-[90vw] m-[1rem]">
+    <div className="flex justify-center flex-col items-center" >
+        <div  className="bg-gray-800  text-white flex justify-around h-[12vh] w-screen items-center "></div>
+  <div className='flex justify-between p-[1rem] w-[85vw]  '>
+        <h1 className='text-center text-xl  p-[0.5rem]'>Lista de Docentes</h1>
         <button
           onClick={() => handlOpenModal()}
-          className="px-4 py-2 font-medium text-white bg-green-500 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
+          className="px-4 py-2 font-medium text-white bg-gray-800 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
         >
           Agregar Docente
-        </button>{" "}
+        </button>
       </div>
 
       <div className=" flex justify-center">
+        
         <table className="gap-[2rem] divide-gray-200 w-[70vw] ">
           <thead>
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <tr className="bg-gray-700 ">
+              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                 Usuario{" "}
               </th>
-              
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+
+              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                 dni
               </th>
 
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                 telefono{" "}
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                 Action
               </th>
             </tr>
           </thead>
           <tbody className="bg-white  divide-gray-200">
-          {teacher.map((teacher) => (
-            <tr key={teacher.docente_id}>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <div className="flex items-center">
-                  <div className="flex-shrink-0 h-10 w-10">
-                    <img
-                      className="h-10 w-10 rounded-full"
-                      src="https://i.pravatar.cc/150?img=1"
-                      alt=""
-                    />
-                  </div>
-                  <div className="ml-4">
-                    <div className="text-sm font-medium text-gray-900">
-                      {`${teacher.nombre} ${teacher.apellido}`}
+            {teacher.map((teacher) => (
+              <tr key={teacher.docente_id}>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0 h-10 w-10">
+                      <img
+                        className="h-10 w-10 rounded-full"
+                        src="https://i.pravatar.cc/150?img=1"
+                        alt=""
+                      />
                     </div>
-                    <div className="text-sm text-gray-500">
-                      {`${teacher.correo}`}
+                    <div className="ml-4">
+                      <div className="text-sm font-medium text-gray-900">
+                        {`${teacher.nombre} ${teacher.apellido}`}
+                      </div>
+                      <div className="text-sm text-gray-500">
+                        {`${teacher.correo}`}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </td>
+                </td>
 
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              <div className="text-sm text-gray-500">
-                      {`${teacher.dni}`}
-                    </div>
-              </td>
-             
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {`${teacher.telefono}`}
-              </td>
-              <button
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <div className="text-sm text-gray-500">
+                    {`${teacher.dni}`}
+                  </div>
+                </td>
+
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  {`${teacher.telefono}`}
+                </td>
+                <button
                   onClick={() => handleEdit(teacher)}
                   className="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
                 >
@@ -195,8 +197,8 @@ const Teachers = () => {
                 >
                   Delete
                 </button>
-            </tr>
-          ))}
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -208,7 +210,7 @@ const Teachers = () => {
               htmlFor="editNombre"
               className="block text-sm font-medium text-gray-700"
             >
-            Name:
+              Name:
             </label>
             <input
               type="text"
@@ -219,11 +221,11 @@ const Teachers = () => {
               }
               className="border p-2 mb-2 w-full"
             />
-             <label
+            <label
               htmlFor="editNombre"
               className="block text-sm font-medium text-gray-700"
             >
-            Last Name:
+              Last Name:
             </label>
             <input
               type="text"
@@ -234,11 +236,11 @@ const Teachers = () => {
               }
               className="border p-2 mb-2 w-full"
             />
-             <label
+            <label
               htmlFor="editNombre"
               className="block text-sm font-medium text-gray-700"
             >
-            E-Mail:
+              E-Mail:
             </label>
             <input
               type="text"
@@ -249,11 +251,11 @@ const Teachers = () => {
               }
               className="border p-2 mb-2 w-full"
             />
-             <label
+            <label
               htmlFor="editNombre"
               className="block text-sm font-medium text-gray-700"
             >
-            DNI:
+              DNI:
             </label>
             <input
               type="text"
@@ -264,11 +266,11 @@ const Teachers = () => {
               }
               className="border p-2 mb-2 w-full"
             />
-             <label
+            <label
               htmlFor="editNombre"
               className="block text-sm font-medium text-gray-700"
             >
-            Phone:
+              Phone:
             </label>
             <input
               type="text"
@@ -288,88 +290,100 @@ const Teachers = () => {
           </div>
         </div>
       )}
-      {storeTeacher &&(
-        
 
+      
+      {/*-------------------- MODAL PARA AGREGAR docentes ------------------------*/}
 
-
-
-        
+      {modalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
-          <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
-          <div className="bg-white p-4 rounded-md">
+        <div className="bg-white p-4 rounded-md">
             <label
-              htmlFor="editNombre"
+              htmlFor="addNombre"
               className="block text-sm font-medium text-gray-700"
             >
-            Name:
+              Nombre:
             </label>
             <input
               type="text"
-              id="editNombre"
-              value={editTeacher.nombre}
+              id="addNombre"
+              value={storeTeacher.nombre}
               onChange={(e) =>
-                setEditTeacher({ ...editTeacher, nombre: e.target.value })
+                setStoreTeacher({ ...storeTeacher, nombre: e.target.value })
               }
               className="border p-2 mb-2 w-full"
             />
-             <label
-              htmlFor="editNombre"
+            <label
+              htmlFor="addNombre"
               className="block text-sm font-medium text-gray-700"
             >
-            Last Name:
+              Apellido:
             </label>
             <input
               type="text"
-              id="editNombre"
-              value={editTeacher.apellido}
+              id="addApellido"
+              value={storeTeacher.apellido}
               onChange={(e) =>
-                setEditTeacher({ ...editTeacher, apellido: e.target.value })
+                setStoreTeacher({ ...storeTeacher, apellido: e.target.value })
               }
               className="border p-2 mb-2 w-full"
             />
-             <label
-              htmlFor="editNombre"
+            <label
+              htmlFor="addNombre"
               className="block text-sm font-medium text-gray-700"
             >
-            E-Mail:
+              dni:
             </label>
             <input
               type="text"
-              id="editNombre"
-              value={editTeacher.correo}
+              id="addNombre"
+              value={storeTeacher.dni}
               onChange={(e) =>
-                setEditTeacher({ ...editTeacher, correo: e.target.value })
+                setStoreTeacher({ ...storeTeacher, dni: e.target.value })
               }
               className="border p-2 mb-2 w-full"
             />
-             <label
-              htmlFor="editNombre"
+            <label
+              htmlFor="addNombre"
               className="block text-sm font-medium text-gray-700"
             >
-            DNI:
+              Direccion:
             </label>
             <input
               type="text"
-              id="editNombre"
-              value={editTeacher.dni}
+              id="addNombre"
+              value={storeTeacher.direccion}
               onChange={(e) =>
-                setEditTeacher({ ...editTeacher, dni: e.target.value })
+                setStoreTeacher({ ...storeTeacher, direccion: e.target.value })
               }
               className="border p-2 mb-2 w-full"
             />
-             <label
-              htmlFor="editNombre"
+            <label
+              htmlFor="addNombre"
               className="block text-sm font-medium text-gray-700"
             >
-            Phone:
+              Correo:
             </label>
             <input
               type="text"
-              id="editNombre"
-              value={editTeacher.telefono}
+              id="addNombre"
+              value={storeTeacher.correo}
               onChange={(e) =>
-                setEditTeacher({ ...editTeacher, telefono: e.target.value })
+                setStoreTeacher({ ...storeTeacher, correo: e.target.value })
+              }
+              className="border p-2 mb-2 w-full"
+            />
+            <label
+              htmlFor="addNombre"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Telefono:
+            </label>
+            <input
+              type="text"
+              id="addNombre"
+              value={storeTeacher.telefono}
+              onChange={(e) =>
+                setStoreTeacher({ ...storeTeacher, telefono: e.target.value })
               }
               className="border p-2 mb-2 w-full"
             />
@@ -377,20 +391,21 @@ const Teachers = () => {
               onClick={handleStore}
               className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
             >
-              Save
+              Agregar
             </button>
-           <button
+            <button
               onClick={handleCloseModal}
-              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
+              className="z-10 ml-3 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
             >
-              Cerrar Modal
+              Cancelar
             </button>
           </div>
         </div>
-          
-        </div>
       )}
     </div>
+    
+    
   );
 };
+
 export default Teachers;

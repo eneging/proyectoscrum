@@ -12,7 +12,7 @@ class NivelController extends Controller
      */
     public function index()
     {
-        //
+        return Nivel::all();
     }
 
     /**
