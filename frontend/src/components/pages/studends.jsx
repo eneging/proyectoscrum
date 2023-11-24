@@ -66,19 +66,39 @@ const Students = () => {
     }
   };
 
-  // Funcion para editar estudiantes //
+  // alert editar//
+  const handleSaveEdit1 =() =>{
+    Swal.fire({
+      title: "Deseas guardar los cambios?",
+      showDenyButton: true,
+      
+      confirmButtonText: "Guardar",
+      denyButtonText: `No guardar`
+    }).then((result) => {
+       if (result.isConfirmed) {
+        Swal.fire(handleSaveEdit());
+      } else if (result.isDenied) {
+        Swal.fire("Los cambios no han sido guardados");
+      }
+    })
+   
+  };
 
+
+// Funcion para editar estudiantes //
   const handleSaveEdit = async () => {
-    try {
-      console.log("Student ID to update:", editStudents.estudiante_id);
-      console.log("Updated Name:", editStudents.nombre);
 
+    try {
+      
+     
       await axios.put(`${API_URL}/estudiante/${editStudents.estudiante_id}`, {
         nombre: editStudents.nombre,
         apellido: editStudents.apellido,
         correo: editStudents.correo,
       });
+     
       fetchData();
+      
       setEditStudents({
         estudiante_id: null,
         nombre: "",
@@ -100,7 +120,34 @@ const Students = () => {
       apellido: estudiante.apellido,
       correo: estudiante.correo,
     });
+    
+
   };
+
+  const handleDelete1 =() =>{
+    Swal.fire({
+      title: "Estas seguro?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Eliminar!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          
+          title: "Eliminado!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+      }
+    });
+   
+  };
+
+
+
 
   // Funcion para borrar estudiantes del registro
 
@@ -149,7 +196,7 @@ const Students = () => {
       </div>
 
       <center>
-        {" "}
+        
         <table className=" divide-gray-200 w-[86vw]">
           <thead className="bg-gray-50">
             <tr className="bg-gray-800 ">
@@ -231,7 +278,7 @@ const Students = () => {
                     Editar
                   </a>
                   <a
-                    onClick={() => handleDelete(student.estudiante_id)}
+                    onClick={ handleDelete1()}
                     href="#"
                     className="ml-2 text-red-600 hover:text-red-900"
                   >
@@ -295,7 +342,7 @@ const Students = () => {
               className="border p-2 mb-2 w-full"
             />
             <button
-              onClick={handleSaveEdit}
+              onClick={handleSaveEdit1}
               className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
             >
               Save
