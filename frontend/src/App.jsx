@@ -4,7 +4,7 @@ import Navigation from './components/routes/navigation';
 import Home from './components/pages/home';
 import Students from './components/pages/studends';
 import Teachers from './components/pages/teachers';
-import Carreras from './components/pages/carreras';
+
 import Editar from './components/pages/editar';
 import { Login } from './components/pages/login';
 import Matriculas2 from './components/pages/matriculas';
@@ -12,6 +12,7 @@ import Principal from './components/pages/principal';
 
 import axios from 'axios';
 import Registros from './components/routes/Registros';
+import Carreras from './components/pages/carreras';
 
 
 
