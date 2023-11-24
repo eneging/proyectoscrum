@@ -17,6 +17,9 @@ return new class extends Migration
             $table->unsignedBigInteger('carrera_id');
             $table->unsignedBigInteger('grupo_id');
             $table->unsignedBigInteger('nivel_id');
+            $table->string('Fecha_Carrera')->nullable();
+            $table->string('Fecha_Grupo')->nullable();
+            $table->string('Fecha_nivel')->nullable();
             $table->timestamps();
 
             $table->foreign('estudiante_id')->references('estudiante_id')->on('estudiantes')->onDelete('cascade')->onUpdate('cascade');

@@ -10,18 +10,12 @@ function Navigation(props) {
       
       <ul className='flex justify-around w-[60%]'>
 
-     
-        
-
         <li>
 
           <Link to="/home"><h1 className="hover:text-orange-500">Home</h1></Link>
 
         </li>
         <li>
-
-  
-
           <Link to="/students"><h1 className="hover:text-orange-500">Datos de  Estudiantes</h1></Link>
         </li>
         <li>

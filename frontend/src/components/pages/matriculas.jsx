@@ -24,9 +24,12 @@ const Matriculas2 = () => {
   const [Grupos, setGrupos] = useState([]);
   const [Niveles, setNiveles] = useState([]);
   const [Estudiantes, setEstudiante] = useState([]);
+  
   const [editmatricula, setEditMatricula] = useState({
     estudiante_id: null,
   });
+
+
   const [selectedEstudianteId, setSelectedEstudianteId] = useState(null);
   const [filteredMatriculas, setFilteredMatriculas] = useState([]);
 
