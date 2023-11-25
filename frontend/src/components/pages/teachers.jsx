@@ -136,19 +136,23 @@ const Teachers = () => {
         
         <table className="gap-[2rem] divide-gray-200 w-[70vw] ">
           <thead>
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <tr className="bg-gray-700 ">
+              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                 Usuario{" "}
               </th>
 
+<<<<<<< HEAD
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+=======
+              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+>>>>>>> 45885155b5b595de44586d8d4d35ab3629a35a91
                 dni
               </th>
 
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                 telefono{" "}
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                 Action
               </th>
             </tr>
@@ -408,4 +412,8 @@ const Teachers = () => {
   );
 };
 
+<<<<<<< HEAD
 export default Teachers;
+=======
+export default Teachers;
+>>>>>>> 45885155b5b595de44586d8d4d35ab3629a35a91

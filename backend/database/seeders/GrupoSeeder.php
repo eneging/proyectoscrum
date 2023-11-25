@@ -15,4 +15,4 @@ class GrupoSeeder extends Seeder
     {
         Grupo::factory(4)->create();
     }
-}
+}  

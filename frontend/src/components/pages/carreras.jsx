@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import API_URL from "../../config";
 
+
+
 const Carreras = () => {
   const [students, setStudents] = useState([]);
   const [editCarrera, setEditCarrera] = useState({
@@ -24,6 +26,11 @@ const Carreras = () => {
     }
   };
 
+
+
+
+
+
   const handleDelete = async (carrera_id) => {
     try {
       await axios.delete(`${API_URL}/carreras/${carrera_id}`);
@@ -32,6 +39,10 @@ const Carreras = () => {
       console.error("Error deleting student:", error);
     }
   };
+
+
+
+
 
   const handleEdit = (carrera) => {
     setEditCarrera({ carrera_id: carrera.carrera_id, nombre: carrera.nombre });
@@ -51,11 +62,26 @@ const Carreras = () => {
       await axios.put(`${API_URL}/carreras/${editCarrera.carrera_id}`, {
         nombre: editCarrera.nombre,
       });
+      
       fetchData();
       setEditCarrera({ carrera_id: null, nombre: "" });
     } catch (error) {
       console.error("Error updating student:", error);
     }
+
+if (handleEdit) {
+
+  Swal.fire({
+    position: "top-center",
+    icon: "success",
+    title: "se a editado con exito",
+    showConfirmButton: false,
+    timer: 1500
+  });
+}
+
+
+
   };
 
   {/* crear carreras */}
@@ -95,19 +121,19 @@ const Carreras = () => {
         </button>
       </div>
 
-      <div className=" flex justify-end">
-        <table className="gap-[2rem] divide-gray-200 w-[70vw] ">
+      <div className=" flex justify-center">
+        <table className="gap-[2rem] divide-gray-200  ">
           <thead>
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <tr className="bg-gray-800 flex justify-around">
+              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                 Nombre Carrera
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                 Action
               </th>
             </tr>
           </thead>
-          <tbody className="bg-white  divide-gray-200">
+          <tbody className="bg-white  divide-gray-200 ">
             {students.map((student) => (
               <tr
                 key={student.carrera_id}
@@ -116,7 +142,7 @@ const Carreras = () => {
                 <td className="px-6 py-4 whitespace-nowrap ">
                   {" "}
                   <div className="flex gap-4 items-center">
-                    <img src="https://picsum.photos/50"></img>
+                    <img className="w-[50px]" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6G3iW4Ur14DPKXx427YVLoMAv83QjhgOIgZdzNO7Tm5M6meiVyRg3sMQlsHT35rptSIE&usqp=CAU"></img>
                     <div>{student.nombre}</div>
                   </div>
                 </td>
@@ -176,7 +202,7 @@ const Carreras = () => {
               onClick={handleCloseModal}
               className="bg-gray-500 text-white px-4 py-2 w-[20px] h-[20px] flex items-center justify-center rounded-md hover:bg-blue-400 focus:outline-none "
             >
-              <span class="material-symbols-outlined">
+              <span className="material-symbols-outlined">
 close
 </span>
 </button>
