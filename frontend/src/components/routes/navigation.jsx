@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 
+
 function Navigation(props) {
 
-  return (
-    <nav className="bg-white  text-black flex justify-around h-[12vh] w-screen items-center fixed shadow-md ">
-      <div className="flex  items-center  "><img  className="w-[15vw]" src="https://www.estudiantefunval.org/pluginfile.php/1/theme_moove/logo/1696433166/logo%202023.png"></img>  
+  return (<>
+   
+   <nav className="bg-white  text-black flex justify-between h-cover w-screen items-center fixed shadow-md z-40">
+      <div className="flex  items-start  "><img  className="w-[13vw]" src="https://www.estudiantefunval.org/pluginfile.php/1/theme_moove/logo/1696433166/logo%202023.png"></img>  
      </div>
 
       
-      <ul className='flex justify-around w-[60%]'>
+      <ul className='flex justify-between w-[60%]  '>
 
         <li>
 
@@ -32,12 +34,19 @@ function Navigation(props) {
           <Link to="/matriculas"><h1 className="hover:text-orange-500">Registro matriculas</h1></Link>
         </li>
 
+        </ul>
+<ul className=" px-10">
         <li onClick={props.funLogout}>
           <Link to="/">Logout</Link>
         </li>
-        
-      </ul>
+        </ul>
+    
     </nav>
+
+</>
+
+
+
   );
 }
 

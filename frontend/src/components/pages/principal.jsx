@@ -1,10 +1,14 @@
 
 
 import React, { useState, useEffect } from 'react';
+
+
 import image1 from '../pages/img/programador1.jpg'
 import image2 from '../pages/img/programador2.jpg'
 import image3 from '../pages/img/ingles.jpg'
 import image4 from '../pages/img/ingles2.jpg'
+
+
 function Principal({ onLogin }) {
     const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -20,13 +24,16 @@ function Principal({ onLogin }) {
 
     const handleLoginClick = () => {
         // Lógica para mostrar el componente Login o realizar otras acciones
-        // Puedes realizar operaciones adicionales antes de mostrar el Login si es necesario
         onLogin();
+        
+       console.log('hola mundo');
+        // Puedes realizar operaciones adicionales antes de mostrar el Login si es necesario
+      
       };
     
   return (
     <>
-      <nav className="  bg-white shadow-md w-full flex items-center fixed z-40 ">
+      <nav className="  bg-white shadow-md w-full flex items-center justify-between px-20 fixed z-40 ">
         <a className="navbar-brand hidden md:flex items-center m-0 mr-4 p-0 aabtn">
           <img
             className="h-[10vh]"
@@ -37,7 +44,7 @@ function Principal({ onLogin }) {
 
         <>
       {/* ... Resto del código del componente Principal ... */}
-      <button onClick={handleLoginClick}>Acceder</button>
+      <button onClick={handleLoginClick}  className='text-blue-700 text-[18px] ' >Acceder</button>
     </>
       </nav>
 
@@ -66,6 +73,87 @@ function Principal({ onLogin }) {
           </div>
         </div>
       </div>
+     
+      <div className=" bg-[#292828] flex p-2 ml-auto mr-auto justify-center items-center text-white">
+        <div className="flex-1">
+          <h3>Contactanos</h3>
+
+          <div className="flex">
+            <div>
+              <img
+                style={{ width: "25px", height: "25px" }}
+                src=""
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                style={{ width: "25px", height: "25px" }}
+                src=""
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                style={{ width: "25px", height: "25px" }}
+                src=""
+                alt=""
+              />
+            </div>
+          </div>
+          <h3 className="mt-2 ">Siganos</h3>
+          <div className="flex">
+            <div>
+              <img
+                style={{ width: "25px", height: "25px" }}
+                src=""
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                style={{ width: "25px", height: "25px" }}
+                src=""
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                style={{ width: "25px", height: "25px" }}
+                src=""
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+        <div className="flex-1">
+          <div>
+            <p>Contactar con el soporte del sitio</p>
+          </div>
+          <p>Usted se ha identificado como usuario</p>
+          <a href="#">Cerrar Sesion</a>
+          <a href="#">Resumen de retencion de datos</a>
+          <br />
+          <a href="#">Descargar la app para dispositivos moviles</a>
+        </div>
+        <div className="flex-1">
+          <p>Descarga r la app para dispositivos moviles</p>
+        </div>
+      </div>
+      <footer className="h-[10vh] bg-orange-500  ">
+        <div className="flex justify-around text-white ">
+          <div className="flex gap-2">
+            <div>(056) 284399</div>
+            <div> LUN-VIE 8:00 a 15:30</div>
+            <div> mesadepartes@unica.edu.pe</div>
+          </div>
+
+          <div className="flex gap-2">
+            <div>Bolsa de Trabajo</div>|<div>Correos</div>|<div>Soporte</div>
+          </div>
+        </div>
+      </footer>
+
     </>
   );
 }
