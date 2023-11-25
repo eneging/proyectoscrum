@@ -121,7 +121,7 @@ const Teachers = () => {
 
   return (
     <div className="flex justify-center flex-col items-center" >
-        <div  className="bg-gray-800  text-white flex justify-around h-[12vh] w-screen items-center "></div>
+        <div  className="bg-gray-800  text-white flex justify-around h-[8vh] w-screen items-center "></div>
   <div className='flex justify-between p-[1rem] w-[85vw]  '>
         <h1 className='text-center text-xl  p-[0.5rem]'>Lista de Docentes</h1>
         <button

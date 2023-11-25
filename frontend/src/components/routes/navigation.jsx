@@ -5,7 +5,7 @@ function Navigation(props) {
 
   return (<>
    
-   <nav className="bg-white  text-black flex justify-between h-cover w-screen items-center fixed shadow-md z-40">
+   <nav className="bg-white  text-black flex justify-between h-cover min-h-[10vh] w-screen items-center fixed shadow-md z-40">
       <div className="flex  items-start  "><img  className="w-[13vw]" src="https://www.estudiantefunval.org/pluginfile.php/1/theme_moove/logo/1696433166/logo%202023.png"></img>  
      </div>
 
