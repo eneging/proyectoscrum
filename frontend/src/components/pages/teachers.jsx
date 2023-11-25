@@ -141,11 +141,7 @@ const Teachers = () => {
                 Usuario{" "}
               </th>
 
-<<<<<<< HEAD
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-=======
-              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
->>>>>>> 45885155b5b595de44586d8d4d35ab3629a35a91
                 dni
               </th>
 
