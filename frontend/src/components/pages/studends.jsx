@@ -37,27 +37,23 @@ const Students = () => {
     }
   };
 
+  // alert Agregar studiante//
 
-// alert Agregar studiante//
+  const handleAddStudent1 = () => {
+    Swal.fire({
+      title: "Deseas guardar los cambios?",
+      showDenyButton: true,
 
-
-const handleAddStudent1 =() =>{
-  Swal.fire({
-    title: "Deseas guardar los cambios?",
-    showDenyButton: true,
-    
-    confirmButtonText: "Guardar",
-    denyButtonText: `No guardar`
-  }).then((result) => {
-     if (result.isConfirmed) {
-      Swal.fire(handleAddStudent(),handleCloseModal());
-    } else if (result.isDenied) {
-      Swal.fire("Datos no guardados");
-    }
-  })
- 
-};
-
+      confirmButtonText: "Guardar",
+      denyButtonText: `No guardar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(handleAddStudent(), handleCloseModal());
+      } else if (result.isDenied) {
+        Swal.fire("Datos no guardados");
+      }
+    });
+  };
 
   // Funcion para agregar estudiantes //
 
@@ -89,37 +85,32 @@ const handleAddStudent1 =() =>{
   };
 
   // alert editar//
-  const handleSaveEdit1 =() =>{
+  const handleSaveEdit1 = () => {
     Swal.fire({
       title: "Deseas guardar los cambios?",
       showDenyButton: true,
       confirmButtonText: "Guardar",
-      denyButtonText: `Cancelar`
+      denyButtonText: `Cancelar`,
     }).then((result) => {
-       if (result.isConfirmed) {
+      if (result.isConfirmed) {
         Swal.fire(handleSaveEdit());
       } else if (result.isDenied) {
         Swal.fire("Datos no guardados");
       }
-    })
-   
+    });
   };
 
-
-// Funcion para editar estudiantes //
+  // Funcion para editar estudiantes //
   const handleSaveEdit = async () => {
-
     try {
-      
-     
       await axios.put(`${API_URL}/estudiante/${editStudents.estudiante_id}`, {
         nombre: editStudents.nombre,
         apellido: editStudents.apellido,
         correo: editStudents.correo,
       });
-     
+
       fetchData();
-      
+
       setEditStudents({
         estudiante_id: null,
         nombre: "",
@@ -141,28 +132,22 @@ const handleAddStudent1 =() =>{
       apellido: estudiante.apellido,
       correo: estudiante.correo,
     });
-    
-
   };
- const handleDelete1=(estudiante_id)=>{
-  Swal.fire({
-    title: "Estas Seguro?",
-    text: "No podras recuperar la informacion",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Eliminar"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      
-      Swal.fire( handleDelete(estudiante_id)
-      )
-    }   
-  });
- }
-
-
+  const handleDelete1 = (estudiante_id) => {
+    Swal.fire({
+      title: "Estas Seguro?",
+      text: "No podras recuperar la informacion",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Eliminar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(handleDelete(estudiante_id));
+      }
+    });
+  };
 
   // Funcion para borrar estudiantes del registro
 
@@ -362,7 +347,10 @@ const handleAddStudent1 =() =>{
             >
               Guardar
             </button>
-            <button className="ml-2 bg-gray-500 text-white px-2 py-2 rounded-md hover:bg-gray-700" onClick={handleEmpty}>
+            <button
+              className="ml-2 bg-gray-500 text-white px-2 py-2 rounded-md hover:bg-gray-700"
+              onClick={handleEmpty}
+            >
               Cerrar
             </button>
           </div>
@@ -373,10 +361,18 @@ const handleAddStudent1 =() =>{
 
       {modalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
-          <div className="bg-white w-[40vw] h-cover p-[2rem]">
+          <div className="bg-white w-[35vw] h-cover p-[2rem]">
+            <div className="w-[370px] flex  justify-end">
+            <button
+              onClick={handleCloseModal}
+              className="bg-gray-500 text-white  px-4 py-2 w-[20px] h-[20px] flex items-center justify-center rounded-md hover:bg-blue-400 focus:outline-none "
+            >
+              <span className="material-symbols-outlined">close</span>
+            </button>
+            </div>
             <label
               htmlFor="addNombre"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 pt-6"
             >
               Nombre:
             </label>
@@ -469,12 +465,6 @@ const handleAddStudent1 =() =>{
               className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
             >
               Agregar
-            </button>
-            <button
-              onClick={handleCloseModal}
-              className="z-10 ml-3 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
-            >
-              Cancelar
             </button>
           </div>
         </div>

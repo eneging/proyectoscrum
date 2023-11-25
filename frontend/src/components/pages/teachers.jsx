@@ -140,7 +140,7 @@ const handleStore1 =() =>{
     denyButtonText: `Cancelar`
   }).then((result) => {
      if (result.isConfirmed) {
-      Swal.fire(handleStore(),handleCloseModal());
+      Swal.fire(handleStore());
     } else if (result.isDenied) {
       Swal.fire("Datos no guardados");
     }
@@ -173,10 +173,13 @@ const handleStore1 =() =>{
       console.error("Error save teacher:", error);
     }
   };
-
-  const cerrarModal=()=>{
+    
+  function cerrarModal() {
     setModalOpen(false)
   }
+
+
+ 
 
   return (
     <div className="flex justify-center flex-col items-center" >
@@ -264,7 +267,7 @@ const handleStore1 =() =>{
       {/* Modal para la edición */}
       {editTeacher.docente_id !== null && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
-          <div className="bg-white p-4 rounded-md">
+          <div className="bg-white p-4 rounded-md w-[350px]">
             <label
               htmlFor="editNombre"
               className="block text-sm font-medium text-gray-700"
@@ -340,18 +343,22 @@ const handleStore1 =() =>{
               }
               className="border p-2 mb-2 w-full"
             />
+            <div className="flex">
             <button
               onClick={handleSaveEdit1}
               className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
             >
               Guardar
             </button>
+            <form action="" onSubmit={cerrarModal}>
             <button
-              onClick={handleCloseModal}
+              type="submit" 
               className="z-10 ml-3 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
             >
               Cancelar
             </button>
+            </form>
+            </div>
           </div>
         </div>
       )}
@@ -362,6 +369,14 @@ const handleStore1 =() =>{
       {modalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
         <div className="bg-white p-4 rounded-md">
+        <div className="w-[370px] flex  justify-end">
+            <button
+              onClick={handleCloseModal}
+              className="bg-gray-500 text-white  px-4 py-2 w-[20px] h-[20px] flex items-center justify-center rounded-md hover:bg-blue-400 focus:outline-none "
+            >
+              <span className="material-symbols-outlined">close</span>
+            </button>
+            </div>
             <label
               htmlFor="addNombre"
               className="block text-sm font-medium text-gray-700"
@@ -458,12 +473,7 @@ const handleStore1 =() =>{
             >
               Agregar
             </button>
-            <button
-              onClick={handleCloseModal}
-              className="z-10 ml-3 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
-            >
-              Cancelar
-            </button>
+           
           </div>
         </div>
       )}

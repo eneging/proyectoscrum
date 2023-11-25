@@ -24,7 +24,7 @@ const Carreras = () => {
     }
   };
 
-  const handleDelete1=(carrera_id)=>{
+  const handleDelete1 = (carrera_id) => {
     Swal.fire({
       title: "Estas Seguro?",
       text: "No podras recuperar la informacion",
@@ -32,18 +32,13 @@ const Carreras = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Eliminar"
+      confirmButtonText: "Eliminar",
     }).then((result) => {
       if (result.isConfirmed) {
-        
-        Swal.fire( handleDelete(carrera_id)
-        )
-      }   
+        Swal.fire(handleDelete(carrera_id));
+      }
     });
-   }
-
-
-
+  };
 
   const handleDelete = async (carrera_id) => {
     try {
@@ -53,10 +48,6 @@ const Carreras = () => {
       console.error("Error deleting student:", error);
     }
   };
-
-
-
-
 
   const handleEdit = (carrera) => {
     setEditCarrera({ carrera_id: carrera.carrera_id, nombre: carrera.nombre });
@@ -70,61 +61,57 @@ const Carreras = () => {
     setModalOpen(false);
   };
 
- // alert editar//
- const handleSaveEdit1 =() =>{
-  Swal.fire({
-    title: "Deseas guardar los cambios?",
-    showDenyButton: true,
-    
-    confirmButtonText: "Guardar",
-    denyButtonText: `Cancelar`
-  }).then((result) => {
-     if (result.isConfirmed) {
-      Swal.fire(handleSaveEdit());
-    } else if (result.isDenied) {
-      handleCloseModal(false);
-    }
-  })
- 
-};
+  // alert editar//
+  const handleSaveEdit1 = () => {
+    Swal.fire({
+      title: "Deseas guardar los cambios?",
+      showDenyButton: true,
+
+      confirmButtonText: "Guardar",
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(handleSaveEdit());
+      } else if (result.isDenied) {
+        handleCloseModal(false);
+      }
+    });
+  };
 
   const handleSaveEdit = async () => {
-
     try {
       await axios.put(`${API_URL}/carreras/${editCarrera.carrera_id}`, {
         nombre: editCarrera.nombre,
       });
-      
+
       fetchData();
       setEditCarrera({ carrera_id: null, nombre: "" });
     } catch (error) {
       console.error("Error updating student:", error);
     }
-
   };
 
   // alert Agregar carrera//
 
+  const handleAddStudent1 = () => {
+    Swal.fire({
+      title: "Deseas guardar los cambios?",
+      showDenyButton: true,
 
-const handleAddStudent1 =() =>{
-  Swal.fire({
-    title: "Deseas guardar los cambios?",
-    showDenyButton: true,
-    
-    confirmButtonText: "Guardar",
-    denyButtonText: `No guardar`
-  }).then((result) => {
-     if (result.isConfirmed) {
-      Swal.fire(handleAddStudent(),handleCloseModal());
-    } else if (result.isDenied) {
-      Swal.fire("Los cambios no han sido guardados");
-    }
-  })
- 
-};
+      confirmButtonText: "Guardar",
+      denyButtonText: `No guardar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(handleAddStudent(), handleCloseModal());
+      } else if (result.isDenied) {
+        Swal.fire("Los cambios no han sido guardados");
+      }
+    });
+  };
 
-
-  {/* crear carreras */}
+  {
+    /* crear carreras */
+  }
 
   const [newCarrera, setNewCarrera] = useState();
 
@@ -133,7 +120,7 @@ const handleAddStudent1 =() =>{
   };
   const handleForm = (e) => {
     e.preventDefault();
-    
+
     sendDataToServer({ newCarrera });
 
     Swal.fire({
@@ -141,7 +128,7 @@ const handleAddStudent1 =() =>{
       icon: "success",
       title: "Your work has been saved",
       showConfirmButton: false,
-      timer: 1500
+      timer: 1500,
     });
     handleCloseModal(false);
   };
@@ -154,10 +141,13 @@ const handleAddStudent1 =() =>{
       fetchData();
       setNewCarrera({ nombre: "" });
     } catch (error) {
-    
       console.error("Error creando carrera:", error);
     }
   };
+
+  function cerrarModal() {
+    setModalOpen(false);
+  }
 
   return (
     <div className="flex  flex-col h-screen  gap-3 p-[5vw] ">
@@ -189,9 +179,11 @@ const handleAddStudent1 =() =>{
                 className="flex items-center justify-between"
               >
                 <td className="px-6 py-4 whitespace-nowrap ">
-                  
                   <div className="flex gap-4 items-center">
-                    <img className="w-[50px]" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6G3iW4Ur14DPKXx427YVLoMAv83QjhgOIgZdzNO7Tm5M6meiVyRg3sMQlsHT35rptSIE&usqp=CAU"></img>
+                    <img
+                      className="w-[50px]"
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6G3iW4Ur14DPKXx427YVLoMAv83QjhgOIgZdzNO7Tm5M6meiVyRg3sMQlsHT35rptSIE&usqp=CAU"
+                    ></img>
                     <div>{student.nombre}</div>
                   </div>
                 </td>
@@ -212,23 +204,13 @@ const handleAddStudent1 =() =>{
               </tr>
             ))}
           </tbody>
-
-          </table>
+        </table>
       </div>
       {/* Modal para la edición */}
       {editCarrera.carrera_id !== null && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
-          
           <div className="bg-white p-4 rounded-md flex flex-col gap-y-3">
-
-          <button
-              onClick={handleCloseModal}
-              className="bg-gray-500 text-white px-4 py-2 w-[20px] h-[20px] flex items-center justify-center rounded-md hover:bg-blue-400 focus:outline-none "
-            >
-              <span className="material-symbols-outlined">
-close
-</span>
-</button>
+            
             <label
               htmlFor="editNombre"
               className="block text-sm font-medium text-gray-700"
@@ -246,15 +228,21 @@ close
             />
 
             <div className="flex justify-center items-center gap-x-6">
-            <button
-              onClick={handleSaveEdit1}
-              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
-            >
-              Guardar
-            </button>
-           
-</div>
-
+              <button
+                onClick={handleSaveEdit1}
+                className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
+              >
+                Guardar
+              </button>
+              <form onSubmit={cerrarModal}>
+              <button
+                type="submit"
+                className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700 "
+              >
+                Cancelar
+              </button>
+            </form>
+            </div>
           </div>
         </div>
       )}
@@ -262,14 +250,14 @@ close
       {modalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
           <div className="bg-white w-[30vw] h-[50vh] p-[3rem] flex flex-col rounded-lg gap-y-6">
+          <div className="w-[300px] flex  justify-end">
             <button
               onClick={handleCloseModal}
               className="bg-gray-500 text-white px-4 py-2 w-[20px] h-[20px] flex items-center justify-center rounded-md hover:bg-blue-400 focus:outline-none "
             >
-              <span className="material-symbols-outlined">
-close
-</span>
-</button>
+              <span className="material-symbols-outlined">close</span>
+            </button>
+            </div>
             <form onSubmit={handleForm} action="/carreras">
               <div className="flex flex-col gap-y-3 pb-10">
                 <label className="text-gray-500">Nombre de la Carrera</label>
@@ -296,5 +284,3 @@ close
 };
 
 export default Carreras;
-
-
