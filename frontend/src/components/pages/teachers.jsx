@@ -408,8 +408,4 @@ const Teachers = () => {
   );
 };
 
-<<<<<<< HEAD
 export default Teachers;
-=======
-export default Teachers;
->>>>>>> 45885155b5b595de44586d8d4d35ab3629a35a91
