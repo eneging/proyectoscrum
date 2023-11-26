@@ -7,13 +7,14 @@ import Teachers from './components/pages/teachers';
 
 import Editar from './components/pages/editar';
 import { Login } from './components/pages/login';
-import Matriculas2 from './components/pages/matriculas';
+import Matriculas2 from './components/pages/Registromatriculas/matriculas';
 import Principal from './components/pages/principal';
 
 import axios from 'axios';
 import Registros from './components/routes/Registros';
 import Carreras from './components/pages/carreras';
-
+import NavRegistro from './components/pages/NavRegistro';
+import './App.css'
 
 
 function App() {
@@ -95,7 +96,7 @@ function App() {
                 <Route path="/carreras" element={<Carreras />} />
                 <Route path="/matriculas" element={<Matriculas2 />} />
                 <Route path="/editar" element={<Editar />} />
-                <Route path="/registros" element={<Registros/>} />
+                <Route path="/registros" element={<NavRegistro/>} />
               </>
             )}
 

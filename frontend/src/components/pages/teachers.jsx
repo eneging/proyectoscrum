@@ -38,6 +38,24 @@ const Teachers = () => {
     }
   };
 
+  const handleDelete1=(docente_id)=>{
+    Swal.fire({
+      title: "Estas Seguro?",
+      text: "No podras recuperar la informacion",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Eliminar"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        
+        Swal.fire( handleDelete(docente_id)
+        )
+      }   
+    });
+   }
+
   const handleDelete = async (docente_id) => {
     try {
       await axios.delete(`${API_URL}/docentes/${docente_id}`);
@@ -67,6 +85,24 @@ const Teachers = () => {
     setModalOpen(false);
   };
 
+  //alert editar//
+  const handleSaveEdit1 =() =>{
+    Swal.fire({
+      title: "Deseas guardar los cambios?",
+      showDenyButton: true,
+      
+      confirmButtonText: "Guardar",
+      denyButtonText: `Cancelar`
+    }).then((result) => {
+       if (result.isConfirmed) {
+        Swal.fire(handleSaveEdit());
+      } else if (result.isDenied) {
+        Swal.fire("Datos no Guardados");
+      }
+    })
+   
+  };
+
   const handleSaveEdit = async () => {
     try {
       await axios.put(`${API_URL}/docentes/${editTeacher.docente_id}`, {
@@ -92,6 +128,25 @@ const Teachers = () => {
     }
   };
 
+  // alert Agregar Docentes//
+
+
+const handleStore1 =() =>{
+  Swal.fire({
+    title: "Deseas guardar los cambios?",
+    showDenyButton: true,
+    
+    confirmButtonText: "Guardar",
+    denyButtonText: `Cancelar`
+  }).then((result) => {
+     if (result.isConfirmed) {
+      Swal.fire(handleStore());
+    } else if (result.isDenied) {
+      Swal.fire("Datos no guardados");
+    }
+  })
+ 
+};
   const handleStore = async () => {
     try {
       await axios.post(`${API_URL}/docentes`, {
@@ -118,10 +173,17 @@ const Teachers = () => {
       console.error("Error save teacher:", error);
     }
   };
+    
+  function cerrarModal() {
+    setModalOpen(false)
+  }
+
+
+ 
 
   return (
     <div className="flex justify-center flex-col items-center" >
-        <div  className="bg-gray-800  text-white flex justify-around h-[12vh] w-screen items-center "></div>
+        <div  className="bg-gray-800  text-white flex justify-around h-[8vh] w-screen items-center "></div>
   <div className='flex justify-between p-[1rem] w-[85vw]  '>
         <h1 className='text-center text-xl  p-[0.5rem]'>Lista de Docentes</h1>
         <button
@@ -192,7 +254,7 @@ const Teachers = () => {
                   Edit
                 </button>
                 <button
-                  onClick={() => handleDelete(teacher.docente_id)}
+                  onClick={() => handleDelete1(teacher.docente_id)}
                   className="ml-2 px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out"
                 >
                   Delete
@@ -205,7 +267,7 @@ const Teachers = () => {
       {/* Modal para la edición */}
       {editTeacher.docente_id !== null && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
-          <div className="bg-white p-4 rounded-md">
+          <div className="bg-white p-4 rounded-md w-[350px]">
             <label
               htmlFor="editNombre"
               className="block text-sm font-medium text-gray-700"
@@ -281,12 +343,22 @@ const Teachers = () => {
               }
               className="border p-2 mb-2 w-full"
             />
+            <div className="flex">
             <button
-              onClick={handleSaveEdit}
+              onClick={handleSaveEdit1}
               className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
             >
-              Save
+              Guardar
             </button>
+            <form action="" onSubmit={cerrarModal}>
+            <button
+              type="submit" 
+              className="z-10 ml-3 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
+            >
+              Cancelar
+            </button>
+            </form>
+            </div>
           </div>
         </div>
       )}
@@ -297,6 +369,14 @@ const Teachers = () => {
       {modalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
         <div className="bg-white p-4 rounded-md">
+        <div className="w-[370px] flex  justify-end">
+            <button
+              onClick={handleCloseModal}
+              className="bg-gray-500 text-white  px-4 py-2 w-[20px] h-[20px] flex items-center justify-center rounded-md hover:bg-blue-400 focus:outline-none "
+            >
+              <span className="material-symbols-outlined">close</span>
+            </button>
+            </div>
             <label
               htmlFor="addNombre"
               className="block text-sm font-medium text-gray-700"
@@ -388,17 +468,12 @@ const Teachers = () => {
               className="border p-2 mb-2 w-full"
             />
             <button
-              onClick={handleStore}
+              onClick={handleStore1}
               className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
             >
               Agregar
             </button>
-            <button
-              onClick={handleCloseModal}
-              className="z-10 ml-3 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
-            >
-              Cancelar
-            </button>
+           
           </div>
         </div>
       )}

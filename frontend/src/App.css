@@ -1,0 +1,20 @@
+/* styles.css */
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Agrega estilos adicionales para el modo oscuro */
+.dark {
+  background-color: #1a202c;
+  color: #fff;
+}
+
+.app {
+  padding: 20px;
+}
+
+button {
+  padding: 10px;
+  cursor: pointer;
+}

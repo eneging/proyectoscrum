@@ -7,6 +7,7 @@ import Calendario from "./calendario";
 function Home() {
  
   return (
+
     <>
       <div className="bg-gray-800  text-white flex justify-around h-[12vh] w-screen items-center "></div>
       <main className=" h-screen bg-[url('https://www.unica.edu.pe/estilosweb/images/bg/bg2nuevo.jpg')]">
@@ -35,5 +36,6 @@ function Home() {
     </>
   );
 }
+
 
 export default Home;
