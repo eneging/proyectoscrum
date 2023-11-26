@@ -1,6 +1,17 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import API_URL from "../../config";
+import Sidebar from "./Registromatriculas/sidebar";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Paper,
+  Box,
+} from '@mui/material';
+
 
 const Carreras = () => {
   const [students, setStudents] = useState([]);
@@ -24,21 +35,10 @@ const Carreras = () => {
     }
   };
 
-  const handleDelete1 = (carrera_id) => {
-    Swal.fire({
-      title: "Estas Seguro?",
-      text: "No podras recuperar la informacion",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Eliminar",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(handleDelete(carrera_id));
-      }
-    });
-  };
+
+
+
+
 
   const handleDelete = async (carrera_id) => {
     try {
@@ -48,6 +48,10 @@ const Carreras = () => {
       console.error("Error deleting student:", error);
     }
   };
+
+
+
+
 
   const handleEdit = (carrera) => {
     setEditCarrera({ carrera_id: carrera.carrera_id, nombre: carrera.nombre });
@@ -61,57 +65,35 @@ const Carreras = () => {
     setModalOpen(false);
   };
 
-  // alert editar//
-  const handleSaveEdit1 = () => {
-    Swal.fire({
-      title: "Deseas guardar los cambios?",
-      showDenyButton: true,
-
-      confirmButtonText: "Guardar",
-      denyButtonText: `Cancelar`,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(handleSaveEdit());
-      } else if (result.isDenied) {
-        handleCloseModal(false);
-      }
-    });
-  };
-
   const handleSaveEdit = async () => {
+
     try {
       await axios.put(`${API_URL}/carreras/${editCarrera.carrera_id}`, {
         nombre: editCarrera.nombre,
       });
-
+      
       fetchData();
       setEditCarrera({ carrera_id: null, nombre: "" });
     } catch (error) {
       console.error("Error updating student:", error);
     }
+
+if (handleEdit) {
+
+  Swal.fire({
+    position: "top-center",
+    icon: "success",
+    title: "se a editado con exito",
+    showConfirmButton: false,
+    timer: 1500
+  });
+}
+
+
+
   };
 
-  // alert Agregar carrera//
-
-  const handleAddStudent1 = () => {
-    Swal.fire({
-      title: "Deseas guardar los cambios?",
-      showDenyButton: true,
-
-      confirmButtonText: "Guardar",
-      denyButtonText: `No guardar`,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(handleAddStudent(), handleCloseModal());
-      } else if (result.isDenied) {
-        Swal.fire("Los cambios no han sido guardados");
-      }
-    });
-  };
-
-  {
-    /* crear carreras */
-  }
+  {/* crear carreras */}
 
   const [newCarrera, setNewCarrera] = useState();
 
@@ -120,16 +102,7 @@ const Carreras = () => {
   };
   const handleForm = (e) => {
     e.preventDefault();
-
     sendDataToServer({ newCarrera });
-
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Your work has been saved",
-      showConfirmButton: false,
-      timer: 1500,
-    });
     handleCloseModal(false);
   };
 
@@ -141,17 +114,18 @@ const Carreras = () => {
       fetchData();
       setNewCarrera({ nombre: "" });
     } catch (error) {
+      alert("No ha ingresado datos")
       console.error("Error creando carrera:", error);
     }
   };
 
-  function cerrarModal() {
-    setModalOpen(false);
-  }
-
   return (
-    <div className="flex  flex-col h-screen  gap-3 p-[5vw] ">
-      <div className="flex justify-end w-[90vw] m-[1rem] ">
+
+    <div className="flex h-screen ">
+
+      <Sidebar></Sidebar>
+    <div className="flex flex-col  justify-center   ">
+      <div className="flex py-[4%] justify-end">
         <button
           onClick={() => handlOpenModal()}
           className="px-4 py-2 font-medium text-white bg-gray-800 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
@@ -160,62 +134,88 @@ const Carreras = () => {
         </button>
       </div>
 
-      <div className=" flex justify-center">
-        <table className="gap-[2rem] divide-gray-200  ">
-          <thead>
-            <tr className="bg-gray-800 flex justify-around">
-              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                Nombre Carrera
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                Action
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white  divide-gray-200 ">
-            {students.map((student) => (
-              <tr
-                key={student.carrera_id}
-                className="flex items-center justify-between"
+
+      <div className=' flex justify-end w-[60vw] px-[10%] '>
+        <Box
+          component={Paper}
+          sx={{
+            height: 450,
+            width: '95%',
+            overflow: 'auto',
+            '& .MuiTableContainer-root': {
+              maxHeight: 380,
+            },
+            '& .MuiTableHead-root': {
+              position: 'sticky',
+              top: 0,
+              backgroundColor: 'rgb(30, 34, 39)',
+            
+            },
+          }}
+        >
+          <Table>
+            <TableHead>
+              <TableRow
+               sx={{
+                position: 'sticky',
+                top: 0,
+                width: '100%',
+                justifyContent: 'spacebetween',
+              backgroundColor: 'rgb(30, 34, 39)',
+     
+                
+              }}
               >
-                <td className="px-6 py-4 whitespace-nowrap ">
+                <TableCell> <div className='text-center px-[3vw] text-white'>  Nombre Carrera</div></TableCell>
+              
+             
+                <TableCell><div className='text-center text-white'>Acción</div></TableCell>
+                
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {students.map((carrera) => (
+                <TableRow key={carrera.id}>
+                  <TableCell align='left'>  {" "}
                   <div className="flex gap-4 items-center">
-                    <img
-                      className="w-[50px]"
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6G3iW4Ur14DPKXx427YVLoMAv83QjhgOIgZdzNO7Tm5M6meiVyRg3sMQlsHT35rptSIE&usqp=CAU"
-                    ></img>
-                    <div>{student.nombre}</div>
-                  </div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <button
-                    onClick={() => handleEdit(student)}
-                    className="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
-                  >
-                    Editar
-                  </button>
-                  <button
-                    onClick={() => handleDelete1(student.carrera_id)}
-                    className="ml-2 px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out"
-                  >
-                    Eliminar
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                    <img className="w-[50px]" src="https://www.estudiantefunval.org/pluginfile.php/1/theme_moove/favicon/1696433166/ico%20favicon%20new.ico"></img>
+                    <div>{carrera.nombre}</div>
+                  </div></TableCell>
+                  
+                  
+                  <TableCell align='left'>
+                    <div className='flex gap-4 justify-center'>
+                      <button
+                        onClick={() => handleEdit(carrera)}
+                        className="px-4 py-2 font-medium text-white hover:bg-green-500 rounded-md bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
+                      >
+                        editar
+                      </button>
+                      <button
+                        onClick={() => handleDelete(carrera.carrera_id)}
+                        className="px-4 py-2 font-medium text-white hover:bg-green-500 rounded-md bg-red-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
+                      >
+                        delete
+                      </button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Box>
+        </div>
+
+
       {/* Modal para la edición */}
       {editCarrera.carrera_id !== null && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
-          <div className="bg-white p-4 rounded-md flex flex-col gap-y-3">
-            
+          <div className="bg-white p-4 rounded-md">
             <label
               htmlFor="editNombre"
               className="block text-sm font-medium text-gray-700"
             >
-              Editar Nombre:
+              Edit Name:
             </label>
             <input
               type="text"
@@ -226,23 +226,12 @@ const Carreras = () => {
               }
               className="border p-2 mb-2 w-full"
             />
-
-            <div className="flex justify-center items-center gap-x-6">
-              <button
-                onClick={handleSaveEdit1}
-                className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
-              >
-                Guardar
-              </button>
-              <form onSubmit={cerrarModal}>
-              <button
-                type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700 "
-              >
-                Cancelar
-              </button>
-            </form>
-            </div>
+            <button
+              onClick={handleSaveEdit}
+              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
+            >
+              Save
+            </button>
           </div>
         </div>
       )}
@@ -250,20 +239,20 @@ const Carreras = () => {
       {modalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
           <div className="bg-white w-[30vw] h-[50vh] p-[3rem] flex flex-col rounded-lg gap-y-6">
-          <div className="w-[300px] flex  justify-end">
             <button
               onClick={handleCloseModal}
               className="bg-gray-500 text-white px-4 py-2 w-[20px] h-[20px] flex items-center justify-center rounded-md hover:bg-blue-400 focus:outline-none "
             >
-              <span className="material-symbols-outlined">close</span>
-            </button>
-            </div>
+              <span className="material-symbols-outlined">
+close
+</span>
+</button>
             <form onSubmit={handleForm} action="/carreras">
               <div className="flex flex-col gap-y-3 pb-10">
-                <label className="text-gray-500">Nombre de la Carrera</label>
+                <label className="text-gray-500">Name Carrera</label>
                 <input
                   type="text"
-                  placeholder="Agregar carrera"
+                  placeholder="Add carrera"
                   className="w-[250px] h-[30px] pl-2 hover:bg-gray-200"
                   name="nombre"
                   onChange={handleCreate}
@@ -273,14 +262,17 @@ const Carreras = () => {
                 type="submit"
                 className="bg-gray-800 text-white px-4 py-2 w-[80px] h-[30px] flex items-center justify-center rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
               >
-                Guardar
+                Insert
               </button>
             </form>
           </div>
         </div>
       )}
     </div>
+    </div>
   );
 };
 
 export default Carreras;
+
+

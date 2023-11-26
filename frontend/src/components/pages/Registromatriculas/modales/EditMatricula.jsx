@@ -75,6 +75,8 @@ function EditMatricula() {
      <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
           <div className="bg-white p-10 rounded-md">
             <div>
+
+                
               <FormControl sx={{ m: 3, minWidth: 220 }}>
               <InputLabel id="demo-simple-select-autowidth-label">Nivel</InputLabel>
         <Select

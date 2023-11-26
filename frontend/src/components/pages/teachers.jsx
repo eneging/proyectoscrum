@@ -1,6 +1,18 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import API_URL from "../../config";
+import Sidebar from "./Registromatriculas/sidebar";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Box,
+} from '@mui/material';
+
 
 const Teachers = () => {
   const [teacher, setTeachers] = useState([]);
@@ -182,10 +194,13 @@ const handleStore1 =() =>{
  
 
   return (
-    <div className="flex justify-center flex-col items-center" >
-        <div  className="bg-gray-800  text-white flex justify-around h-[8vh] w-screen items-center "></div>
-  <div className='flex justify-between p-[1rem] w-[85vw]  '>
-        <h1 className='text-center text-xl  p-[0.5rem]'>Lista de Docentes</h1>
+<div className="flex" >
+  <Sidebar></Sidebar>
+
+   <div className="flex justify-center flex-col items-center" >
+        <div  className="bg-gray-800  text-white flex justify-around h-[3vh] w-cover items-center "></div>
+  <div className='flex justify-between p-[1rem] w-[75vw]  '>
+        <h1 className=' text-2xl  px-[2.5rem]'>Lista de Docentes</h1>
         <button
           onClick={() => handlOpenModal()}
           className="px-4 py-2 font-medium text-white bg-gray-800 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
@@ -194,31 +209,52 @@ const handleStore1 =() =>{
         </button>
       </div>
 
-      <div className=" flex justify-center">
-        
-        <table className="gap-[2rem] divide-gray-200 w-[70vw] ">
-          <thead>
-            <tr className="bg-gray-700 ">
-              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                Usuario{" "}
-              </th>
 
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                dni
-              </th>
 
-              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                telefono{" "}
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                Action
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white  divide-gray-200">
-            {teacher.map((teacher) => (
-              <tr key={teacher.docente_id}>
-                <td className="px-6 py-4 whitespace-nowrap">
+
+      <div className=' flex justify-end w-full'>
+        <Box
+          component={Paper}
+          sx={{
+            height: 450,
+            width: '95%',
+            overflow: 'auto',
+            '& .MuiTableContainer-root': {
+              maxHeight: 380,
+            },
+            '& .MuiTableHead-root': {
+              position: 'sticky',
+              top: 0,
+              backgroundColor: 'rgb(30, 34, 39)',
+            
+            },
+          }}
+        >
+          <Table>
+            <TableHead>
+              <TableRow
+               sx={{
+                position: 'sticky',
+                top: 0,
+                width: '100%',
+                justifyContent: 'spacebetween',
+              backgroundColor: 'rgb(30, 34, 39)',
+     
+                
+              }}
+              >
+                <TableCell> <div className='text-center px-[3vw] text-white'> Usuario{"  "}</div></TableCell>
+                <TableCell><div className='text-center  px-[3vw] text-white'> dni</div></TableCell>
+                <TableCell><div className='text-center text-white'> telefono{" "}</div></TableCell>
+             
+                <TableCell><div className='text-center text-white'>Acción</div></TableCell>
+                
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {teacher.map((carrera) => (
+                <TableRow key={carrera.id}>
+                  <TableCell align='left'> <div className=' text-center w-[10rem]'> 
                   <div className="flex items-center">
                     <div className="flex-shrink-0 h-10 w-10">
                       <img
@@ -229,41 +265,50 @@ const handleStore1 =() =>{
                     </div>
                     <div className="ml-4">
                       <div className="text-sm font-medium text-gray-900">
-                        {`${teacher.nombre} ${teacher.apellido}`}
+                        {`${carrera.nombre} ${carrera.apellido}`}
                       </div>
                       <div className="text-sm text-gray-500">
-                        {`${teacher.correo}`}
+                        {`${carrera.correo}`}
                       </div>
                     </div>
                   </div>
-                </td>
-
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  <div className="text-sm text-gray-500">
-                    {`${teacher.dni}`}
+                  
+                  </div></TableCell>
+                  <TableCell align='left'>
+                  <div className="text-sm text-center text-gray-500 ">
+                    {`${carrera.dni}`}
                   </div>
-                </td>
+                  </TableCell>
+                  <TableCell align='left'>
+                    <div className=' text-center'>{`${carrera.telefono}`}</div>
+                  </TableCell>
+                  
+                  <TableCell align='left'>
+                    <div className='flex gap-4 justify-center'>
+                      <button
+                        onClick={() => handleEdit(teacher)}
+                        className="px-4 py-2 font-medium text-white hover:bg-green-500 rounded-md bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
+                      >
+                        editar
+                      </button>
+                      <button
+                        onClick={() => handleDelete1(teacher.docente_id)}
+                        className="px-4 py-2 font-medium text-white hover:bg-green-500 rounded-md bg-red-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
+                      >
+                        delete
+                      </button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Box>
+        </div>
 
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {`${teacher.telefono}`}
-                </td>
-                <button
-                  onClick={() => handleEdit(teacher)}
-                  className="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => handleDelete1(teacher.docente_id)}
-                  className="ml-2 px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out"
-                >
-                  Delete
-                </button>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+
+
+   
       {/* Modal para la edición */}
       {editTeacher.docente_id !== null && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
@@ -478,7 +523,7 @@ const handleStore1 =() =>{
         </div>
       )}
     </div>
-    
+    </div> 
     
   );
 };
