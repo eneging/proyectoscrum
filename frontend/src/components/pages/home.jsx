@@ -2,7 +2,7 @@ function Home() {
 
   return (
 <>  
-<div  className="bg-gray-800  text-white flex justify-around h-[12vh] w-screen items-center "></div>
+<div  className="bg-gray-800  text-white flex justify-around h-[8vh] w-screen items-center "></div>
   <main className=" h-screen bg-[url('https://www.unica.edu.pe/estilosweb/images/bg/bg2nuevo.jpg')]">
 
     

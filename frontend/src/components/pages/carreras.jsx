@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import API_URL from "../../config";
 
-
-
 const Carreras = () => {
   const [students, setStudents] = useState([]);
   const [editCarrera, setEditCarrera] = useState({
