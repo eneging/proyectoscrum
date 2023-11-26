@@ -11,7 +11,7 @@ const useGruposData = () => {
 
   const fetchDataGrupos = async () => {
     try {
-      const response = await axios.get(`${API_URL}/matricula`);
+      const response = await axios.get(`${API_URL}/grupos`);
       setMatricula(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
