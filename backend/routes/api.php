@@ -28,11 +28,11 @@ Route::controller(CarreraController::class)->group(function () {
     Route::post('/carreras', 'store');
     Route::put('/carreras/{id}','update');
     Route::delete('/carreras/{id}','destroy');
-    Route::post('/carreras/matricular/estudiante', 'matricularEstudiante');
-    Route::put('/carreras/actualizar/matricula', 'actualizarMatriculaEstudiante');
-    Route::delete('/carreras/eliminar/matricula/estudiante/{idEstudiante}','eliminarMatricula');
+// Route::post('/carreras/matricular/estudiante', 'matricularEstudiante');
+  //  Route::put('/carreras/actualizar/matricula', 'actualizarMatriculaEstudiante');
+   // Route::delete('/carreras/eliminar/matricula/estudiante/{idEstudiante}','eliminarMatricula');
     Route::get('/carreras/{id}', 'show');
-    Route::get('/matriculas', 'listaMatricula');
+    //Route::get('/matriculas', 'listaMatricula');
 });
 
 

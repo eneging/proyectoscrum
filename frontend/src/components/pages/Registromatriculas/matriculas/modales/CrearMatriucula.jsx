@@ -1,10 +1,10 @@
 import {InputLabel, MenuItem,FormControl,Select, TextField,Autocomplete,Stack,} from '@mui/material';
 
 import { useEffect, useState } from 'react';
-import useNivelesData from "../../../hooks/useNivelesData";
-import useCarrerasData from "../../../hooks/useCarrerasData";
-import useGruposData from "../../../hooks/useGruposData";
-import useEstudiantesData from '../../../hooks/useEstudiantesData';
+import useNivelesData from "../../../../hooks/useNivelesData";
+import useCarrerasData from "../../../../hooks/useCarrerasData";
+import useGruposData from "../../../../hooks/useGruposData";
+import useEstudiantesData from '../../../../hooks/useEstudiantesData';
 
 
 function CrearMatriucula({onClose}) {
@@ -58,7 +58,7 @@ onClose();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-   console.log(editmatricula);
+  
   };
 
 

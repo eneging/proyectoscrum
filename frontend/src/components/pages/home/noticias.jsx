@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useEffect, useState } from "react";
 
 function Noticias() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -27,9 +27,22 @@ function Noticias() {
     setActiveIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
+
+  let transition;
+
+function repetirCadaSegundo() {
+ 
+  transition = setInterval(handleNext, 4000);
+}
+
+
+useEffect(() => {
+  repetirCadaSegundo();
+}, []);
+
   return (
     <>
-<h1 class="bg-black mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Principale Noticias</h1>
+<h1 className="bg-black mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Principale Noticias</h1>
 
       <div
         id="contenedor"

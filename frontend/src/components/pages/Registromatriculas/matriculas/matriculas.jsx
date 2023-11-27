@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import axios from 'axios';
-import API_URL from '../../../config';
+import API_URL from '../../../../config';
 import {
   Table,
   TableBody,
   TableCell,
-  TableContainer,
   TableHead,
   TableRow,
   Paper,
   Box,
 } from '@mui/material';
-import Sidebar from './sidebar';
-import useMatriculasData from '../../hooks/useMatriculasData';
+import Sidebar from '../sidebar';
+import useMatriculasData from '../../../hooks/useMatriculasData';
 import EditMatricula from './modales/EditMatricula';
 import CrearMatriucula from './modales/CrearMatriucula';
 
 const Matriculas2 = () => {
   const { Matriculas, fetchData } = useMatriculasData();
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen2, setModalOpen2] = useState(false);
   const [editmatricula, setEditMatricula] = useState({ estudiante_id: null });
 
   const handlOpenModal = () => {
@@ -28,6 +28,16 @@ const Matriculas2 = () => {
   const handleCloseModal = () => {
     setModalOpen(false);
   };
+
+
+  const handlOpenModal2 = () => {
+    setModalOpen2(true);
+  };
+
+  const handleCloseModal2 = () => {
+    setModalOpen2(false);
+  };
+
 
   useEffect(() => {
     fetchData();
@@ -41,6 +51,8 @@ const Matriculas2 = () => {
       nivel_id: carrera.nivel_id,
       carrera_id: carrera.carrera_id,
     });
+
+    handlOpenModal2();
   };
 
   const handleDelete = async ($id) => {
@@ -56,9 +68,9 @@ const Matriculas2 = () => {
   return (
     <div className='flex '>
       <Sidebar></Sidebar>
-      <div className='flex justify-center flex-col p-[1.5rem]  w-full'>
+      <div className='flex justify-center flex-col py-[4vh]  w-[80vw]'>
         <div className='flex justify-between p-[0.5rem] '>
-          <h1 className='text-center text-2xl m-3'>Lista de Matriculados</h1>
+          <h1 className=' text-2xl px-[1.5rem]'>Lista de Matriculados</h1>
           <button
             onClick={handlOpenModal}
             className="bg-blue-500 text-white rounded-[5px] h-[7vh] items-center p-[0.5rem]">
@@ -70,7 +82,7 @@ const Matriculas2 = () => {
           component={Paper}
           sx={{
             height: 450,
-            width: '100%',
+            width: '95%',
             overflow: 'auto',
             '& .MuiTableContainer-root': {
               maxHeight: 380,
@@ -78,7 +90,7 @@ const Matriculas2 = () => {
             '& .MuiTableHead-root': {
               position: 'sticky',
               top: 0,
-              backgroundColor: 'gray',
+              backgroundColor: 'rgb(30, 34, 39)',
             
             },
           }}
@@ -91,15 +103,16 @@ const Matriculas2 = () => {
                 top: 0,
                 width: '90%',
                 justifyContent: 'spacebetween',
-                backgroundColor: 'gray',
+              backgroundColor: 'rgb(30, 34, 39)',
+     
                 
               }}
               >
-                <TableCell> <div className='text-start  px-[3vw]'>Nombre</div></TableCell>
-                <TableCell><div className='text-start  px-[3vw]'>Carrera</div></TableCell>
-                <TableCell><div className='text-center'>Nivel</div></TableCell>
-                <TableCell><div className='text-center'>Grupo</div></TableCell>
-                <TableCell><div className='text-center'>Acción</div></TableCell>
+                <TableCell> <div className='text-start  px-[3vw] text-white'>Nombre</div></TableCell>
+                <TableCell><div className='text-start  px-[3vw] text-white'>Carrera</div></TableCell>
+                <TableCell><div className='text-center text-white'>Nivel</div></TableCell>
+                <TableCell><div className='text-center text-white'>Grupo</div></TableCell>
+                <TableCell><div className='text-center text-white'>Acción</div></TableCell>
                 
               </TableRow>
             </TableHead>
@@ -138,8 +151,8 @@ const Matriculas2 = () => {
           </Table>
         </Box>
         </div>
-        {editmatricula.estudiante_id !== null && (
-          <EditMatricula></EditMatricula>
+        {modalOpen2  && (
+          <EditMatricula data = {editmatricula} onClose2={handleCloseModal2} ></EditMatricula>
         )}
         {modalOpen && (
           <CrearMatriucula onClose={handleCloseModal}></CrearMatriucula>
