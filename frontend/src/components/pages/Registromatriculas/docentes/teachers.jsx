@@ -293,7 +293,7 @@ const handleStore1 =() =>{
                         editar
                       </button>
                       <button
-                        onClick={() => handleDelete1(teacher.docente_id)}
+                        onClick={() => handleDelete1(carrera.docente_id)}
                         className="px-4 py-2 font-medium text-white hover:bg-green-500 rounded-md bg-red-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
                       >
                         delete
