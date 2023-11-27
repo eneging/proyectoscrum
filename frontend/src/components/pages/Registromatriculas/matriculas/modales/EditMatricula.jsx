@@ -66,6 +66,7 @@ function EditMatricula({ data , onClose2 }) {
       });
 
       onClose2();
+      
       setEditMatricula({ estudiante_id: null });
     } catch (error) {
       console.error('Error updating student:', error);
