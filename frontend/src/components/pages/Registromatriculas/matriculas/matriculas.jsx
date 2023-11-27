@@ -1,6 +1,6 @@
 import  { useEffect, useState } from 'react';
 import axios from 'axios';
-import API_URL from '../../../config';
+import API_URL from '../../../../config';
 import {
   Table,
   TableBody,
@@ -10,14 +10,15 @@ import {
   Paper,
   Box,
 } from '@mui/material';
-import Sidebar from './sidebar';
-import useMatriculasData from '../../hooks/useMatriculasData';
+import Sidebar from '../sidebar';
+import useMatriculasData from '../../../hooks/useMatriculasData';
 import EditMatricula from './modales/EditMatricula';
 import CrearMatriucula from './modales/CrearMatriucula';
 
 const Matriculas2 = () => {
   const { Matriculas, fetchData } = useMatriculasData();
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen2, setModalOpen2] = useState(false);
   const [editmatricula, setEditMatricula] = useState({ estudiante_id: null });
 
   const handlOpenModal = () => {
@@ -27,6 +28,16 @@ const Matriculas2 = () => {
   const handleCloseModal = () => {
     setModalOpen(false);
   };
+
+
+  const handlOpenModal2 = () => {
+    setModalOpen2(true);
+  };
+
+  const handleCloseModal2 = () => {
+    setModalOpen2(false);
+  };
+
 
   useEffect(() => {
     fetchData();
@@ -40,6 +51,8 @@ const Matriculas2 = () => {
       nivel_id: carrera.nivel_id,
       carrera_id: carrera.carrera_id,
     });
+
+    handlOpenModal2();
   };
 
   const handleDelete = async ($id) => {
@@ -138,8 +151,8 @@ const Matriculas2 = () => {
           </Table>
         </Box>
         </div>
-        {editmatricula.estudiante_id !== null && (
-          <EditMatricula></EditMatricula>
+        {modalOpen2  && (
+          <EditMatricula data = {editmatricula} onClose2={handleCloseModal2} ></EditMatricula>
         )}
         {modalOpen && (
           <CrearMatriucula onClose={handleCloseModal}></CrearMatriucula>

@@ -1,12 +1,12 @@
 
 
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 
 
-import image1 from '../pages/img/programador1.jpg'
-import image2 from '../pages/img/programador2.jpg'
-import image3 from '../pages/img/ingles.jpg'
-import image4 from '../pages/img/ingles2.jpg'
+import image1 from '../img/programador1.jpg'
+import image2 from '../img/programador2.jpg'
+import image3 from '../img/ingles.jpg'
+import image4 from '../img/ingles2.jpg'
 
 
 function Principal({ onLogin }) {

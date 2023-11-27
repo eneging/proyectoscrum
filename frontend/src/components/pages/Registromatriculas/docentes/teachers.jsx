@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import API_URL from "../../config";
-import Sidebar from "./Registromatriculas/sidebar";
+import API_URL from "../../../../config";
+import Sidebar from "../sidebar";
 import {
   Table,
   TableBody,
   TableCell,
-  TableContainer,
+
   TableHead,
   TableRow,
   Paper,

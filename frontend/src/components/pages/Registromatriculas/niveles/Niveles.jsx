@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import API_URL from "../../config";
-import Sidebar from "./Registromatriculas/sidebar";
+import API_URL from "../../../../config";
+import useNivelesData from "../../../hooks/useNivelesData";
 import {
   Table,
   TableBody,
@@ -12,9 +12,12 @@ import {
   Box,
 } from '@mui/material';
 
+import Sidebar from "../sidebar";
 
-const Carreras = () => {
+
+const Niveles = () => {
   const [students, setStudents] = useState([]);
+  const { Niveles, fetchDataNiveles } = useNivelesData();
   const [editCarrera, setEditCarrera] = useState({
     carrera_id: null,
     nombre: "",
@@ -23,27 +26,14 @@ const Carreras = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
-    fetchData();
+    fetchDataNiveles();
   }, []);
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(`${API_URL}/carreras`);
-      setStudents(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-
-
-
-
-
+ 
   const handleDelete = async (carrera_id) => {
     try {
-      await axios.delete(`${API_URL}/carreras/${carrera_id}`);
-      fetchData();
+      await axios.delete(`${API_URL}/grupos/${carrera_id}`);
+      fetchDataNiveles();
     } catch (error) {
       console.error("Error deleting student:", error);
     }
@@ -72,7 +62,7 @@ const Carreras = () => {
         nombre: editCarrera.nombre,
       });
       
-      fetchData();
+      fetchDataNiveles();
       setEditCarrera({ carrera_id: null, nombre: "" });
     } catch (error) {
       console.error("Error updating student:", error);
@@ -111,7 +101,7 @@ if (handleEdit) {
       await axios.post(`${API_URL}/carreras`, {
         nombre: newCarrera.nombre,
       });
-      fetchData();
+      fetchDataNiveles();
       setNewCarrera({ nombre: "" });
     } catch (error) {
       alert("No ha ingresado datos")
@@ -123,7 +113,7 @@ if (handleEdit) {
 
     <div className="flex h-screen ">
 
-      <Sidebar></Sidebar>
+   <Sidebar></Sidebar>
     <div className="flex flex-col  justify-center   ">
       <div className="flex py-[4%] justify-end">
         <button
@@ -166,7 +156,7 @@ if (handleEdit) {
                 
               }}
               >
-                <TableCell> <div className='text-center px-[3vw] text-white'>  Nombre Carrera</div></TableCell>
+                <TableCell> <div className='text-center px-[3vw] text-white'>  Nombre grupos</div></TableCell>
               
              
                 <TableCell><div className='text-center text-white'>Acción</div></TableCell>
@@ -174,12 +164,12 @@ if (handleEdit) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {students.map((carrera) => (
-                <TableRow key={carrera.id}>
+              {Niveles.map((carrera) => (
+                <TableRow key={carrera.nivel_id}>
                   <TableCell align='left'>  {" "}
                   <div className="flex gap-4 items-center">
                     <img className="w-[50px]" src="https://www.estudiantefunval.org/pluginfile.php/1/theme_moove/favicon/1696433166/ico%20favicon%20new.ico"></img>
-                    <div>{carrera.nombre}</div>
+                    <div>Nivel {carrera.nivel_id}</div>
                   </div></TableCell>
                   
                   
@@ -273,6 +263,6 @@ close
   );
 };
 
-export default Carreras;
+export default Niveles;
 
 
