@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import API_URL from "../../../../config";
+import API_URL from "../../../hooks/config";
 import Sidebar from "../sidebar";
 import {
   Table,
@@ -87,6 +87,7 @@ const Teachers = () => {
       correo: teacher.correo,
       telefono: teacher.telefono,
     });
+  
   };
 
   const handlOpenModal = () => {
@@ -285,8 +286,8 @@ const handleStore1 =() =>{
                   
                   <TableCell align='left'>
                     <div className='flex gap-4 justify-center'>
-                      <button
-                        onClick={() => handleEdit(teacher)}
+                      <button type="submit"
+                        onClick={() => handleEdit(carrera)}
                         className="px-4 py-2 font-medium text-white hover:bg-green-500 rounded-md bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
                       >
                         editar
