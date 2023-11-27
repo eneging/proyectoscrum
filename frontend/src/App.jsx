@@ -1,18 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navigation from './components/routes/navigation';
-import Home from './components/pages/home';
-import Students from './components/pages/studends';
-import Teachers from './components/pages/teachers';
-import Carreras from './components/pages/carreras';
-import Editar from './components/pages/editar';
-import { Login } from './components/pages/login';
-import Matriculas2 from './components/pages/matriculas';
-import Principal from './components/pages/principal';
+import Home from './components/pages/home/home';
+import Students from './components/pages/Registromatriculas/estudiantes/studends';
+import Teachers from './components/pages/Registromatriculas/docentes/teachers';
+
+import Editar from './components/pages/Registromatriculas/estudiantes/editar';
+import { Login } from './components/pages/login/login';
+import Matriculas2 from './components/pages/Registromatriculas/matriculas/matriculas';
+import Principal from './components/pages/login/principal';
 
 import axios from 'axios';
-import Registros from './components/routes/Registros';
 
+import Carreras from './components/pages/Registromatriculas/carreras/carreras';
+import NavRegistro from './components/pages/Registromatriculas/NavRegistro';
+import './App.css'
+import Grupos from './components/pages/Registromatriculas/grupos/Grupos';
+import Niveles from './components/pages/Registromatriculas/niveles/Niveles';
 
 
 function App() {
@@ -94,7 +98,9 @@ function App() {
                 <Route path="/carreras" element={<Carreras />} />
                 <Route path="/matriculas" element={<Matriculas2 />} />
                 <Route path="/editar" element={<Editar />} />
-                <Route path="/registros" element={<Registros/>} />
+                <Route path="/registros" element={<NavRegistro/>} />
+                <Route path="/grupos" element={<Grupos/>} />
+                <Route path="/niveles" element={<Niveles/>} />
               </>
             )}
 

@@ -1,9 +1,6 @@
 
 
 
-import Fondo from "../pages/img/textura-pared-estuco-azul-marino-relieve-decorativo-abstracto-grunge-fondo-color-rugoso-gran-angular.jpg";
-
-
 export const Login = (props) => {
 
   function login() {

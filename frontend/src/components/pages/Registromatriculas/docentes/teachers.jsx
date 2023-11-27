@@ -1,6 +1,18 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import API_URL from "../../config";
+import API_URL from "../../../../config";
+import Sidebar from "../sidebar";
+import {
+  Table,
+  TableBody,
+  TableCell,
+
+  TableHead,
+  TableRow,
+  Paper,
+  Box,
+} from '@mui/material';
+
 
 const Teachers = () => {
   const [teacher, setTeachers] = useState([]);
@@ -38,6 +50,24 @@ const Teachers = () => {
     }
   };
 
+  const handleDelete1=(docente_id)=>{
+    Swal.fire({
+      title: "Estas Seguro?",
+      text: "No podras recuperar la informacion",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Eliminar"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        
+        Swal.fire( handleDelete(docente_id)
+        )
+      }   
+    });
+   }
+
   const handleDelete = async (docente_id) => {
     try {
       await axios.delete(`${API_URL}/docentes/${docente_id}`);
@@ -67,6 +97,24 @@ const Teachers = () => {
     setModalOpen(false);
   };
 
+  //alert editar//
+  const handleSaveEdit1 =() =>{
+    Swal.fire({
+      title: "Deseas guardar los cambios?",
+      showDenyButton: true,
+      
+      confirmButtonText: "Guardar",
+      denyButtonText: `Cancelar`
+    }).then((result) => {
+       if (result.isConfirmed) {
+        Swal.fire(handleSaveEdit());
+      } else if (result.isDenied) {
+        Swal.fire("Datos no Guardados");
+      }
+    })
+   
+  };
+
   const handleSaveEdit = async () => {
     try {
       await axios.put(`${API_URL}/docentes/${editTeacher.docente_id}`, {
@@ -92,6 +140,25 @@ const Teachers = () => {
     }
   };
 
+  // alert Agregar Docentes//
+
+
+const handleStore1 =() =>{
+  Swal.fire({
+    title: "Deseas guardar los cambios?",
+    showDenyButton: true,
+    
+    confirmButtonText: "Guardar",
+    denyButtonText: `Cancelar`
+  }).then((result) => {
+     if (result.isConfirmed) {
+      Swal.fire(handleStore());
+    } else if (result.isDenied) {
+      Swal.fire("Datos no guardados");
+    }
+  })
+ 
+};
   const handleStore = async () => {
     try {
       await axios.post(`${API_URL}/docentes`, {
@@ -118,12 +185,22 @@ const Teachers = () => {
       console.error("Error save teacher:", error);
     }
   };
+    
+  function cerrarModal() {
+    setModalOpen(false)
+  }
+
+
+ 
 
   return (
-    <div className="flex justify-center flex-col items-center" >
-        <div  className="bg-gray-800  text-white flex justify-around h-[12vh] w-screen items-center "></div>
-  <div className='flex justify-between p-[1rem] w-[85vw]  '>
-        <h1 className='text-center text-xl  p-[0.5rem]'>Lista de Docentes</h1>
+<div className="flex" >
+  <Sidebar></Sidebar>
+
+   <div className="flex justify-center flex-col items-center" >
+        <div  className="bg-gray-800  text-white flex justify-around h-[3vh] w-cover items-center "></div>
+  <div className='flex justify-between p-[1rem] w-[75vw]  '>
+        <h1 className=' text-2xl  px-[2.5rem]'>Lista de Docentes</h1>
         <button
           onClick={() => handlOpenModal()}
           className="px-4 py-2 font-medium text-white bg-gray-800 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
@@ -132,31 +209,52 @@ const Teachers = () => {
         </button>
       </div>
 
-      <div className=" flex justify-center">
-        
-        <table className="gap-[2rem] divide-gray-200 w-[70vw] ">
-          <thead>
-            <tr className="bg-gray-700 ">
-              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                Usuario{" "}
-              </th>
 
-              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                dni
-              </th>
 
-              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                telefono{" "}
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                Action
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white  divide-gray-200">
-            {teacher.map((teacher) => (
-              <tr key={teacher.docente_id}>
-                <td className="px-6 py-4 whitespace-nowrap">
+
+      <div className=' flex justify-end w-full'>
+        <Box
+          component={Paper}
+          sx={{
+            height: 450,
+            width: '95%',
+            overflow: 'auto',
+            '& .MuiTableContainer-root': {
+              maxHeight: 380,
+            },
+            '& .MuiTableHead-root': {
+              position: 'sticky',
+              top: 0,
+              backgroundColor: 'rgb(30, 34, 39)',
+            
+            },
+          }}
+        >
+          <Table>
+            <TableHead>
+              <TableRow
+               sx={{
+                position: 'sticky',
+                top: 0,
+                width: '100%',
+                justifyContent: 'spacebetween',
+              backgroundColor: 'rgb(30, 34, 39)',
+     
+                
+              }}
+              >
+                <TableCell> <div className='text-center px-[3vw] text-white'> Usuario{"  "}</div></TableCell>
+                <TableCell><div className='text-center  px-[3vw] text-white'> dni</div></TableCell>
+                <TableCell><div className='text-center text-white'> telefono{" "}</div></TableCell>
+             
+                <TableCell><div className='text-center text-white'>Acción</div></TableCell>
+                
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {teacher.map((carrera) => (
+                <TableRow key={carrera.id}>
+                  <TableCell align='left'> <div className=' text-center w-[10rem]'> 
                   <div className="flex items-center">
                     <div className="flex-shrink-0 h-10 w-10">
                       <img
@@ -167,45 +265,54 @@ const Teachers = () => {
                     </div>
                     <div className="ml-4">
                       <div className="text-sm font-medium text-gray-900">
-                        {`${teacher.nombre} ${teacher.apellido}`}
+                        {`${carrera.nombre} ${carrera.apellido}`}
                       </div>
                       <div className="text-sm text-gray-500">
-                        {`${teacher.correo}`}
+                        {`${carrera.correo}`}
                       </div>
                     </div>
                   </div>
-                </td>
-
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  <div className="text-sm text-gray-500">
-                    {`${teacher.dni}`}
+                  
+                  </div></TableCell>
+                  <TableCell align='left'>
+                  <div className="text-sm text-center text-gray-500 ">
+                    {`${carrera.dni}`}
                   </div>
-                </td>
+                  </TableCell>
+                  <TableCell align='left'>
+                    <div className=' text-center'>{`${carrera.telefono}`}</div>
+                  </TableCell>
+                  
+                  <TableCell align='left'>
+                    <div className='flex gap-4 justify-center'>
+                      <button
+                        onClick={() => handleEdit(teacher)}
+                        className="px-4 py-2 font-medium text-white hover:bg-green-500 rounded-md bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
+                      >
+                        editar
+                      </button>
+                      <button
+                        onClick={() => handleDelete1(teacher.docente_id)}
+                        className="px-4 py-2 font-medium text-white hover:bg-green-500 rounded-md bg-red-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
+                      >
+                        delete
+                      </button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Box>
+        </div>
 
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {`${teacher.telefono}`}
-                </td>
-                <button
-                  onClick={() => handleEdit(teacher)}
-                  className="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => handleDelete(teacher.docente_id)}
-                  className="ml-2 px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out"
-                >
-                  Delete
-                </button>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+
+
+   
       {/* Modal para la edición */}
       {editTeacher.docente_id !== null && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
-          <div className="bg-white p-4 rounded-md">
+          <div className="bg-white p-4 rounded-md w-[350px]">
             <label
               htmlFor="editNombre"
               className="block text-sm font-medium text-gray-700"
@@ -281,12 +388,22 @@ const Teachers = () => {
               }
               className="border p-2 mb-2 w-full"
             />
+            <div className="flex">
             <button
-              onClick={handleSaveEdit}
+              onClick={handleSaveEdit1}
               className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
             >
-              Save
+              Guardar
             </button>
+            <form action="" onSubmit={cerrarModal}>
+            <button
+              type="submit" 
+              className="z-10 ml-3 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
+            >
+              Cancelar
+            </button>
+            </form>
+            </div>
           </div>
         </div>
       )}
@@ -297,6 +414,14 @@ const Teachers = () => {
       {modalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
         <div className="bg-white p-4 rounded-md">
+        <div className="w-[370px] flex  justify-end">
+            <button
+              onClick={handleCloseModal}
+              className="bg-gray-500 text-white  px-4 py-2 w-[20px] h-[20px] flex items-center justify-center rounded-md hover:bg-blue-400 focus:outline-none "
+            >
+              <span className="material-symbols-outlined">close</span>
+            </button>
+            </div>
             <label
               htmlFor="addNombre"
               className="block text-sm font-medium text-gray-700"
@@ -388,22 +513,17 @@ const Teachers = () => {
               className="border p-2 mb-2 w-full"
             />
             <button
-              onClick={handleStore}
+              onClick={handleStore1}
               className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
             >
               Agregar
             </button>
-            <button
-              onClick={handleCloseModal}
-              className="z-10 ml-3 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
-            >
-              Cancelar
-            </button>
+           
           </div>
         </div>
       )}
     </div>
-    
+    </div> 
     
   );
 };
