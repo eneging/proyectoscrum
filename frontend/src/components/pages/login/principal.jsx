@@ -7,6 +7,11 @@ import image1 from '../img/programador1.jpg'
 import image2 from '../img/programador2.jpg'
 import image3 from '../img/ingles.jpg'
 import image4 from '../img/ingles2.jpg'
+import Facebook from '../img/svg/facebook.svg'
+import Instagram  from '../img/svg/insta.svg'
+
+
+
 
 
 function Principal({ onLogin }) {
@@ -82,14 +87,14 @@ function Principal({ onLogin }) {
             <div>
               <img
                 style={{ width: "25px", height: "25px" }}
-                src=""
+                src={Facebook}
                 alt=""
               />
             </div>
             <div>
               <img
                 style={{ width: "25px", height: "25px" }}
-                src=""
+                src={Instagram}
                 alt=""
               />
             </div>
