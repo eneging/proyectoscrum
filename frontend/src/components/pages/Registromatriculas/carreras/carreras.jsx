@@ -51,7 +51,15 @@ const Carreras = () => {
       confirmButtonText: "Eliminar",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(handleDelete(carrera_id));
+        Swal.fire(handleDelete(carrera_id))
+        if (handleDelete) {
+          Swal.fire({
+            title: "Eliminado!",
+            text: "El registro ha sido eliminado.",
+            icon: "success"
+          });
+         }
+        
       }
     });
   };
@@ -92,7 +100,14 @@ const handleSaveEdit1 = () => {
     denyButtonText: `Cancelar`,
   }).then((result) => {
     if (result.isConfirmed) {
-      Swal.fire(handleSaveEdit());
+      Swal.fire(handleSaveEdit())
+      if (handleSaveEdit) {
+        Swal.fire({
+          title: "Guardado!",
+          text: "El registro ha sido Guardado.",
+          icon: "success"
+        });
+       }
     } else if (result.isDenied) {
       handleCloseModal(false);
     }
@@ -133,7 +148,7 @@ const handleSaveEdit = async () => {
     Swal.fire({
       position: "center",
       icon: "success",
-      title: "Your work has been saved",
+      title: "Guardado Exitosamente",
       showConfirmButton: false,
       timer: 1500,
     });
@@ -262,7 +277,7 @@ const handleSaveEdit = async () => {
               onClick={handleSaveEdit1}
               className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
             >
-              Save
+              Guardar
             </button>
           </div>
         </div>
@@ -294,7 +309,7 @@ close
                 type="submit"
                 className="bg-gray-800 text-white px-4 py-2 w-[80px] h-[30px] flex items-center justify-center rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
               >
-                Insert
+                Guardar
               </button>
             </form>
           </div>

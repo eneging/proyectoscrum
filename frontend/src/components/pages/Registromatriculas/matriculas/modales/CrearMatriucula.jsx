@@ -161,7 +161,7 @@ onClose();
               type="submit"
               className="bg-gray-800 text-white px-4 py-2 w-[80px] h-[30px] flex items-center justify-center rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
             >
-              Insert
+              Guardar
             </button>
           </form>
         </div>

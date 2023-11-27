@@ -61,9 +61,14 @@ const Teachers = () => {
       confirmButtonText: "Eliminar"
     }).then((result) => {
       if (result.isConfirmed) {
-        
-        Swal.fire( handleDelete(docente_id)
-        )
+         Swal.fire( handleDelete(docente_id))
+         if (handleDelete) {
+          Swal.fire({
+            title: "Eliminado!",
+            text: "El registro ha sido eliminado.",
+            icon: "success"
+          });
+         }
       }   
     });
    }
@@ -108,7 +113,14 @@ const Teachers = () => {
       denyButtonText: `Cancelar`
     }).then((result) => {
        if (result.isConfirmed) {
-        Swal.fire(handleSaveEdit());
+        Swal.fire(handleSaveEdit())
+        if (handleSaveEdit) {
+          Swal.fire({
+            title: "Guardado!",
+            text: "El registro ha sido Guardado.",
+            icon: "success"
+          });
+         }
       } else if (result.isDenied) {
         Swal.fire("Datos no Guardados");
       }
@@ -153,7 +165,14 @@ const handleStore1 =() =>{
     denyButtonText: `Cancelar`
   }).then((result) => {
      if (result.isConfirmed) {
-      Swal.fire(handleStore());
+      Swal.fire(handleStore())
+      if (handleStore) {
+        Swal.fire({
+          title: "Guardado!",
+          text: "El registro ha sido Guardado.",
+          icon: "success"
+        });
+       }
     } else if (result.isDenied) {
       Swal.fire("Datos no guardados");
     }
