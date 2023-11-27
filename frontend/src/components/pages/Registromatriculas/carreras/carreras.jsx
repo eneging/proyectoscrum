@@ -40,6 +40,22 @@ const Carreras = () => {
 
 
 
+  const handleDelete1 = (carrera_id) => {
+    Swal.fire({
+      title: "Estas Seguro?",
+      text: "No podras recuperar la informacion",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Eliminar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(handleDelete(carrera_id));
+      }
+    });
+  };
+
   const handleDelete = async (carrera_id) => {
     try {
       await axios.delete(`${API_URL}/carreras/${carrera_id}`);
@@ -48,7 +64,6 @@ const Carreras = () => {
       console.error("Error deleting student:", error);
     }
   };
-
 
 
 
@@ -65,33 +80,43 @@ const Carreras = () => {
     setModalOpen(false);
   };
 
-  const handleSaveEdit = async () => {
 
-    try {
-      await axios.put(`${API_URL}/carreras/${editCarrera.carrera_id}`, {
-        nombre: editCarrera.nombre,
-      });
-      
-      fetchData();
-      setEditCarrera({ carrera_id: null, nombre: "" });
-    } catch (error) {
-      console.error("Error updating student:", error);
-    }
 
-if (handleEdit) {
-
+// alert editar//
+const handleSaveEdit1 = () => {
   Swal.fire({
-    position: "top-center",
-    icon: "success",
-    title: "se a editado con exito",
-    showConfirmButton: false,
-    timer: 1500
+    title: "Deseas guardar los cambios?",
+    showDenyButton: true,
+
+    confirmButtonText: "Guardar",
+    denyButtonText: `Cancelar`,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(handleSaveEdit());
+    } else if (result.isDenied) {
+      handleCloseModal(false);
+    }
   });
-}
+};
+
+const handleSaveEdit = async () => {
+  try {
+    await axios.put(`${API_URL}/carreras/${editCarrera.carrera_id}`, {
+      nombre: editCarrera.nombre,
+    });
+
+    fetchData();
+    setEditCarrera({ carrera_id: null, nombre: "" });
+  } catch (error) {
+    console.error("Error updating student:", error);
+  }
+};
 
 
 
-  };
+
+
+
 
   {/* crear carreras */}
 
@@ -102,7 +127,16 @@ if (handleEdit) {
   };
   const handleForm = (e) => {
     e.preventDefault();
+
     sendDataToServer({ newCarrera });
+
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Your work has been saved",
+      showConfirmButton: false,
+      timer: 1500,
+    });
     handleCloseModal(false);
   };
 
@@ -114,11 +148,9 @@ if (handleEdit) {
       fetchData();
       setNewCarrera({ nombre: "" });
     } catch (error) {
-      alert("No ha ingresado datos")
       console.error("Error creando carrera:", error);
     }
   };
-
   return (
 
     <div className="flex h-screen ">
@@ -192,7 +224,7 @@ if (handleEdit) {
                         editar
                       </button>
                       <button
-                        onClick={() => handleDelete(carrera.carrera_id)}
+                        onClick={() => handleDelete1(carrera.carrera_id)}
                         className="px-4 py-2 font-medium text-white hover:bg-green-500 rounded-md bg-red-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"
                       >
                         delete
@@ -227,7 +259,7 @@ if (handleEdit) {
               className="border p-2 mb-2 w-full"
             />
             <button
-              onClick={handleSaveEdit}
+              onClick={handleSaveEdit1}
               className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-700"
             >
               Save
