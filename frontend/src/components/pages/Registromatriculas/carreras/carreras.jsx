@@ -171,8 +171,8 @@ const handleSaveEdit = async () => {
     <div className="flex h-screen ">
 
       <Sidebar></Sidebar>
-    <div className="flex flex-col  justify-center   ">
-      <div className="flex py-[4%] justify-end">
+    <div className="flex flex-col  justify-center  py-5 ">
+      <div className="flex py-[3%] justify-end">
         <button
           onClick={() => handlOpenModal()}
           className="px-4 py-2 font-medium text-white bg-gray-800 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out"

@@ -4,16 +4,16 @@ function Noticias() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const images = [
-    "https://i.blogs.es/024749/chatdev2/500_333.jpeg",
-    "https://i.blogs.es/af398b/copilot-ghostwriter/500_333.jpeg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEkdwfPzpVRyKW3q2BttxlNbDFjxjzpK7pRs88hG4NwIaNg9y5slbv0wZ-xFTrFQnYtPQ&usqp=CAU",
+    "https://i.ytimg.com/vi/lhW5ajbAuUw/maxresdefault.jpg",
     "https://i.blogs.es/fdabba/ilya-pavlov-oqtafyt5ktw-unsplash/500_333.jpeg ",
    
   ];
 
   const texto = [
-    "Alguien montó una empresa donde todos los cargos eran una IA. Creó su primer software en siete minutos y por un euro ROBÓTICA E IA     En la empresa varios bots se comunicaron entre ellos como lo harían los trabajadores de una empresa real.",
-    "GitHub Copilot tiene más competencia: Meta acaba de presentar Code Llama, un nuevo aliado para los programadores " ,
-    "No necesitamos más software que haga cada vez más. Necesitamos que mejoren lo que ya hacen APLICACIONES Pensando en el software como en el hardware",
+    "Es una organización internacional sin fines de lucro dedicada al desarrollo y formación de nuevos técnicos, en áreas productivas de acuerdo con la demanda laboral.",
+    "Buscar, entrenar, ayudar y elevar personas con necesidad de encontrar un empleo o mejorar el actual, para que alcancen un nivel laboral competitivo que les permita desarrollarse en una línea de carrera." ,
+    "Trascender en la vida de los beneficiarios para que desarrollen sus talentos, alcancen su potencial y se conviertan en trabajadores útiles y exitosos en sus comunidades",
     
   ];
 
@@ -32,27 +32,27 @@ function Noticias() {
 
 function repetirCadaSegundo() {
  
-  transition = setInterval(handleNext, 4000);
+  transition = setInterval(handleNext, 6000);
 }
 
 
 useEffect(() => {
-  repetirCadaSegundo();
+repetirCadaSegundo();
 }, []);
 
   return (
     <>
-<h1 className="bg-black mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Principale Noticias</h1>
+  
 
       <div
         id="contenedor"
-        className=" text-white flex justify-center h-screen items-center "
+        className=" text-white flex justify-center h-screen items-center  "
       >
          
         
         <div
           id="animation-carousel"
-          className="relative w-80 h-80 overflow-hidden "
+          className="relative  w-[40vw] h-[60vh]  "
           data-carousel="static"
         >
           {images.map((image, index) => (
@@ -65,7 +65,7 @@ useEffect(() => {
             >
               <img
                 src={image}
-                className=" block w-auto h-80 "
+                className="object-fill h-[60vh] "
                 alt={`Carousel Image ${index + 1}`}
               />
             </div>
@@ -76,15 +76,14 @@ useEffect(() => {
         {texto.map((text, index) => (
             <div
               key={index}
-              className={`duration-200 ease-linear  ${
+              className={`duration-200 ease-linear text-2xl ${
                 index === activeIndex ? "" : "hidden"
               }`}
               data-carousel-item={index === activeIndex ? "active" : ""}
             >
 
 
-
-              
+                 
               <p
                 
                 className=" block w-80 p-5 h-80 "
@@ -96,7 +95,7 @@ useEffect(() => {
           ))}
         <button
           type="button"
-          className="bg-slate-500 rounded-full absolute top-10% start-0 z-30 flex items-center justify-center h-11 px-4 cursor-pointer group focus:outline-none"
+          className=" bg-slate-500 rounded-full absolute top-10% start-0 z-30 flex items-center justify-center h-11 px-4 cursor-pointer group focus:outline-none"
           onClick={handlePrev}
         >
           {"<"}

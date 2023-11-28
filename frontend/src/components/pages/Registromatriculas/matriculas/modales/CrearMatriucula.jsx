@@ -5,7 +5,8 @@ import useNivelesData from "../../../../hooks/useNivelesData";
 import useCarrerasData from "../../../../hooks/useCarrerasData";
 import useGruposData from "../../../../hooks/useGruposData";
 import useEstudiantesData from '../../../../hooks/useEstudiantesData';
-
+import axios from 'axios';
+import API_URL from '../../../../../config';
 
 function CrearMatriucula({onClose}) {
 
@@ -19,7 +20,9 @@ function CrearMatriucula({onClose}) {
         estudiante_id: null,
         carrera_id: '',  // Asigna un valor inicial adecuado
         nivel_id: '',    // Asigna un valor inicial adecuado
-        grupo_id: '',    // Asigna un valor inicial adecuado
+        grupo_id: '', 
+       
+           // Asigna un valor inicial adecuado
       });
 
 
@@ -32,6 +35,7 @@ useEffect(() => {
         fetchDataNiveles();
         fetchDataEstudiantes();
     
+        
   }, []);
 
  
@@ -39,6 +43,14 @@ useEffect(() => {
   const handleCloseModal = () => {
 onClose();
   };
+
+  const handleEstudianteChange = (event) => {
+    console.log('Nuevo valor de carrera:', event.target.value);
+    setEditMatricula({ ...editmatricula, estudiante_id: event.target.value });
+  };
+
+
+ 
 
   const handleNivelChange = (event) => {
     console.log('Nuevo valor de carrera:', event.target.value);
@@ -56,10 +68,56 @@ onClose();
   };
 
 
+  const tiempoTranscurrido = Date.now();
+  const hoy = new Date(tiempoTranscurrido);
+  
+    let fecha = hoy.toLocaleDateString();
+
   const handleSubmit = (event) => {
     event.preventDefault();
-  
+
+
+    sendDataToServer({ editmatricula });
+
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Guardado Exitosamente",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    handleCloseModal(false);
+
+   
+
   };
+
+
+
+  const sendDataToServer = async () => {
+    try {
+      await axios.post(`${API_URL}/matricula`, {
+        estudiante_id: editmatricula.estudiante_id,
+        nivel_id: editmatricula.nivel_id,
+        grupo_id: editmatricula.grupo_id,
+        carrera_id: editmatricula.carrera_id,
+        Fecha_Matricula: fecha,
+        Fecha_Grupo: fecha,
+        Fecha_nivel:fecha,
+
+      });
+      fetchDataCarreras();
+      fetchDataGrupos();
+      fetchDataNiveles();
+      fetchDataEstudiantes();
+
+    } catch (error) {
+      console.error("Error creando carrera:", error);
+    }
+  };
+  
+ 
+
 
 
   return (
@@ -74,22 +132,32 @@ onClose();
           </button>
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col gap-y-8 pb-7">
-              <Stack spacing={2} sx={{ width: 300 }}>
-                <Autocomplete
-                  freeSolo
-                  options={Estudiantes.map((matricula) => matricula.nombre)}
-                  getOptionLabel={(option) => option}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label="Buscar Estudiante"
-                      variant="outlined"
-                      fullWidth
-                      onChange={editmatricula.estudiante_id}
-                    />
-                  )}
-                />
-              </Stack>
+
+
+
+            <FormControl sx={{ minWidth: 300 }}>
+                  <InputLabel id="demo-simple-select-autowidth-label">Estudiantes</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-autowidth-label"
+                    id="demo-simple-select-autowidth"
+                    value={editmatricula.estudiante_id}
+                    onChange={handleEstudianteChange}
+                    autoWidth
+                    label="estudiante"
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    {Estudiantes.map((option, index) => (
+                      <MenuItem key={index} value={option.estudiante_id}>
+                        {option.nombre}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+
+
+
               <div>
                 <FormControl sx={{ minWidth: 300 }}>
                   <InputLabel id="demo-simple-select-autowidth-label">Carrera</InputLabel>
@@ -164,6 +232,7 @@ onClose();
               Guardar
             </button>
           </form>
+        
         </div>
       </div>
    

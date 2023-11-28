@@ -46,6 +46,7 @@ const Teachers = () => {
       const response = await axios.get(`${API_URL}/docentes`);
       setTeachers(response.data);
     } catch (error) {
+              className="border p-2 mb-2 w-full"
       console.error("Error fetching data:", error);
     }
   };
@@ -279,7 +280,7 @@ const handleStore1 =() =>{
                     <div className="flex-shrink-0 h-10 w-10">
                       <img
                         className="h-10 w-10 rounded-full"
-                        src="https://i.pravatar.cc/150?img=1"
+                        src="data:image/jpeg;base64,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"
                         alt=""
                       />
                     </div>
@@ -376,7 +377,6 @@ const handleStore1 =() =>{
               onChange={(e) =>
                 setEditTeacher({ ...editTeacher, correo: e.target.value })
               }
-              className="border p-2 mb-2 w-full"
             />
             <label
               htmlFor="editNombre"

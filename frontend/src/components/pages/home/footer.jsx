@@ -9,52 +9,52 @@ import Phone from '../img/svg/phone.svg';
 function Footer() {
   return (
    <>
-     <div className=" bg-[#292828] flex p-2 ml-auto mr-auto justify-center items-center text-white">
-        <div className="flex-1">
-          <h3>Contactanos</h3>
+     <div className=" bg-[#292828] flex p-10 ml-auto mr-auto justify-center items-center text-white">
+        <div className="flex-1 ">
+          <h3 className='text-xl'>Contactanos</h3>
 
-          <div className="flex">
+          <div className="flex gap-3">
             <div>
               <img
-                style={{ width: "25px", height: "25px" }}
+                style={{ width: "35px", height: "35px" }}
                 src={Facebook}
                 alt=""
               />
             </div>
             <div>
               <img
-                style={{ width: "25px", height: "25px" }}
+                style={{ width: "35px", height: "35px" }}
                 src={Instagram}
                 alt=""
               />
             </div>
             <div>
               <img
-                style={{ width: "25px", height: "25px" }}
+                style={{ width: "35px", height: "35px" }}
                 src={YouTube}
                 alt=""
               />
             </div>
           </div>
-          <h3 className="mt-2 ">Siganos</h3>
-          <div className="flex">
+          <h3 className="mt-2 text-xl">Siganos</h3>
+          <div className="flex gap-3">
             <div>
               <img
-                style={{ width: "25px", height: "25px" }}
+                style={{ width: "35px", height: "35px" }}
                 src={Planet}
                 alt=""
               />
             </div>
             <div>
               <img
-                style={{ width: "25px", height: "25px" }}
+                style={{ width: "35px", height: "35px" }}
                 src={Phone}
                 alt=""
               />
             </div>
             <div>
               <img
-                style={{ width: "25px", height: "25px" }}
+                style={{ width: "35px", height: "35px" }}
                 src={Word2}
                 alt=""
               />
@@ -71,9 +71,7 @@ function Footer() {
           <br />
           <a href="#">Descargar la app para dispositivos moviles</a>
         </div>
-        <div className="flex-1">
-          <p>Descarga r la app para dispositivos moviles</p>
-        </div>
+        
       </div>
       <footer className="h-[10vh] bg-orange-500  ">
         <div className="flex justify-around text-white ">

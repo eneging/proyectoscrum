@@ -1,56 +1,41 @@
 
 
 function Calendario() {
- 
-
-  const images = [
-    "https://i.blogs.es/024749/chatdev2/500_333.jpeg",
-    "https://i.blogs.es/af398b/copilot-ghostwriter/500_333.jpeg",
-    "https://i.blogs.es/fdabba/ilya-pavlov-oqtafyt5ktw-unsplash/500_333.jpeg ",
-   
+  const noticias = [
+    {
+      fecha: "Febrero 2022",
+      titulo: "Nuevas herramientas de desarrollo para programadores",
+      imagen: "https://files.mormonsud.org/wp-content/uploads/2023/09/Funval-Quito-Peru.jpeg",
+      descripcion: "Funval es una organización internacional con 22 años de experiencia que promueve la formación y capacitación laboral gratuita con el objetivo de ayudar a las personas a obtener un mejor empleo.",
+    },
+    {
+      fecha: "Marzo 2022",
+      titulo: "Avances en la enseñanza del inglés a través de la tecnología",
+      imagen: "https://files.mormonsud.org/wp-content/uploads/2023/09/Funval-Bogota.jpeg",
+      descripcion: "La integración de tecnologías modernas está revolucionando la enseñanza del inglés, haciendo el aprendizaje más accesible y efectivo.",
+    },
+    {
+      fecha: "Abril 2022",
+      titulo: "Desarrollo de habilidades lingüísticas en programadores",
+      imagen: "https://i.ytimg.com/vi/aDComfZBa-U/maxresdefault.jpg",
+      descripcion: "Cómo el conocimiento del inglés está cada vez más integrado en el perfil de habilidades esenciales para programadores y desarrolladores de software.",
+    },
   ];
-
-  const texto = [
-    "Alguien montó una empresa donde todos los cargos eran una IA. Creó su primer software en siete minutos y por un euro ROBÓTICA E IA     En la empresa varios bots se comunicaron entre ellos como lo harían los trabajadores de una empresa real.",
-    "GitHub Copilot tiene más competencia: Meta acaba de presentar Code Llama, un nuevo aliado para los programadores " ,
-    "No necesitamos más software que haga cada vez más. Necesitamos que mejoren lo que ya hacen APLICACIONES Pensando en el software como en el hardware",
-    
-  ];
-
-
 
   return (
-    <>
-
-
-
-<ol className="relative border-s border-gray-200 dark:border-gray-700">                  
-    <li className="mb-10 ms-4">
-        <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-        <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">February 2022</time>
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Application UI code in Tailwind CSS</h3>
-        <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order E-commerce & Marketing pages.</p>
-        <a href="#" className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700">Learn more <svg className="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-  </svg></a>
-    </li>
-    <li className="mb-10 ms-4">
-        <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-        <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">March 2022</time>
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Marketing UI design in Figma</h3>
-        <p className="text-base font-normal text-gray-500 dark:text-gray-400">All of the pages and components are first designed in Figma and we keep a parity between the two versions even as we update the project.</p>
-    </li>
-    <li className="ms-4">
-        <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-        <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">April 2022</time>
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">E-Commerce UI code in Tailwind CSS</h3>
-        <p className="text-base font-normal text-gray-500 dark:text-gray-400">Get started with dozens of web components and interactive elements built on top of Tailwind CSS.</p>
-    </li>
-</ol>
-
-
-
-    </>
+    <ol className="relative border-s border-gray-200 dark:border-gray-700  py-[10vh]  ">
+      {noticias.map((noticia, index) => (
+        <li key={index} className="mb-10 ms-4">
+          <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+          <time className="mb-1  font-normal leading-none text-gray-400 dark:text-gray-500 text-2xl">
+            {noticia.fecha}
+          </time>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{noticia.titulo}</h3>
+       <div className="flex gap-[10%] justify-center">  {noticia.imagen && <img src={noticia.imagen} alt={`Imagen ${index + 1}`} className="mb-4 w-[40vw] rounded-lg" />}
+          <p className="text-4xl font-normal text-gray-500 dark:text-gray-400 w-[35vw] px-7">{noticia.descripcion}</p></div> 
+        </li>
+      ))}
+    </ol>
   );
 }
 
