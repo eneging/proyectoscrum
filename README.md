@@ -19,3 +19,20 @@ $ npm install axios
 npm i react-router-dom
 
 ##tailwin css
+
+## Para Crear un nuevo usuario en postman
+
+metodo post - http://127.0.0.1:8000/api/login/create
+
+json:
+
+{
+     "name":"edwar",
+    "email":"edwar@reyes",
+    "password":"edwar"
+}
+
+
+
+
+
