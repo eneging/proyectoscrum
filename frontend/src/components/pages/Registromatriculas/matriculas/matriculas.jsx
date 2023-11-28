@@ -161,7 +161,7 @@ const handlefetch = () =>{
           <EditMatricula data = {editmatricula} onClose2={handleCloseModal2} onfetch={handlefetch}></EditMatricula>
         )}
         {modalOpen && (
-          <CrearMatriucula onClose={handleCloseModal}></CrearMatriucula>
+          <CrearMatriucula onClose={handleCloseModal} onfetch={handlefetch}></CrearMatriucula>
         )}
       </div>
     </div>
