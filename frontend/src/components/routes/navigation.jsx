@@ -18,10 +18,7 @@ function Navigation({funLogout}) {
           <Link to="/"><h1 className="hover:text-orange-500 text-[100%] text-gray-600">Home</h1></Link>
 
         </li>
-        <li>
-
-          <Link to="/students"><h1 className="hover:text-orange-500 text-[100%] text-gray-600">Datos de  Estudiantes</h1></Link>
-        </li>
+       
        
 
         <li>

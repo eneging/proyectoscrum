@@ -2,6 +2,7 @@
 
 function editar() {
   return (
+    
     <div className="flex items-center flex-col justify-center p-12">
         <div  className="bg-gray-800  text-white flex justify-around h-[6vh] w-screen items-center "></div>
       <div className="mx-auto w-full max-w-[550px] bg-white p-[3rem]">
