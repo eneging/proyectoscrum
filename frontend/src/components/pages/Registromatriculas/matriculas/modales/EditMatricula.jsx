@@ -8,7 +8,9 @@ import useNivelesData from "../../../../hooks/useNivelesData";
 import useCarrerasData from "../../../../hooks/useCarrerasData";
 import useGruposData from "../../../../hooks/useGruposData";
 
-function EditMatricula({ data , onClose2 }) {
+
+
+function EditMatricula({ data , onClose2 , onfetch}) {
   const { Carreras, fetchDataCarreras } = useCarrerasData();
   const { Grupos, fetchDataGrupos } = useGruposData();
   const { Niveles, fetchDataNiveles } = useNivelesData();
@@ -28,6 +30,13 @@ function EditMatricula({ data , onClose2 }) {
   const handleCloseModal = () => {
     onClose2();
       };
+
+
+const handleupdatedata = () => {
+
+  onfetch();
+}
+
 
   const handleNivelChange = (event) => {
     console.log('Nuevo valor de nivel:', event.target.value);
@@ -64,9 +73,9 @@ function EditMatricula({ data , onClose2 }) {
         Fecha_Grupo: editmatricula.Fecha_Grupo,
         Fecha_Nivel: editmatricula.Fecha_Nivel,
       });
-
+      handleupdatedata();
       onClose2();
-      
+
       setEditMatricula({ estudiante_id: null });
     } catch (error) {
       console.error('Error updating student:', error);

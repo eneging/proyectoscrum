@@ -43,6 +43,12 @@ const Matriculas2 = () => {
     fetchData();
   }, []);
 
+const handlefetch = () =>{
+
+  fetchData();
+}
+ 
+
   const handleEdit = (carrera) => {
     setEditMatricula({
       id: carrera.id,
@@ -152,7 +158,7 @@ const Matriculas2 = () => {
         </Box>
         </div>
         {modalOpen2  && (
-          <EditMatricula data = {editmatricula} onClose2={handleCloseModal2} ></EditMatricula>
+          <EditMatricula data = {editmatricula} onClose2={handleCloseModal2} onfetch={handlefetch}></EditMatricula>
         )}
         {modalOpen && (
           <CrearMatriucula onClose={handleCloseModal}></CrearMatriucula>

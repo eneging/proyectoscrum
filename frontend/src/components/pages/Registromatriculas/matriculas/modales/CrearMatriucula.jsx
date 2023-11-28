@@ -1,4 +1,4 @@
-import {InputLabel, MenuItem,FormControl,Select, TextField,Autocomplete,Stack,} from '@mui/material';
+import {InputLabel, MenuItem,FormControl,Select} from '@mui/material';
 
 import { useEffect, useState } from 'react';
 import useNivelesData from "../../../../hooks/useNivelesData";
@@ -7,9 +7,11 @@ import useGruposData from "../../../../hooks/useGruposData";
 import useEstudiantesData from '../../../../hooks/useEstudiantesData';
 import axios from 'axios';
 import API_URL from '../../../../../config';
+import useMatriculasData from '../../../../hooks/useMatriculasData';
+
 
 function CrearMatriucula({onClose}) {
-
+  const { Matriculas, fetchData } = useMatriculasData();
     const { Carreras, fetchDataCarreras } = useCarrerasData();
     const { Grupos, fetchDataGrupos } = useGruposData();
     const { Niveles, fetchDataNiveles } = useNivelesData();
@@ -34,7 +36,7 @@ useEffect(() => {
         fetchDataGrupos();
         fetchDataNiveles();
         fetchDataEstudiantes();
-    
+    fetchData();
         
   }, []);
 
