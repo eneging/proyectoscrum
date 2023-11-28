@@ -10,7 +10,7 @@ import API_URL from '../../../../../config';
 import useMatriculasData from '../../../../hooks/useMatriculasData';
 
 
-function CrearMatriucula({onClose}) {
+function CrearMatriucula({onClose ,onfetch}) {
   const { Matriculas, fetchData } = useMatriculasData();
     const { Carreras, fetchDataCarreras } = useCarrerasData();
     const { Grupos, fetchDataGrupos } = useGruposData();
@@ -40,7 +40,11 @@ useEffect(() => {
         
   }, []);
 
- 
+  const handleupdatedata = () => {
+
+    onfetch();
+  }
+  
 
   const handleCloseModal = () => {
 onClose();
@@ -88,6 +92,7 @@ onClose();
       showConfirmButton: false,
       timer: 1500,
     });
+    handleupdatedata();
     handleCloseModal(false);
 
    
