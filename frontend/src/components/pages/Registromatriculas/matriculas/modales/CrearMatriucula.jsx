@@ -7,11 +7,11 @@ import useGruposData from "../../../../hooks/useGruposData";
 import useEstudiantesData from '../../../../hooks/useEstudiantesData';
 import axios from 'axios';
 import API_URL from '../../../../../config';
-import useMatriculasData from '../../../../hooks/useMatriculasData';
+
 
 
 function CrearMatriucula({onClose ,onfetch}) {
-  const { Matriculas, fetchData } = useMatriculasData();
+
     const { Carreras, fetchDataCarreras } = useCarrerasData();
     const { Grupos, fetchDataGrupos } = useGruposData();
     const { Niveles, fetchDataNiveles } = useNivelesData();
@@ -36,8 +36,7 @@ useEffect(() => {
         fetchDataGrupos();
         fetchDataNiveles();
         fetchDataEstudiantes();
-    fetchData();
-        
+   
   }, []);
 
   const handleupdatedata = () => {
@@ -79,12 +78,10 @@ onClose();
   
     let fecha = hoy.toLocaleDateString();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-
+  const handleSubmit = () => {
+   
     sendDataToServer({ editmatricula });
-
+   
     Swal.fire({
       position: "center",
       icon: "success",
@@ -92,7 +89,7 @@ onClose();
       showConfirmButton: false,
       timer: 1500,
     });
-    handleupdatedata();
+   
     handleCloseModal(false);
 
    
@@ -117,7 +114,7 @@ onClose();
       fetchDataGrupos();
       fetchDataNiveles();
       fetchDataEstudiantes();
-
+      handleupdatedata();
     } catch (error) {
       console.error("Error creando carrera:", error);
     }

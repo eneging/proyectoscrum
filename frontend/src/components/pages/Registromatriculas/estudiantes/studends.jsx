@@ -269,7 +269,7 @@ const Students = () => {
               >
                 <TableCell> <div className='text-center px-[7vw] text-white'> Nombre{"  "}</div></TableCell>
                 <TableCell><div className='text-center  px-[2vw] text-white'>rol</div></TableCell>
-                <TableCell><div className='text-center text-white'> estado{" "}</div></TableCell>
+              {/*  <TableCell><div className='text-center text-white hidden'> estado{" "}</div></TableCell>*/}
                 <TableCell><div className='text-center text-white'> Telefono{" "}</div></TableCell>
                 <TableCell><div className='text-center text-white'> Dni{" "}</div></TableCell>
                 <TableCell><div className='text-center text-white'>Acción</div></TableCell>
@@ -301,9 +301,9 @@ const Students = () => {
                   </div></TableCell>
 
                   <TableCell>Estudiante</TableCell>
-                  <TableCell> <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+             {/*     <TableCell className="hidden"> <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                     Active
-                  </span></TableCell>
+                  </span></TableCell>*/}
                   <TableCell align='left'>
                   <div className="text-sm text-center text-gray-500 ">
                     {`${carrera.dni}`}
